@@ -1,0 +1,37 @@
+PODS:
+  - Alamofire (4.0.1)
+  - Kingfisher (3.2.0)
+  - MBProgressHUD (1.0.0)
+  - ObjectMapper (2.2.1)
+  - SnapKit (3.0.2)
+  - Spring (1.0.3)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - Kingfisher
+  - MBProgressHUD (~> 1.0.0)
+  - ObjectMapper (~> 2.2.1)
+  - SnapKit (~> 3.0.2)
+  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
+
+EXTERNAL SOURCES:
+  Spring:
+    :branch: swift3
+    :git: https://github.com/MengTo/Spring.git
+
+CHECKOUT OPTIONS:
+  Spring:
+    :commit: 3a9227c6e9157e7b47f5ac1ee5abab2a56b50002
+    :git: https://github.com/MengTo/Spring.git
+
+SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Kingfisher: 50407d1d5dbc34965009d425a286342ff36a84ea
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
+
+PODFILE CHECKSUM: ac74cf38bcbeda6fd4d4fbc0838db3cafa7648ea
+
+COCOAPODS: 1.1.1

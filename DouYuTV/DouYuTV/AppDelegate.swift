@@ -15,7 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let window = UIWindow(frame: HmhDevice.screenRect)
+        self.window = window
+        
+        let baseVC = HmhTools.createViewController("Main", identifier: "BaseTabBarController")
+        self.window?.rootViewController = baseVC
+        
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
