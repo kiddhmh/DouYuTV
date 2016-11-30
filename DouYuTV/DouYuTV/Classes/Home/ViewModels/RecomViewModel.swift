@@ -12,27 +12,22 @@ import MBProgressHUD
 
 class RecomViewModel: NSObject {
     
+    fileprivate var bigRequest: MyHttpRequest?
+    fileprivate var hotRequest: MyHttpRequest?
     fileprivate var faceRequest: MyHttpRequest?
     
-    lazy var gameGroup: [AnchorModel] = [AnchorModel]()
+    lazy var bigGroup: [AnchorModel] = [AnchorModel]()
     lazy var faceGroup: [RecomFaceModel] = [RecomFaceModel]()
+    lazy var hotGroup: [HotModel] = [HotModel]()
     
     override init() {
         super.init()
         
-        requestData { (myResponse) in
-            switch myResponse.state {
-            case .Success(let faceModels):
-                self.faceGroup = (faceModels as! FaceBaseModel).data!
-            case .Error(let error):
-                if let errorMessage = error.errorMessage {
-                    MBProgressHUD.showError(errorMessage)
-                }
-            }
-        }
     }
     
     deinit {
+        bigRequest?.cancel()
+        hotRequest?.cancel()
         faceRequest?.cancel()
     }
 }
@@ -40,22 +35,67 @@ class RecomViewModel: NSObject {
 
 extension RecomViewModel {
     
-    func requestData(_ completion: @escaping (_ response: MyHttpResponse) -> ()) {
+    func requestData(complectioned completion: @escaping () -> (),failed fail: @escaping (_ error: MyError) -> ()) {
         
+        // 颜值数据参数
         let params = ["limit": "4", "offset": "0", "time": Date.nowDate().toTimestamp() ]
         
-        faceRequest = HttpClient.sharedHttpClient().get(MyNetWorkingConfig.RECOMMEND_FACE, parameters: params as [String : AnyObject]? , complection: { (myResponse) in
+        // 利用DispatchGroup管理多条网络请求
+        let group = DispatchGroup()
+        
+        group.enter()
+        // 请求第一部分推荐数据
+        hotRequest = HttpClient.sharedHttpClient().get(MyNetWorkingConfig.RECOMMEND_BIG_GAME, parameters: ["time": Date.nowDate().toTimestamp()], complection: { (myResponse) in
+            
+            switch myResponse.state {
+            case .Success(let value):
+                let baseModel = Mapper<GameBaseModel>().map(JSON: value as! [String : Any])
+                self.bigGroup = (baseModel?.data)!
+            case .Error(let error):
+                fail(error)
+            }
+            
+            group.leave()
+        })
+        
+        group.enter()
+        // 请求第二部分颜值数据
+        faceRequest = HttpClient.sharedHttpClient().get(MyNetWorkingConfig.RECOMMEND_FACE, parameters: params, complection: { (myResponse) in
             
             switch  myResponse.state {
             case .Success(let value):
                 let faceModels = Mapper<FaceBaseModel>().map(JSON: value as! [String : Any])
-                let response = MyHttpResponse(state: HttpResponseState.Success(faceModels))
-                completion(response)
-            case .Error(_):
-                completion(myResponse)
+                self.faceGroup = (faceModels?.data)!
+            case .Error(let error):
+                fail(error)
             }
+            
+            group.leave()
         })
         
+        group.enter()
+        // 请求第三部分最热数据
+        hotRequest = HttpClient.sharedHttpClient().get(MyNetWorkingConfig.RECOMMEND_HOT_GAME, parameters: params, complection: { (myResponse) in
+            
+            switch myResponse.state {
+            case .Success(let value):
+                let baseModel = Mapper<HotBaseModel>().map(JSON: value as! [String: Any])
+                self.hotGroup = (baseModel?.data)!
+                for (index,hotModel) in self.hotGroup.enumerated() { // 将空房间移除
+                    if hotModel.room_list?.count == 0 {
+                        self.hotGroup.remove(at: index)
+                    }
+                }
+            case .Error(let error):
+                fail(error)
+            }
+            
+            group.leave()
+        })
+        
+        group.notify(queue: DispatchQueue.main) { 
+            completion()
+        }
     }
     
 }

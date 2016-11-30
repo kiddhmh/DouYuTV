@@ -26,7 +26,7 @@ class HttpClient: NSObject {
     
     
     //get 请求
-    func get(_ URLString: String, parameters: [String: AnyObject]? = nil, complection: @escaping (_ response: MyHttpResponse) -> Void) -> MyHttpRequest {
+    func get(_ URLString: String, parameters: [String: Any]? = nil, complection: @escaping (_ response: MyHttpResponse) -> Void) -> MyHttpRequest {
         
         let url = URLString
         let parameter = HttpApiSign.configGetMethodWithParam(parameters)
@@ -58,7 +58,7 @@ class HttpClient: NSObject {
     
     
     //post 请求
-    func post(_ URLString: String, paramters: [String: AnyObject]? = nil,complection: @escaping (_ response: MyHttpResponse) -> Void) -> MyHttpRequest {
+    func post(_ URLString: String, paramters: [String: Any]? = nil,complection: @escaping (_ response: MyHttpResponse) -> Void) -> MyHttpRequest {
         
         let url = URLString
         var jsonData: Data? = nil

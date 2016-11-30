@@ -81,6 +81,19 @@ struct HmhTools {
         return Bundle.main.loadNibNamed(nibName, owner: nil, options: nil)?.last as? UIView
     }
     
+    
+    // 换算在线人数
+    static func handleNumber(_ number: Int?) -> String {
+        guard let number = number else {
+            return ""
+        }
+        if number < 10000 {
+            return "\(number)"
+        }else {
+            let new = Double(number / 1000) / 10.0
+            return "\(new)万"
+        }
+    }
 }
 
 

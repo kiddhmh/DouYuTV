@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 let kItemMargin: CGFloat = 8
 let kItemW: CGFloat = (HmhDevice.screenW - 3 * kItemMargin) / 2
@@ -14,9 +15,10 @@ let kNormalItemH: CGFloat = kItemW * 3 / 4
 let kPrettyItemH: CGFloat = kItemW * 4 / 3
 let kHeaderViewH: CGFloat = 50
 
+let kSectionCount: Int = 11
+let kRowCount: Int = 4
+
 class BaseViewController: UIViewController {
-    
-    var isNaviBarHidden = false
     
     var hiddenBlock: ((_ ishidden: Bool, _ animated: Bool) -> Void)?
     
@@ -51,6 +53,23 @@ class BaseViewController: UIViewController {
         }()
     
     
+    fileprivate lazy var animImageView : UIImageView = { [unowned self] in
+        let imageView = UIImageView(image: UIImage(named: "dyla_img_loading_1"))
+        imageView.center = self.view.center
+        imageView.animationImages = [UIImage(named : "dyla_img_loading_1")!, UIImage(named : "dyla_img_loading_2")!]
+        imageView.animationDuration = 0.5
+        imageView.animationRepeatCount = LONG_MAX
+        imageView.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin]
+        return imageView
+        }()
+    
+    fileprivate lazy var failedView: BaseFailedView = { [unowned self] in
+        let failedView = BaseFailedView.failView()
+        failedView.center = self.view.center
+        failedView.delegate = self
+        return failedView
+    }()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -58,6 +77,8 @@ class BaseViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
         setupUI()
+        // 加载数据，子类负责重写
+        loadData()
     }
     
     
@@ -72,20 +93,58 @@ extension BaseViewController {
     fileprivate func setupUI() {
         
         view.addSubview(collectionView)
+        
+        view.addSubview(animImageView)
+        
+        startAnimation()
     }
+}
+
+
+extension BaseViewController {
+    func loadData() {}
+}
+
+
+extension BaseViewController {
+    
+    func startAnimation() {
+        animImageView.isHidden = false
+        animImageView.startAnimating()
+    }
+    
+    func loadDataFinished() {
+        // 1.停止动画
+        animImageView.stopAnimating()
+        
+        // 2.隐藏animImageView
+        animImageView.isHidden = true
+    }
+}
+
+
+extension BaseViewController: BaseFailedViewDelegate {
+    
+    func loadDataFailed(_ error: MyError) {
+        
+        MBProgressHUD.showError(error.errorMessage!)
+        loadDataFinished()
+        view.addSubview(failedView)
+    }
+    
 }
 
 
 extension BaseViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 12
+        return kSectionCount
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 4
+        return kRowCount
     }
     
     
@@ -122,17 +181,19 @@ extension BaseViewController: UICollectionViewDelegate {
             
             let offsetY = scrollView.contentOffset.y
             if startOffsetY > offsetY { //显示
-                if isNaviBarHidden == false { return }
+                if C.isNavBarHidden == false { return }
                 hiddenBlock?(false, true)
-                isNaviBarHidden = false
+                C.isNavBarHidden = false
             }else { //隐藏
-                if isNaviBarHidden == true { return }
+                if C.isNavBarHidden == true { return }
                 hiddenBlock?(true, true)
-                isNaviBarHidden = true
+                C.isNavBarHidden = true
             }
-            
-            startOffsetY = offsetY
         }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        startOffsetY = scrollView.contentOffset.y
     }
     
 }

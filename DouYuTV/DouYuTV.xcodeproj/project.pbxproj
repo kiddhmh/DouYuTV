@@ -32,6 +32,10 @@
 		A2C9C67F1DED723200793FEF /* HttpDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C67C1DED723200793FEF /* HttpDriver.swift */; };
 		A2C9C6861DED7F9400793FEF /* HmhThirdLibExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6851DED7F9400793FEF /* HmhThirdLibExtension.swift */; };
 		A2C9C6881DED803400793FEF /* MyNetWorkingConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6871DED803400793FEF /* MyNetWorkingConfig.swift */; };
+		A2C9C68A1DEE74CB00793FEF /* HotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6891DEE74CB00793FEF /* HotModel.swift */; };
+		A2C9C68C1DEE766A00793FEF /* HotBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C68B1DEE766A00793FEF /* HotBaseModel.swift */; };
+		A2C9C68F1DEEC21900793FEF /* BaseFailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C68E1DEEC21900793FEF /* BaseFailedView.swift */; };
+		A2C9C6931DEEC58100793FEF /* BaseFailedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C9C6921DEEC58100793FEF /* BaseFailedView.xib */; };
 		A2F545641DE29B0000F62A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F545631DE29B0000F62A81 /* AppDelegate.swift */; };
 		A2F5456B1DE29B0000F62A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2F5456A1DE29B0000F62A81 /* Assets.xcassets */; };
 		A2F5456E1DE29B0000F62A81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F5456C1DE29B0000F62A81 /* LaunchScreen.storyboard */; };
@@ -97,6 +101,10 @@
 		A2C9C67C1DED723200793FEF /* HttpDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpDriver.swift; sourceTree = "<group>"; };
 		A2C9C6851DED7F9400793FEF /* HmhThirdLibExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HmhThirdLibExtension.swift; sourceTree = "<group>"; };
 		A2C9C6871DED803400793FEF /* MyNetWorkingConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNetWorkingConfig.swift; sourceTree = "<group>"; };
+		A2C9C6891DEE74CB00793FEF /* HotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotModel.swift; sourceTree = "<group>"; };
+		A2C9C68B1DEE766A00793FEF /* HotBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotBaseModel.swift; sourceTree = "<group>"; };
+		A2C9C68E1DEEC21900793FEF /* BaseFailedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFailedView.swift; sourceTree = "<group>"; };
+		A2C9C6921DEEC58100793FEF /* BaseFailedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseFailedView.xib; sourceTree = "<group>"; };
 		A2F545601DE29B0000F62A81 /* DouYuTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DouYuTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F545631DE29B0000F62A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2F5456A1DE29B0000F62A81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -173,6 +181,8 @@
 			children = (
 				A2C9C6711DED6A7000793FEF /* GameBaseModel.swift */,
 				A2C9C6731DED6A7D00793FEF /* FaceBaseModel.swift */,
+				A2C9C68B1DEE766A00793FEF /* HotBaseModel.swift */,
+				A2C9C6891DEE74CB00793FEF /* HotModel.swift */,
 				A2C9C66F1DED68CC00793FEF /* RecomFaceModel.swift */,
 			);
 			path = Models;
@@ -203,6 +213,15 @@
 				A2C9C67C1DED723200793FEF /* HttpDriver.swift */,
 			);
 			path = NetWork;
+			sourceTree = "<group>";
+		};
+		A2C9C68D1DEEC20500793FEF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A2C9C68E1DEEC21900793FEF /* BaseFailedView.swift */,
+				A2C9C6921DEEC58100793FEF /* BaseFailedView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A2F545571DE29B0000F62A81 = {
@@ -386,6 +405,7 @@
 			children = (
 				A2F546251DE4173300F62A81 /* Storyboard */,
 				A2F546241DE4171800F62A81 /* Controllers */,
+				A2C9C68D1DEEC20500793FEF /* Views */,
 				A2C9C6681DED5BB200793FEF /* Models */,
 			);
 			path = Main;
@@ -548,6 +568,7 @@
 				A2AE30D01DE6E667009BD9DE /* RecommendPrettyCell.xib in Resources */,
 				A2F546101DE3E94500F62A81 /* dyla_shayuniang_progress.gif in Resources */,
 				A2F5456E1DE29B0000F62A81 /* LaunchScreen.storyboard in Resources */,
+				A2C9C6931DEEC58100793FEF /* BaseFailedView.xib in Resources */,
 				A2AE30C41DE67EA2009BD9DE /* RecommendSectionHeaderView.xib in Resources */,
 				A2AE30CC1DE6B738009BD9DE /* RecommentNormalCell.xib in Resources */,
 				A2F5456B1DE29B0000F62A81 /* Assets.xcassets in Resources */,
@@ -633,6 +654,7 @@
 				A2F545641DE29B0000F62A81 /* AppDelegate.swift in Sources */,
 				A2C9C6701DED68CC00793FEF /* RecomFaceModel.swift in Sources */,
 				A2C9C6741DED6A7D00793FEF /* FaceBaseModel.swift in Sources */,
+				A2C9C68A1DEE74CB00793FEF /* HotModel.swift in Sources */,
 				A2C9C6861DED7F9400793FEF /* HmhThirdLibExtension.swift in Sources */,
 				A2AE30CA1DE6B718009BD9DE /* RecommentNormalCell.swift in Sources */,
 				A2F546391DE4223700F62A81 /* HmhUIExtension.swift in Sources */,
@@ -648,6 +670,7 @@
 				A2C9C6881DED803400793FEF /* MyNetWorkingConfig.swift in Sources */,
 				A2F546411DE43C2400F62A81 /* HmhConfig.swift in Sources */,
 				A2C9C67F1DED723200793FEF /* HttpDriver.swift in Sources */,
+				A2C9C68C1DEE766A00793FEF /* HotBaseModel.swift in Sources */,
 				A227596A1DE584E10087E87F /* FunViewController.swift in Sources */,
 				A2C9C67D1DED723200793FEF /* HttpApiSign.swift in Sources */,
 				A2C9C6721DED6A7000793FEF /* GameBaseModel.swift in Sources */,
@@ -655,6 +678,7 @@
 				A2AE30CE1DE6E648009BD9DE /* RecommendPrettyCell.swift in Sources */,
 				A22759601DE541F80087E87F /* PageContentView.swift in Sources */,
 				A2F5463B1DE4266F00F62A81 /* BaseNavigationController.swift in Sources */,
+				A2C9C68F1DEEC21900793FEF /* BaseFailedView.swift in Sources */,
 				A2F546371DE4195700F62A81 /* HmhTools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

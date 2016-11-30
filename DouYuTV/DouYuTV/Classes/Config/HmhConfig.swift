@@ -12,6 +12,9 @@ import UIKit
 
 struct C {
     
+    /// 导航栏是否隐藏
+    static var isNavBarHidden = false
+    
     /// 系统主要颜色
     static let mainColor = #imageLiteral(resourceName: "Img_orange").getColorCustom()
     
