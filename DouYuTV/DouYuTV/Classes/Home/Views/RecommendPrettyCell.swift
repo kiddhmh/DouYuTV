@@ -25,7 +25,11 @@ class RecommendPrettyCell: UICollectionViewCell {
             guard let faceModel = faceModel else {return}
             
             let url = URL(string: faceModel.vertical_src ?? "")
-            backImage.kf.setImage(with: url, placeholder: UIImage(named: "live_cell_default_phone"))
+            backImage.kf.setImage(with: url, placeholder: UIImage(named: "live_cell_default_phone")) { [weak self] (image, error, type, url) in
+                self?.backImage.image = (image! as UIImage).imageWithCornerRadius(15)
+            }
+            
+            
             onlineLabel.text = HmhTools.handleNumber(faceModel.online)
             roomNameLabel.text = faceModel.nickname
             locationLabel.text = faceModel.anchor_city

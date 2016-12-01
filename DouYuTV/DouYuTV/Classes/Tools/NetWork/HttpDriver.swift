@@ -19,7 +19,6 @@ enum HttpResponseState {
 ///普通的get和post请求
 class HttpDriver {
     
-    
     /// get请求，返回json数据
     ///
     /// - parameter URLString:  请求的url地址
@@ -273,3 +272,6 @@ class MyHttpResponse {
         self.state = state
     }
 }
+
+
+

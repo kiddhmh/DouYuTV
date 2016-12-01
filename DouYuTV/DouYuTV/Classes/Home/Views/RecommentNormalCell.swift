@@ -25,14 +25,16 @@ class RecommentNormalCell: UICollectionViewCell {
         didSet {
             guard let anchorModel = anchorModel else {return}
             let url = URL(string: anchorModel.vertical_src ?? "")
-            backImage.kf.setImage(with: url, placeholder: UIImage(named: "Img_default"))
+            
+            backImage.kf.setImage(with: url, placeholder: UIImage(named: "Img_default"), completionHandler: { [weak self] (image, error, type, url)  in
+                self?.backImage.image = (image! as UIImage).imageWithCornerRadius(15)
+                })
             
             roomTitleLbale.text = anchorModel.room_name
             roomNameLabel.text = anchorModel.nickname
             onlineLabel.text = HmhTools.handleNumber(anchorModel.online)
         }
     }
-    
     
 }
 

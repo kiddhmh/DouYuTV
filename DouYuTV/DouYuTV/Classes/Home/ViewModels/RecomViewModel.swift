@@ -15,10 +15,12 @@ class RecomViewModel: NSObject {
     fileprivate var bigRequest: MyHttpRequest?
     fileprivate var hotRequest: MyHttpRequest?
     fileprivate var faceRequest: MyHttpRequest?
+    fileprivate var cycleRequest: MyHttpRequest?
     
     lazy var bigGroup: [AnchorModel] = [AnchorModel]()
     lazy var faceGroup: [RecomFaceModel] = [RecomFaceModel]()
     lazy var hotGroup: [HotModel] = [HotModel]()
+    lazy var cycleGroup: [CycleModel] = [CycleModel]()
     
     override init() {
         super.init()
@@ -29,6 +31,7 @@ class RecomViewModel: NSObject {
         bigRequest?.cancel()
         hotRequest?.cancel()
         faceRequest?.cancel()
+        cycleRequest?.cancel()
     }
 }
 
@@ -49,7 +52,7 @@ extension RecomViewModel {
             
             switch myResponse.state {
             case .Success(let value):
-                let baseModel = Mapper<GameBaseModel>().map(JSON: value as! [String : Any])
+                let baseModel = Mapper<BaseModel<AnchorModel>>().map(JSON: value as! [String : Any])
                 self.bigGroup = (baseModel?.data)!
             case .Error(let error):
                 fail(error)
@@ -64,7 +67,7 @@ extension RecomViewModel {
             
             switch  myResponse.state {
             case .Success(let value):
-                let faceModels = Mapper<FaceBaseModel>().map(JSON: value as! [String : Any])
+                let faceModels = Mapper<BaseModel<RecomFaceModel>>().map(JSON: value as! [String : Any])
                 self.faceGroup = (faceModels?.data)!
             case .Error(let error):
                 fail(error)
@@ -79,13 +82,8 @@ extension RecomViewModel {
             
             switch myResponse.state {
             case .Success(let value):
-                let baseModel = Mapper<HotBaseModel>().map(JSON: value as! [String: Any])
+                let baseModel = Mapper<BaseModel<HotModel>>().map(JSON: value as! [String: Any])
                 self.hotGroup = (baseModel?.data)!
-                for (index,hotModel) in self.hotGroup.enumerated() { // 将空房间移除
-                    if hotModel.room_list?.count == 0 {
-                        self.hotGroup.remove(at: index)
-                    }
-                }
             case .Error(let error):
                 fail(error)
             }
@@ -96,6 +94,24 @@ extension RecomViewModel {
         group.notify(queue: DispatchQueue.main) { 
             completion()
         }
+    }
+    
+    
+    /// 请求轮播图数据
+    func requestCycleData(complectioned complection: @escaping () -> (),failed fail: @escaping (_ error: MyError) -> ()) {
+        
+        cycleRequest = HttpClient.sharedHttpClient().get("http://www.douyutv.com/api/v1/slide/6", parameters: ["version" : "2.401"], complection: { (myResponse) in
+            
+            switch  myResponse.state {
+            case .Success(let value):
+                let cycleModel = Mapper<BaseModel<CycleModel>>().map(JSON: value as! [String: Any])
+                self.cycleGroup = (cycleModel?.data)!
+            case .Error(let error):
+                fail(error)
+            }
+            
+          complection()
+        })
     }
     
 }

@@ -24,7 +24,6 @@ class HttpClient: NSObject {
         return instance
     }
     
-    
     //get 请求
     func get(_ URLString: String, parameters: [String: Any]? = nil, complection: @escaping (_ response: MyHttpResponse) -> Void) -> MyHttpRequest {
         
@@ -51,6 +50,7 @@ class HttpClient: NSObject {
                 complection(response)
             }
         }
+        
         
         return request
     }

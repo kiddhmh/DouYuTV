@@ -48,7 +48,7 @@ open class SessionManager {
     open static let `default`: SessionManager = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-
+        configuration.timeoutIntervalForRequest = 15
         return SessionManager(configuration: configuration)
     }()
 

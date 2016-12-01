@@ -26,13 +26,47 @@ extension UIImage {
         
         let color = UIColor(red: red, green: green, blue: blue, alpha: alpha)
         return color
-        
     }
     
     func getColorCustom() -> UIColor {
         return self.getColor(CGPoint.zero)
     }
     
+    
+    /// 生成一定角度的圆角图片
+    ///
+    /// - parameter radius: 自定义的度数
+    ///
+    /// - returns: 圆角图片
+    func imageWithCornerRadius(_ radius: CGFloat) -> UIImage? {
+        
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+        UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale)
+        UIBezierPath(roundedRect: rect, cornerRadius: radius).addClip()
+        self.draw(in: rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
+    
+    /// 生成圆角图片
+    ///
+    /// - returns: 圆角图片
+    func circleImage() -> UIImage? {
+        
+        UIGraphicsBeginImageContext(self.size)
+        let ctx = UIGraphicsGetCurrentContext()
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+        ctx?.addEllipse(in: rect)
+        ctx?.clip()
+        self.draw(in: rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
 }
 
 

@@ -152,8 +152,6 @@ extension BaseViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.RecommentCellID, for: indexPath)
         
-        cell.backgroundColor = UIColor.randomColor
-        
         return cell
     }
     

@@ -24,8 +24,6 @@
 		A2C9C66A1DED5BC400793FEF /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6691DED5BC400793FEF /* BaseModel.swift */; };
 		A2C9C66C1DED5F4700793FEF /* AnchorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C66B1DED5F4700793FEF /* AnchorModel.swift */; };
 		A2C9C6701DED68CC00793FEF /* RecomFaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C66F1DED68CC00793FEF /* RecomFaceModel.swift */; };
-		A2C9C6721DED6A7000793FEF /* GameBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6711DED6A7000793FEF /* GameBaseModel.swift */; };
-		A2C9C6741DED6A7D00793FEF /* FaceBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6731DED6A7D00793FEF /* FaceBaseModel.swift */; };
 		A2C9C6761DED6D9500793FEF /* RecomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6751DED6D9500793FEF /* RecomViewModel.swift */; };
 		A2C9C67D1DED723200793FEF /* HttpApiSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C67A1DED723200793FEF /* HttpApiSign.swift */; };
 		A2C9C67E1DED723200793FEF /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C67B1DED723200793FEF /* HttpClient.swift */; };
@@ -33,9 +31,15 @@
 		A2C9C6861DED7F9400793FEF /* HmhThirdLibExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6851DED7F9400793FEF /* HmhThirdLibExtension.swift */; };
 		A2C9C6881DED803400793FEF /* MyNetWorkingConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6871DED803400793FEF /* MyNetWorkingConfig.swift */; };
 		A2C9C68A1DEE74CB00793FEF /* HotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6891DEE74CB00793FEF /* HotModel.swift */; };
-		A2C9C68C1DEE766A00793FEF /* HotBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C68B1DEE766A00793FEF /* HotBaseModel.swift */; };
 		A2C9C68F1DEEC21900793FEF /* BaseFailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C68E1DEEC21900793FEF /* BaseFailedView.swift */; };
 		A2C9C6931DEEC58100793FEF /* BaseFailedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2C9C6921DEEC58100793FEF /* BaseFailedView.xib */; };
+		A2C9C6961DF005F500793FEF /* MHCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6951DF005F500793FEF /* MHCycleView.swift */; };
+		A2C9C6981DF0060200793FEF /* MHCycleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6971DF0060200793FEF /* MHCycleViewCell.swift */; };
+		A2C9C69A1DF0060D00793FEF /* MHCycleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6991DF0060D00793FEF /* MHCycleModel.swift */; };
+		A2C9C69E1DF008C300793FEF /* MHCycleViewBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A2C9C69D1DF008C300793FEF /* MHCycleViewBundle.bundle */; };
+		A2C9C6A01DF00C7800793FEF /* CycleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C69F1DF00C7800793FEF /* CycleModel.swift */; };
+		A2C9C6A21DF05BA200793FEF /* RecomGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6A11DF05BA200793FEF /* RecomGameView.swift */; };
+		A2C9C6A41DF05BE300793FEF /* RecomGameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6A31DF05BE300793FEF /* RecomGameViewCell.swift */; };
 		A2F545641DE29B0000F62A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F545631DE29B0000F62A81 /* AppDelegate.swift */; };
 		A2F5456B1DE29B0000F62A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2F5456A1DE29B0000F62A81 /* Assets.xcassets */; };
 		A2F5456E1DE29B0000F62A81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F5456C1DE29B0000F62A81 /* LaunchScreen.storyboard */; };
@@ -93,8 +97,6 @@
 		A2C9C6691DED5BC400793FEF /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		A2C9C66B1DED5F4700793FEF /* AnchorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnchorModel.swift; sourceTree = "<group>"; };
 		A2C9C66F1DED68CC00793FEF /* RecomFaceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecomFaceModel.swift; sourceTree = "<group>"; };
-		A2C9C6711DED6A7000793FEF /* GameBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBaseModel.swift; sourceTree = "<group>"; };
-		A2C9C6731DED6A7D00793FEF /* FaceBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBaseModel.swift; sourceTree = "<group>"; };
 		A2C9C6751DED6D9500793FEF /* RecomViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecomViewModel.swift; sourceTree = "<group>"; };
 		A2C9C67A1DED723200793FEF /* HttpApiSign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpApiSign.swift; sourceTree = "<group>"; };
 		A2C9C67B1DED723200793FEF /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -102,9 +104,15 @@
 		A2C9C6851DED7F9400793FEF /* HmhThirdLibExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HmhThirdLibExtension.swift; sourceTree = "<group>"; };
 		A2C9C6871DED803400793FEF /* MyNetWorkingConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNetWorkingConfig.swift; sourceTree = "<group>"; };
 		A2C9C6891DEE74CB00793FEF /* HotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotModel.swift; sourceTree = "<group>"; };
-		A2C9C68B1DEE766A00793FEF /* HotBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotBaseModel.swift; sourceTree = "<group>"; };
 		A2C9C68E1DEEC21900793FEF /* BaseFailedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFailedView.swift; sourceTree = "<group>"; };
 		A2C9C6921DEEC58100793FEF /* BaseFailedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseFailedView.xib; sourceTree = "<group>"; };
+		A2C9C6951DF005F500793FEF /* MHCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHCycleView.swift; sourceTree = "<group>"; };
+		A2C9C6971DF0060200793FEF /* MHCycleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHCycleViewCell.swift; sourceTree = "<group>"; };
+		A2C9C6991DF0060D00793FEF /* MHCycleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHCycleModel.swift; sourceTree = "<group>"; };
+		A2C9C69D1DF008C300793FEF /* MHCycleViewBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MHCycleViewBundle.bundle; sourceTree = "<group>"; };
+		A2C9C69F1DF00C7800793FEF /* CycleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleModel.swift; sourceTree = "<group>"; };
+		A2C9C6A11DF05BA200793FEF /* RecomGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecomGameView.swift; sourceTree = "<group>"; };
+		A2C9C6A31DF05BE300793FEF /* RecomGameViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecomGameViewCell.swift; sourceTree = "<group>"; };
 		A2F545601DE29B0000F62A81 /* DouYuTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DouYuTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F545631DE29B0000F62A81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2F5456A1DE29B0000F62A81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -179,11 +187,9 @@
 		A2C9C6631DED5A9500793FEF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A2C9C6711DED6A7000793FEF /* GameBaseModel.swift */,
-				A2C9C6731DED6A7D00793FEF /* FaceBaseModel.swift */,
-				A2C9C68B1DEE766A00793FEF /* HotBaseModel.swift */,
 				A2C9C6891DEE74CB00793FEF /* HotModel.swift */,
 				A2C9C66F1DED68CC00793FEF /* RecomFaceModel.swift */,
+				A2C9C69F1DF00C7800793FEF /* CycleModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,10 +224,22 @@
 		A2C9C68D1DEEC20500793FEF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A2C9C6941DF005D900793FEF /* MHCycleView */,
 				A2C9C68E1DEEC21900793FEF /* BaseFailedView.swift */,
 				A2C9C6921DEEC58100793FEF /* BaseFailedView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A2C9C6941DF005D900793FEF /* MHCycleView */ = {
+			isa = PBXGroup;
+			children = (
+				A2C9C69D1DF008C300793FEF /* MHCycleViewBundle.bundle */,
+				A2C9C6951DF005F500793FEF /* MHCycleView.swift */,
+				A2C9C6971DF0060200793FEF /* MHCycleViewCell.swift */,
+				A2C9C6991DF0060D00793FEF /* MHCycleModel.swift */,
+			);
+			path = MHCycleView;
 			sourceTree = "<group>";
 		};
 		A2F545571DE29B0000F62A81 = {
@@ -440,6 +458,8 @@
 				A2AE30CB1DE6B738009BD9DE /* RecommentNormalCell.xib */,
 				A2AE30CD1DE6E648009BD9DE /* RecommendPrettyCell.swift */,
 				A2AE30CF1DE6E667009BD9DE /* RecommendPrettyCell.xib */,
+				A2C9C6A11DF05BA200793FEF /* RecomGameView.swift */,
+				A2C9C6A31DF05BE300793FEF /* RecomGameViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -567,6 +587,7 @@
 				A2F546271DE4173300F62A81 /* Main.storyboard in Resources */,
 				A2AE30D01DE6E667009BD9DE /* RecommendPrettyCell.xib in Resources */,
 				A2F546101DE3E94500F62A81 /* dyla_shayuniang_progress.gif in Resources */,
+				A2C9C69E1DF008C300793FEF /* MHCycleViewBundle.bundle in Resources */,
 				A2F5456E1DE29B0000F62A81 /* LaunchScreen.storyboard in Resources */,
 				A2C9C6931DEEC58100793FEF /* BaseFailedView.xib in Resources */,
 				A2AE30C41DE67EA2009BD9DE /* RecommendSectionHeaderView.xib in Resources */,
@@ -648,12 +669,12 @@
 				A22759681DE584C70087E87F /* MGameViewController.swift in Sources */,
 				A2F5463E1DE4379D00F62A81 /* PageTitleView.swift in Sources */,
 				A2F5462B1DE417C000F62A81 /* BaseTabBarController.swift in Sources */,
+				A2C9C69A1DF0060D00793FEF /* MHCycleModel.swift in Sources */,
 				A2AE30C61DE69431009BD9DE /* BaseViewController.swift in Sources */,
 				A2C9C66A1DED5BC400793FEF /* BaseModel.swift in Sources */,
 				A2F546311DE4186B00F62A81 /* MovieController.swift in Sources */,
 				A2F545641DE29B0000F62A81 /* AppDelegate.swift in Sources */,
 				A2C9C6701DED68CC00793FEF /* RecomFaceModel.swift in Sources */,
-				A2C9C6741DED6A7D00793FEF /* FaceBaseModel.swift in Sources */,
 				A2C9C68A1DEE74CB00793FEF /* HotModel.swift in Sources */,
 				A2C9C6861DED7F9400793FEF /* HmhThirdLibExtension.swift in Sources */,
 				A2AE30CA1DE6B718009BD9DE /* RecommentNormalCell.swift in Sources */,
@@ -667,17 +688,20 @@
 				A2C9C6761DED6D9500793FEF /* RecomViewModel.swift in Sources */,
 				A22759661DE5849E0087E87F /* EntertainmentController.swift in Sources */,
 				A22759641DE584550087E87F /* GameViewController.swift in Sources */,
+				A2C9C6A21DF05BA200793FEF /* RecomGameView.swift in Sources */,
 				A2C9C6881DED803400793FEF /* MyNetWorkingConfig.swift in Sources */,
 				A2F546411DE43C2400F62A81 /* HmhConfig.swift in Sources */,
 				A2C9C67F1DED723200793FEF /* HttpDriver.swift in Sources */,
-				A2C9C68C1DEE766A00793FEF /* HotBaseModel.swift in Sources */,
+				A2C9C6A01DF00C7800793FEF /* CycleModel.swift in Sources */,
 				A227596A1DE584E10087E87F /* FunViewController.swift in Sources */,
+				A2C9C6961DF005F500793FEF /* MHCycleView.swift in Sources */,
 				A2C9C67D1DED723200793FEF /* HttpApiSign.swift in Sources */,
-				A2C9C6721DED6A7000793FEF /* GameBaseModel.swift in Sources */,
 				A2AE30C81DE6B4AD009BD9DE /* RecommendSectionHeaderView.swift in Sources */,
 				A2AE30CE1DE6E648009BD9DE /* RecommendPrettyCell.swift in Sources */,
 				A22759601DE541F80087E87F /* PageContentView.swift in Sources */,
+				A2C9C6981DF0060200793FEF /* MHCycleViewCell.swift in Sources */,
 				A2F5463B1DE4266F00F62A81 /* BaseNavigationController.swift in Sources */,
+				A2C9C6A41DF05BE300793FEF /* RecomGameViewCell.swift in Sources */,
 				A2C9C68F1DEEC21900793FEF /* BaseFailedView.swift in Sources */,
 				A2F546371DE4195700F62A81 /* HmhTools.swift in Sources */,
 			);

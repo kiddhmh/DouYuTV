@@ -9,9 +9,10 @@
 import UIKit
 import ObjectMapper
 
-class BaseModel: Mappable {
+class BaseModel<T: Mappable>: Mappable {
     
     var error: Int?
+    var data: [T]?
     
     required init?(map: Map) {
         
@@ -19,6 +20,7 @@ class BaseModel: Mappable {
     
     func mapping(map: Map) {
         error   <- map["error"]
+        data    <- map["data"]
     }
     
 }
