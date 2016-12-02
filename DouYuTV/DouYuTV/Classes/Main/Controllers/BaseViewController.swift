@@ -24,6 +24,8 @@ class BaseViewController: UIViewController {
     
     fileprivate var startOffsetY: CGFloat = 0
     
+    var refreshControl:MHRefreshControl?
+    
     // MARK: - lazy
     public lazy var collectionView: UICollectionView = { [unowned self] in
         // 创建布局
@@ -93,16 +95,22 @@ extension BaseViewController {
     fileprivate func setupUI() {
         
         view.addSubview(collectionView)
-        
         view.addSubview(animImageView)
         
+        refreshControl = MHRefreshControl(frame: CGRect(x: 0, y: 0, width: HmhDevice.screenW, height: 65))
+        collectionView.addSubview(refreshControl!)
+        refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        
         startAnimation()
+        
     }
 }
 
 
 extension BaseViewController {
-    func loadData() {}
+    func loadData() {
+        
+    }
 }
 
 
@@ -178,6 +186,8 @@ extension BaseViewController: UICollectionViewDelegate {
         if scrollView.isKind(of: UICollectionView.self) == true {
             
             let offsetY = scrollView.contentOffset.y
+            guard offsetY > 0 || offsetY > collectionView.height else {return}
+            
             if startOffsetY > offsetY { //显示
                 if C.isNavBarHidden == false { return }
                 hiddenBlock?(false, true)

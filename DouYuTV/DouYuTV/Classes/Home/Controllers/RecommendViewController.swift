@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let kCycleViewH = HmhDevice.screenW * 3 / 8
+private let kCycleViewH = ceil(HmhDevice.screenW * 3 / 8)
 private let kGameViewH: CGFloat = 90
 
 class RecommentViewController: BaseViewController {
@@ -42,6 +42,7 @@ class RecommentViewController: BaseViewController {
 extension RecommentViewController {
 
     override func loadData() {
+        super.loadData()
         
         recomVM.requestData(complectioned: { [weak self] in
             self?.collectionView.reloadData()
@@ -49,6 +50,9 @@ extension RecommentViewController {
             self?.gameView.groups = self?.recomVM.hotGroup
             
             self?.loadDataFinished()
+            
+            // 结束刷新
+            self?.refreshControl?.endRefreshing()
             }, failed: {[weak self] (error) in
             
             self?.loadDataFailed(error)

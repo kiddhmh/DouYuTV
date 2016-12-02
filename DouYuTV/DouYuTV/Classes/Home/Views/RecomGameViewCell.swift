@@ -19,7 +19,7 @@ class RecomGameViewCell: UICollectionViewCell {
     
     fileprivate lazy var titleLabel: UILabel! = {
        let label = UILabel()
-        label.textColor = UIColor(r: 111, g: 121, b: 121, a: 1)
+        label.textColor = C.mainTextColor
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()

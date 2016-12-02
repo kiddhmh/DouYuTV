@@ -15,5 +15,9 @@ class GameViewController: BaseViewController {
         
         super.viewDidLoad()
         
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 2) {
+            self.refreshControl?.endRefreshing()
+        }
+        
     }
 }

@@ -20,6 +20,9 @@ struct C {
     
     /// 首页标题栏
     static let pageTitles: [String] = ["推荐","游戏","娱乐","手游","趣玩"]
+    
+    /// 字体主要颜色
+    static let mainTextColor = UIColor(r: 111, g: 121, b: 121, a: 1)
 }
 
 

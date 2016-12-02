@@ -77,7 +77,7 @@ class MHCycleView: UIView {
         pageControl.numberOfPages = dataArr.count
         pageControl.isUserInteractionEnabled = false
         
-        guard let path = Bundle.main.path(forResource: "YWCycleViewBundle", ofType: "bundle"),
+        guard let path = Bundle.main.path(forResource: "MHCycleViewBundle", ofType: "bundle"),
             let bundle = Bundle(path: path) else{
                 return
         }
