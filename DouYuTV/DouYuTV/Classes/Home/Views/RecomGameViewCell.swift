@@ -12,32 +12,39 @@ import Kingfisher
 
 class RecomGameViewCell: UICollectionViewCell {
     
-    fileprivate lazy var iconImage: UIImageView! = {
+    public lazy var iconImage: UIImageView! = {
         let image = UIImageView()
         return image
     }()
     
-    fileprivate lazy var titleLabel: UILabel! = {
+    public lazy var titleLabel: UILabel! = {
        let label = UILabel()
         label.textColor = C.mainTextColor
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
     
-    
-    var gameModel: HotModel? {
+    var imageURL: String? {
         didSet {
-            guard let model = gameModel else {
+            guard let imageURL = imageURL else {
                 let image = UIImage(named: "home_more_btn")
                 self.iconImage.image = image?.circleImage()
+                return
+            }
+            iconImage.kf.setImage(with: URL(string: imageURL )) { [weak self] (image, error, type, url) in
+                self?.iconImage.image = (image! as UIImage).circleImage()
+            }
+        }
+    }
+    
+    var title: String? {
+
+        didSet {
+            guard let title = title else {
                 titleLabel.text = "更多"
                 return
             }
-            iconImage.kf.setImage(with: URL(string: model.icon_url ?? "")) { [weak self] (image, error, type, url) in
-                self?.iconImage.image = (image! as UIImage).circleImage()
-            }
-            
-            titleLabel.text = model.tag_name
+            titleLabel.text = title
         }
     }
     

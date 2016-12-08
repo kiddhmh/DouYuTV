@@ -100,7 +100,7 @@ extension RecomViewModel {
     /// 请求轮播图数据
     func requestCycleData(complectioned complection: @escaping () -> (),failed fail: @escaping (_ error: MyError) -> ()) {
         
-        cycleRequest = HttpClient.sharedHttpClient().get("http://www.douyutv.com/api/v1/slide/6", parameters: ["version" : "2.401"], complection: { (myResponse) in
+        cycleRequest = HttpClient.sharedHttpClient().get(MyNetWorkingConfig.RECOMMEND_CYCLE, parameters: ["version" : "2.401"], complection: { (myResponse) in
             
             switch  myResponse.state {
             case .Success(let value):

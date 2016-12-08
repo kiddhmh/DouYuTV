@@ -7,22 +7,22 @@
 //  推荐
 
 import UIKit
+import MBProgressHUD
 
 private let kCycleViewH = ceil(HmhDevice.screenW * 3 / 8)
-private let kGameViewH: CGFloat = 90
 
-class RecommentViewController: BaseViewController {
+class RecommentViewController: BaseAnchorViewController {
     
     fileprivate lazy var recomVM: RecomViewModel = RecomViewModel()
     
     fileprivate lazy var cycleView: MHCycleView = {
-        let cycleView = MHCycleView(frame: CGRect(x: 0, y: -(kCycleViewH + kGameViewH), width: HmhDevice.screenW, height: kCycleViewH))
+        let cycleView = MHCycleView(frame: CGRect(x: 0, y: -(kCycleViewH + S.GameViewH), width: HmhDevice.screenW, height: kCycleViewH))
         cycleView.delegate = self
         return cycleView
     }()
     
     fileprivate lazy var gameView: RecomGameView = {
-        let gameView = RecomGameView(frame: CGRect(x: 0, y: -kGameViewH, width: HmhDevice.screenW, height: kGameViewH))
+        let gameView = RecomGameView(frame: CGRect(x: 0, y: -S.GameViewH, width: HmhDevice.screenW, height: S.GameViewH))
         return gameView
     }()
     
@@ -32,7 +32,12 @@ class RecommentViewController: BaseViewController {
         collectionView.addSubview(cycleView)
         collectionView.addSubview(gameView)
         
-        collectionView.contentInset = UIEdgeInsets(top: kCycleViewH + kGameViewH, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: kCycleViewH + S.GameViewH, left: 0, bottom: 0, right: 0)
+        
+        gameView.moreClosure = {
+            // 切换直播页面
+            NotificationCenter.default.post(name: Notification.Name.MHChangeSelectedController, object: nil)
+        }
     }
     
 }
@@ -45,27 +50,26 @@ extension RecommentViewController {
         super.loadData()
         
         recomVM.requestData(complectioned: { [weak self] in
-            self?.collectionView.reloadData()
-            
             self?.gameView.groups = self?.recomVM.hotGroup
-            
+            if self?.gameView.groups?.count == 0 {return}
+            self?.collectionView.reloadData()
             self?.loadDataFinished()
             
             // 结束刷新
             self?.refreshControl?.endRefreshing()
             }, failed: {[weak self] (error) in
-            
-            self?.loadDataFailed(error)
+            MBProgressHUD.showError(error.errorMessage!)
+            self?.loadDataFailed()
         })
         
         
         recomVM.requestCycleData(complectioned: { [weak self] in
             self?.cycleView.dataArr = self?.recomVM.cycleGroup
             }, failed: { [weak self] (error) in
-                self?.loadDataFailed(error)
+                MBProgressHUD.showError(error.errorMessage!)
+                self?.loadDataFailed()
         })
     }
-    
 }
 
 

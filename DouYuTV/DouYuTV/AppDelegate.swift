@@ -20,7 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
         
         let baseVC = HmhTools.createViewController("Main", identifier: "BaseTabBarController")
-        self.window?.rootViewController = baseVC
+        
+        let advertVC = AdvertController()
+        advertVC.jumpClosure = {    // 广告到时间，切换控制器
+            self.window?.rootViewController = baseVC
+        }
+        self.window?.rootViewController = advertVC
         
         self.window?.makeKeyAndVisible()
         

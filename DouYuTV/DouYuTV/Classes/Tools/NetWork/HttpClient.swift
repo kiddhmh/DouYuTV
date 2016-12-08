@@ -28,7 +28,8 @@ class HttpClient: NSObject {
     func get(_ URLString: String, parameters: [String: Any]? = nil, complection: @escaping (_ response: MyHttpResponse) -> Void) -> MyHttpRequest {
         
         let url = URLString
-        let parameter = HttpApiSign.configGetMethodWithParam(parameters)
+        
+        let parameter = parameters == nil ? parameters : HttpApiSign.configGetMethodWithParam(parameters)
         
         let request = HttpDriver.get(URLString: url, parameters: parameter, header: nil) {
             [weak self] response in

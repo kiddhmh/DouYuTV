@@ -8,10 +8,11 @@
 
 import UIKit
 
-private let GameCellID = "RecomGameCellID"
 private let kEdgeInsetMargin: CGFloat = 10
 
 class RecomGameView: UIView {
+    
+    var moreClosure: moreBtnClosure?
     
     var groups: [HotModel]? {
         didSet {
@@ -28,7 +29,7 @@ class RecomGameView: UIView {
         collectionView.scrollsToTop = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(RecomGameViewCell.self, forCellWithReuseIdentifier: GameCellID)
+        collectionView.register(RecomGameViewCell.self, forCellWithReuseIdentifier: CellID.RecommentGameCellID)
         return collectionView
     }()
     
@@ -59,9 +60,15 @@ extension RecomGameView: UICollectionViewDelegateFlowLayout,UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameCellID, for: indexPath) as! RecomGameViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.RecommentGameCellID, for: indexPath) as! RecomGameViewCell
         let isLast = indexPath.row == groups?.count
-        isLast == true ? (cell.gameModel = nil) : (cell.gameModel = groups![indexPath.item])
+        if isLast == true {
+            cell.imageURL = nil
+            cell.title = nil
+        }else {
+            cell.imageURL = groups![indexPath.item].icon_url
+            cell.title = groups![indexPath.item].tag_name
+        }
         
         return cell
     }
@@ -83,4 +90,14 @@ extension RecomGameView: UICollectionViewDelegateFlowLayout,UICollectionViewData
         return 0
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! RecomGameViewCell
+        if cell.title == nil {
+            if moreClosure != nil {
+                moreClosure!()
+            }
+        }
+    }
 }

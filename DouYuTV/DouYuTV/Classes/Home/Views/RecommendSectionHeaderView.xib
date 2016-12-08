@@ -45,6 +45,12 @@
                         <action selector="moreClick:" destination="Nwu-P6-4ou" eventType="touchUpInside" id="BYn-ja-QZv"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EkH-x1-754">
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="TNw-Db-pAb"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -52,9 +58,12 @@
                 <constraint firstItem="7Zp-Im-7fh" firstAttribute="centerY" secondItem="Nwu-P6-4ou" secondAttribute="centerY" id="Ah5-cA-1Cf"/>
                 <constraint firstAttribute="trailing" secondItem="gJv-6C-SiC" secondAttribute="trailing" constant="15" id="DcT-zd-cdM"/>
                 <constraint firstItem="7Zp-Im-7fh" firstAttribute="leading" secondItem="Nwu-P6-4ou" secondAttribute="leading" constant="10" id="MHe-Ab-QII"/>
+                <constraint firstAttribute="trailing" secondItem="EkH-x1-754" secondAttribute="trailing" id="Ueo-SI-k3X"/>
                 <constraint firstItem="vS5-15-fm6" firstAttribute="centerY" secondItem="Nwu-P6-4ou" secondAttribute="centerY" id="XYe-0l-brJ"/>
                 <constraint firstItem="vS5-15-fm6" firstAttribute="leading" secondItem="Nwu-P6-4ou" secondAttribute="leading" constant="45" id="aAL-2U-F8p"/>
                 <constraint firstItem="guq-5R-CSf" firstAttribute="centerY" secondItem="Nwu-P6-4ou" secondAttribute="centerY" id="b7Z-He-Dko"/>
+                <constraint firstItem="EkH-x1-754" firstAttribute="leading" secondItem="Nwu-P6-4ou" secondAttribute="leading" id="f0A-88-Oc1"/>
+                <constraint firstItem="EkH-x1-754" firstAttribute="top" secondItem="Nwu-P6-4ou" secondAttribute="top" id="j04-ex-BNn"/>
                 <constraint firstItem="gJv-6C-SiC" firstAttribute="leading" secondItem="guq-5R-CSf" secondAttribute="trailing" id="wh9-ZD-aOc"/>
             </constraints>
             <connections>

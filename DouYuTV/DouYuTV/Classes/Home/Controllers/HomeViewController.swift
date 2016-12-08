@@ -45,10 +45,15 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupNavgationBar()
         
         setupUI()
+        
+        // 注册通知，切换控制器
+        NotificationCenter.default.addObserver(self, selector: #selector(pushViewController(_:)), name: NSNotification.Name.MHPushViewController, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(changeSelectedController(_:)), name: Notification.Name.MHChangeSelectedController, object: nil)
     }
     
     
@@ -103,8 +108,29 @@ class HomeViewController: UIViewController {
     func RefreshData() {
         print("刷新数据")
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
+
+/// 通知方法
+extension HomeViewController {
+    
+    @objc fileprivate func pushViewController(_ notification: NSNotification) {
+        
+        let info = notification.userInfo
+        let ViewController = info!["VC"] as! UIViewController
+        let animated = info!["animated"] as! Bool
+        self.navigationController?.pushViewController(ViewController, animated: animated)
+    }
+    
+    @objc fileprivate func changeSelectedController(_ notification: NSNotification) {
+        tabBarController?.selectedIndex = 1
+    }
+    
+}
 
 
 extension HomeViewController {
@@ -118,7 +144,6 @@ extension HomeViewController {
         // 设置导航栏
         setupnavigationLeft()
         setupnavigationRight()
-        
     }
     
     fileprivate func setupnavigationLeft() {

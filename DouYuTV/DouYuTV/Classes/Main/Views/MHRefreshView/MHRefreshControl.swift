@@ -19,15 +19,18 @@ enum MHRefreshState {
     case willRefresh
 }
 
-/// 临界值
-private let MHRefreshOffset: CGFloat = 66
-
 class MHRefreshControl: UIControl {
     
     // 父视图
     fileprivate weak var scrollView: UIScrollView?
     fileprivate lazy var refreshView: MHRefreshView = MHRefreshView()
     
+    /// 临界值
+    var MHRefreshOffset: CGFloat {
+        get {
+            return 66
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,8 +39,8 @@ class MHRefreshControl: UIControl {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-        
+        super.init(coder: aDecoder)
+        setupUI()
     }
     
     
@@ -93,12 +96,11 @@ extension MHRefreshControl {
         let y = isTop ? height : (height + sv.contentInset.top)
         self.frame = CGRect(x: 0, y: -y, width: sv.bounds.width, height: height)
         
+        
         //坑~~~ 由于推荐页面本身存在contentInset，所以需要另外调整self.frame,否则刷新时的动画无法显示
         if refreshView.refreshStatus == .willRefresh && sv.contentInset.top != MHRefreshOffset {
             self.top += MHRefreshOffset
         }
-        
-        print(self.refreshView.frame)
         
         if sv.isDragging {
             if height > MHRefreshOffset && refreshView.refreshStatus == .normal {
@@ -119,9 +121,6 @@ extension MHRefreshControl {
         }
     }
 }
-//(0.0, 0.0, 375.0, -0.0)
-
-
 
 
 extension MHRefreshControl {
@@ -137,6 +136,7 @@ extension MHRefreshControl {
         
         var insert = sv.contentInset
         insert.top += MHRefreshOffset
+        
         sv.contentInset = insert
         
         refreshView.parentViewHeight = MHRefreshOffset
@@ -155,6 +155,8 @@ extension MHRefreshControl {
         
         //恢复刷新视图的状态
         refreshView.refreshStatus = .normal
+        //获取当前时间
+        refreshView.lastUpdateTime = Date()
         //恢复表格的 contentInset
         var inset = sv.contentInset
         inset.top -= MHRefreshOffset

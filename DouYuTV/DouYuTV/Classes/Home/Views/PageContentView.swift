@@ -17,6 +17,14 @@ protocol pageContentViewDelegate: class {
 
 class PageContentView: UIView {
     
+    /// 设置滚动的位置
+    var currentPage: Int? {
+        didSet {
+            if currentPage! == 0 || currentPage! > childVcs.count {return}
+            let point = CGPoint(x: CGFloat(currentPage!) * HmhDevice.screenW, y: 0)
+            collectionView.setContentOffset(point, animated: false)
+        }
+    }
     
     fileprivate var childVcs: [UIViewController]
     
@@ -40,6 +48,7 @@ class PageContentView: UIView {
         // 2.创建CollectionView
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.bounces = false
         collectionView.backgroundColor = UIColor.white

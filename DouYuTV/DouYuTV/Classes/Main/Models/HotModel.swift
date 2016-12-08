@@ -14,7 +14,7 @@ class HotModel: Mappable {
     var room_list: [AnchorModel]?   //  房间数组
     var icon_url: String?           //  类型头像
     var tag_name: String?           //  类型名称
-    var tag_id: Int?                //  类型标示
+    var tag_id: String?                //  类型标示
     
     required init?(map: Map) {
         

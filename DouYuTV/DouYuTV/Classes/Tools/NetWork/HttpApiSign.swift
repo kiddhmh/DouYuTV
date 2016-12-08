@@ -12,7 +12,7 @@ class HttpApiSign: NSObject {
     
     
     /// 封装get请求的参数
-    class func configGetMethodWithParam(_ param: [String : Any]?) -> [String : Any] {
+    class func configGetMethodWithParam(_ param: [String : Any]?) -> [String : Any]? {
         
         var paramDic = [String : Any]()
         

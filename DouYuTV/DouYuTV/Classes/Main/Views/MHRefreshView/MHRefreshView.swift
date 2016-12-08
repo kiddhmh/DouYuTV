@@ -41,10 +41,11 @@ class MHRefreshView: UIView {
         }
     }
     
-    
+
     fileprivate lazy var normalImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .center
+        imageView.image = UIImage(named: "dyla_img_mj_stateIdle")
         return imageView
     }()
     
@@ -67,6 +68,7 @@ class MHRefreshView: UIView {
         let label = UILabel()
         label.textColor = C.mainTextColor
         label.font = UIFont.systemFont(ofSize: 12)
+        label.text = "下拉可以刷新"
         return label
     }()
     
@@ -83,6 +85,7 @@ class MHRefreshView: UIView {
         backgroundColor = UIColor.white
         
         setupUI()
+        self.refreshStatus = .normal
     }
     
     required init?(coder aDecoder: NSCoder) {

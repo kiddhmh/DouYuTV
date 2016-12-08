@@ -36,7 +36,7 @@
                 <constraint firstItem="Y7x-Wd-ous" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7qM-Zp-5pK"/>
                 <constraint firstItem="Y7x-Wd-ous" firstAttribute="top" secondItem="c4Q-Bw-EOv" secondAttribute="bottom" constant="15" id="Nja-wo-HQe"/>
                 <constraint firstItem="c4Q-Bw-EOv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WNQ-IU-Gvt"/>
-                <constraint firstItem="c4Q-Bw-EOv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ulc-yS-XqY"/>
+                <constraint firstItem="c4Q-Bw-EOv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-50" id="ulc-yS-XqY"/>
             </constraints>
             <connections>
                 <outlet property="loadDataAngin" destination="Y7x-Wd-ous" id="E5e-dQ-KhV"/>

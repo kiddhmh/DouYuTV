@@ -68,6 +68,7 @@ class MHCycleView: UIView {
     fileprivate func addPageControl() {
         
         collectionView.reloadData()
+        if dataArr == nil || dataArr?.count == 0 { return }
         let indexPath = IndexPath(item: 0, section: 5000)
         collectionView.scrollToItem(at: indexPath, at: .left, animated: false)
         pageControl = UIPageControl(frame: CGRect(x: 0, y: bounds.height - 20, width: bounds.width, height: 20))
@@ -91,7 +92,11 @@ class MHCycleView: UIView {
 
     
     fileprivate func beginScroll() {
-        self.timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(scrollAction), userInfo: nil, repeats: true)
+        if self.timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(scrollAction), userInfo: nil, repeats: true)
     }
     
     
