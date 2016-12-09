@@ -42,6 +42,7 @@ extension LiveTitleViewModel {
                 self.titleModels = (models?.data)!
             case .Error(let error):
                 fail(error)
+                return
             }
             
             complection()
@@ -61,6 +62,7 @@ extension LiveTitleViewModel {
                 self.allModels = (models?.data)!
             case .Error(let error):
                 fail(error)
+                return
             }
             
             complection()

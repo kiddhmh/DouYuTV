@@ -38,6 +38,7 @@ extension MGameViewModel {
                 self.mModels = (models?.data)!
             case .Error(let error):
                 fail(error)
+                return
             }
             
             complection()

@@ -56,6 +56,7 @@ extension RecomViewModel {
                 self.bigGroup = (baseModel?.data)!
             case .Error(let error):
                 fail(error)
+                return
             }
             
             group.leave()
@@ -71,6 +72,7 @@ extension RecomViewModel {
                 self.faceGroup = (faceModels?.data)!
             case .Error(let error):
                 fail(error)
+                return
             }
             
             group.leave()
@@ -86,6 +88,7 @@ extension RecomViewModel {
                 self.hotGroup = (baseModel?.data)!
             case .Error(let error):
                 fail(error)
+                return
             }
             
             group.leave()
@@ -108,6 +111,7 @@ extension RecomViewModel {
                 self.cycleGroup = (cycleModel?.data)!
             case .Error(let error):
                 fail(error)
+                return
             }
             
           complection()

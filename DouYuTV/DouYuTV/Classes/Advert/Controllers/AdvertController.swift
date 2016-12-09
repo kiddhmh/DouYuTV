@@ -25,24 +25,17 @@ class AdvertController: UIViewController {
     
     fileprivate var timer: DispatchSourceTimer?
     
-    fileprivate lazy var jumpButton: UIButton = {
+    fileprivate lazy var jumpButton: UIButton = { [weak self] in
         let btn = UIButton()
-        btn.backgroundColor = UIColor.red
         btn.setTitleColor(UIColor.white, for: .normal)
+        btn.alpha = 0.6
+        btn.backgroundColor = UIColor.darkGray
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         btn.titleLabel?.textAlignment = .center
-        btn.setTitle("跳过", for: .normal)
+        let attStr = self?.addAttributed(time)
+        btn.setAttributedTitle(attStr, for: .normal)
         btn.addTarget(self, action: #selector(jump), for: .touchDown)   //touchDown
         return btn
-    }()
-    
-    fileprivate lazy var timeLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = UIColor.red
-        label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.text = "\(time)s"
-        return label
     }()
     
     override func viewDidLoad() {
@@ -58,8 +51,9 @@ class AdvertController: UIViewController {
             time -= 1
             
             DispatchQueue.main.async { [weak self] in
-                self?.timeLabel.text = "\(time)s"
-
+                let attStr = self?.addAttributed(time)
+                self?.jumpButton.setAttributedTitle(attStr, for: .normal)
+                
                 if time == 0 {
                     self?.view.removeFromSuperview()
                     self?.timer?.cancel()
@@ -77,18 +71,11 @@ class AdvertController: UIViewController {
         
         view.addSubview(advertImageView)
         view.addSubview(jumpButton)
-        view.addSubview(timeLabel)
+//        view.addSubview(timeLabel)
         
         jumpButton.snp.makeConstraints { (make) in
-            make.right.equalTo(timeLabel.snp.left)
-            make.top.equalTo(view.snp.top).offset(10)
-        }
-        
-        timeLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(jumpButton.snp.right)
-            make.top.equalTo(jumpButton.snp.top)
-            make.height.equalTo(jumpButton.snp.height)
             make.right.equalTo(view.snp.right).offset(-10)
+            make.top.equalTo(view.snp.top).offset(10)
         }
     }
     
@@ -102,6 +89,17 @@ extension AdvertController {
             timer?.cancel()
             self.jumpClosure!()
         }
+    }
+    
+    /// 转换富文本
+    fileprivate func addAttributed(_ time: Int) -> NSMutableAttributedString {
+        
+        let str = "跳过(\(time))"
+        let dicStr = [NSForegroundColorAttributeName : UIColor.white]
+        let att = NSMutableAttributedString(string: str, attributes: dicStr)
+        let dic = [NSForegroundColorAttributeName : C.mainColor]
+        att.addAttributes(dic, range: NSRange(location: 3, length: 1))
+        return att;
     }
     
 }

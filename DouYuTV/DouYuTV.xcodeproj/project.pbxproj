@@ -14,6 +14,7 @@
 		A22759661DE5849E0087E87F /* EntertainmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22759651DE5849E0087E87F /* EntertainmentController.swift */; };
 		A22759681DE584C70087E87F /* MGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22759671DE584C70087E87F /* MGameViewController.swift */; };
 		A227596A1DE584E10087E87F /* FunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22759691DE584E10087E87F /* FunViewController.swift */; };
+		A24768F41DFA4A8D0007A3D5 /* MHRefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24768F31DFA4A8D0007A3D5 /* MHRefreshFooterView.swift */; };
 		A2AE30C41DE67EA2009BD9DE /* RecommendSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2AE30C31DE67EA2009BD9DE /* RecommendSectionHeaderView.xib */; };
 		A2AE30C61DE69431009BD9DE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AE30C51DE69431009BD9DE /* BaseViewController.swift */; };
 		A2AE30C81DE6B4AD009BD9DE /* RecommendSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AE30C71DE6B4AD009BD9DE /* RecommendSectionHeaderView.swift */; };
@@ -106,6 +107,7 @@
 		A22759651DE5849E0087E87F /* EntertainmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntertainmentController.swift; sourceTree = "<group>"; };
 		A22759671DE584C70087E87F /* MGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGameViewController.swift; sourceTree = "<group>"; };
 		A22759691DE584E10087E87F /* FunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunViewController.swift; sourceTree = "<group>"; };
+		A24768F31DFA4A8D0007A3D5 /* MHRefreshFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHRefreshFooterView.swift; sourceTree = "<group>"; };
 		A2AE30C31DE67EA2009BD9DE /* RecommendSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendSectionHeaderView.xib; sourceTree = "<group>"; };
 		A2AE30C51DE69431009BD9DE /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A2AE30C71DE6B4AD009BD9DE /* RecommendSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				A2C9C6B31DF1490E00793FEF /* MHRefreshView.swift */,
 				A2C9C6B51DF1492300793FEF /* MHAnimatorRefreshView.swift */,
 				A2C9C6B11DF1490100793FEF /* MHRefreshControl.swift */,
+				A24768F31DFA4A8D0007A3D5 /* MHRefreshFooterView.swift */,
 			);
 			path = MHRefreshView;
 			sourceTree = "<group>";
@@ -801,6 +804,7 @@
 				A2C9C6C81DF7A94A00793FEF /* EnmentViewModel.swift in Sources */,
 				A22759681DE584C70087E87F /* MGameViewController.swift in Sources */,
 				A2C9C6BE1DF50B5300793FEF /* MyHeaderViewCell.swift in Sources */,
+				A24768F41DFA4A8D0007A3D5 /* MHRefreshFooterView.swift in Sources */,
 				A2C853281DF7E7B4000F3322 /* AdvertViewModel.swift in Sources */,
 				A2F5463E1DE4379D00F62A81 /* PageTitleView.swift in Sources */,
 				A2F5462B1DE417C000F62A81 /* BaseTabBarController.swift in Sources */,

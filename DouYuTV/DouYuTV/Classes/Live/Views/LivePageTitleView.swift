@@ -56,6 +56,9 @@ class LivePageTitleView: UIView {
         return lineView
     }()
     
+    /// 记录字体数组的宽度
+    private lazy var titleLabelWidth: [CGFloat] = [CGFloat]()
+    
     weak open var delegate: LivePageTitleViewDelegate?
     
     // MARK: - 构造方法
@@ -86,6 +89,10 @@ class LivePageTitleView: UIView {
         
         // 3.添加定义的线段和滑动的滑块
         setupBottomLineAndScrollLine()
+        
+        if isScrollEnable == true {
+            scrollView.contentSize = CGSize(width: titleLabels.last!.right + 0.5 * S.titleMargin, height: 0)
+        }
     }
     
     
@@ -114,12 +121,18 @@ class LivePageTitleView: UIView {
                 titleX = CGFloat(index) * titleW
             }else {
                 
-                let size = (title as NSString).boundingRect(with: CGSize(width: Int(MAXFLOAT), height: 0), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: label.font], context: nil)
+                let size = (title as NSString).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 0), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: label.font], context: nil)
                 
                 titleW = size.width
                 if index != 0 {
-                    titleX = titleLabels[index].right + S.titleMargin
+                    titleX = titleLabels[index - 1].right + S.titleMargin
                 }
+                if index == 0 {
+                    titleX = 0.5 * S.titleMargin
+                }
+                
+                // 缓存高度
+                titleLabelWidth.append(size.width)
             }
             
             label.frame = CGRect(x: titleX, y: titleY, width: titleW, height: titleH)
@@ -139,14 +152,18 @@ class LivePageTitleView: UIView {
     private func setupBottomLineAndScrollLine() {
         
         // 设置滑动的View
-        addSubview(scrollLine)
+        scrollView.addSubview(scrollLine)
         guard let firstLabeld = titleLabels.first else {
             return
         }
-        let x = firstLabeld.left + S.scrollLineMargin
+        var x = firstLabeld.left + S.scrollLineMargin
         let y = bounds.height - S.scrollLineH
-        let w = firstLabeld.width - S.scrollLineMargin * 2
+        var w = firstLabeld.width - S.scrollLineMargin * 2
         let h = S.scrollLineH
+        if isScrollEnable == true {
+            x = 0
+            w = firstLabeld.width + S.scrollLineMargin
+        }
         scrollLine.frame = CGRect(x: x, y: y, width: w, height: h)
         
         firstLabeld.textColor = UIColor.white
@@ -177,13 +194,32 @@ class LivePageTitleView: UIView {
         newLabel.textColor = UIColor.white
         oldLabel.textColor = normalColor
         
-        let scrollEndX = (scrollLine.width + 2 * S.scrollLineMargin) * CGFloat(index) + S.scrollLineMargin
+        var scrollEndX = (scrollLine.width + 2 * S.scrollLineMargin) * CGFloat(index) + S.scrollLineMargin
+        if isScrollEnable == true {
+            scrollEndX = newLabel.left - 0.5 * S.scrollLineMargin
+        }
         if animated == true {
             UIView.animate(withDuration: 0.25) {
                 self.scrollLine.left = scrollEndX
+                self.scrollLine.width = self.titleLabelWidth[index] + S.scrollLineMargin
             }
         }else {
             self.scrollLine.left = scrollEndX
+        }
+        
+        // 将点击的label移到中心点
+        let centerX = newLabel.centerX
+        
+        if centerX > scrollView.width * 0.5 {
+            let offset = centerX - HmhDevice.screenW * 0.5
+            scrollView.setContentOffset(CGPoint(x: offset, y: 0), animated: true)
+        }else { // 前端不可以超过
+            scrollView.setContentOffset(CGPoint.zero, animated: true)
+        }
+        
+        if (scrollView.contentSize.width - centerX) < scrollView.width * 0.5 {
+            // 最后不可以超过
+            scrollView.setContentOffset(CGPoint(x: (titleLabels.last?.right)! + 0.5 * S.scrollLineMargin - scrollView.width, y: 0) , animated: true)
         }
         
         // 记录当前位置
@@ -204,7 +240,12 @@ class LivePageTitleView: UIView {
         let targetLabel = titleLabels[targetIndex]
         
         let moveMargin = targetLabel.left - sourceLabel.left
-        scrollLine.left = sourceLabel.left + moveMargin * progress + S.scrollLineMargin
+        
+        if isScrollEnable == true {
+            scrollLine.left = (sourceLabel.left - 0.5 * S.scrollLineMargin) + moveMargin * progress
+        }else {
+            scrollLine.left = sourceLabel.left + moveMargin * progress
+        }
         
         sourceLabel.textColor = UIColor(red: (kSelectRGB.0 - kDeltaRGB.0 * progress) / 255.0, green: (kSelectRGB.1 - kDeltaRGB.1 * progress) / 255.0, blue: (kSelectRGB.2 - kDeltaRGB.2 * progress) / 255.0, alpha: 1.0)    //normal
         targetLabel.textColor = UIColor(red: (kNormalRGB.0 + kDeltaRGB.0 * progress)/255.0, green: (kNormalRGB.1 + kDeltaRGB.1 * progress)/255.0, blue: (kNormalRGB.2 + kDeltaRGB.2 * progress)/255.0, alpha: 1.0)      //select
@@ -212,4 +253,26 @@ class LivePageTitleView: UIView {
         currentIndex = targetIndex
     }
     
+    
+    /// 更新标题数组
+    public func uploadTitle(_ titles: [String]) {
+        self.titles = titles
+        
+        /// 清空视图上的UI
+        scrollView.removeFromSuperview()
+        for label in titleLabels {
+            label.removeFromSuperview()
+        }
+        titleLabels.removeAll()
+        scrollLine.removeFromSuperview()
+        titleLabelWidth.removeAll()
+        isScrollEnable = true
+        
+        setupUI()
+        currentIndex = 0
+        currentPage = 1
+    }
+    
 }
+
+

@@ -38,6 +38,7 @@ extension FunViewModel {
                 self.funModels = (models?.data)!
             case .Error(let error):
                 fail(error)
+                return
             }
             
             complection()

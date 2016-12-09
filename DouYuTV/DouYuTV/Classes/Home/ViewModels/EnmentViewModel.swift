@@ -38,6 +38,7 @@ extension EnmentViewModel {
                 self.enModels = (models?.data)!
             case .Error(let error):
                 fail(error)
+                return
             }
             
             complection()

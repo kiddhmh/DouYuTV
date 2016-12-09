@@ -30,8 +30,9 @@ class LiveViewController: UIViewController {
         childVcs.append(normalVC)
         
         let allVC = LiveAllController()
-        allVC.reciveData = {
+        allVC.reciveData = { [weak self] in
             let models: [LiveTitleModel] = $0 as! [LiveTitleModel]
+            self?.upLoadView(models)
             print(models)
         }
         childVcs.append(allVC)
@@ -45,8 +46,6 @@ class LiveViewController: UIViewController {
         setupNav()
         
         setupUI()
-        
-//        loadData()
     }
     
     
@@ -67,7 +66,6 @@ class LiveViewController: UIViewController {
                 self?.navigationController?.setNavigationBarHidden($0, animated: $1)
                 let offsetYY: CGFloat = $0 ? -HmhDevice.kNavigationBarH : HmhDevice.kNavigationBarH
                 UIView.animate(withDuration: 0.3, animations: {
-//                    self?.pageTitleView.top += offsetYY
                     self?.pageContentView.top += offsetYY
                     self?.pageContentView.height -= offsetYY
                 })
@@ -107,6 +105,17 @@ extension LiveViewController {
         
         // 设置pageTitleView为navgation的titleView
         navigationItem.titleView = pageTitleView
+    }
+    
+    
+    fileprivate func upLoadView(_ titleModels: [LiveTitleModel]) {
+        
+        var titles: [String] = C.livePageTitles
+        for model in titleModels {
+            titles.append(model.cate_name!)
+        }
+        
+        pageTitleView.uploadTitle(titles)
     }
 }
 
