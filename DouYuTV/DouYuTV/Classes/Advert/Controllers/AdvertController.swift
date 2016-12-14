@@ -8,17 +8,22 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
-private var time: Int = 4
+private var time: Int = 5
 
 class AdvertController: UIViewController {
     
     fileprivate lazy var advertImageView: UIImageView = {
         let imageView = UIImageView(frame: HmhDevice.screenRect)
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
+    
+    fileprivate var advertModel: AdvertModel?
+    
+    fileprivate lazy var advertVM: AdvertViewModel = AdvertViewModel()
     
     // 跳过广告
     var jumpClosure: (() -> ())?
@@ -27,51 +32,33 @@ class AdvertController: UIViewController {
     
     fileprivate lazy var jumpButton: UIButton = { [weak self] in
         let btn = UIButton()
-        btn.setTitleColor(UIColor.white, for: .normal)
+        guard let sself = self else { return btn}
+        btn.setTitleColor(.white, for: .normal)
         btn.alpha = 0.6
-        btn.backgroundColor = UIColor.darkGray
+        btn.backgroundColor = .darkGray
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         btn.titleLabel?.textAlignment = .center
-        let attStr = self?.addAttributed(time)
+        let attStr = sself.addAttributed(time)
         btn.setAttributedTitle(attStr, for: .normal)
-        btn.addTarget(self, action: #selector(jump), for: .touchDown)   //touchDown
+        btn.addTarget(sself, action: #selector(jump), for: .touchDown)   //touchDown
         return btn
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         
         setupUI()
         
-        // 创建定时任务
-        timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.global())
-        timer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(0))
-        timer?.setEventHandler { [weak self] in
-            time -= 1
-            
-            DispatchQueue.main.async { [weak self] in
-                let attStr = self?.addAttributed(time)
-                self?.jumpButton.setAttributedTitle(attStr, for: .normal)
-                
-                if time == 0 {
-                    self?.view.removeFromSuperview()
-                    self?.timer?.cancel()
-                    if self?.jumpClosure != nil {
-                        self?.jumpClosure!()
-                    }
-                }
-            }
-        }
-        
-        timer?.resume()
+        loadData()
     }
     
     private func setupUI() {
         
         view.addSubview(advertImageView)
         view.addSubview(jumpButton)
-//        view.addSubview(timeLabel)
+        advertImageView.isHidden = true
+        jumpButton.isHidden = true
         
         jumpButton.snp.makeConstraints { (make) in
             make.right.equalTo(view.snp.right).offset(-10)
@@ -81,6 +68,63 @@ class AdvertController: UIViewController {
     
 }
 
+
+extension AdvertController {
+    
+    fileprivate func loadData() {
+        
+        advertVM.requestAvertData(complectioned: { [weak self] in
+            guard let sself = self else { return }
+            guard let model = sself.advertVM.advertModels else { return }
+            sself.advertModel = model
+            if MHCache.mh_isCache(model.picurl) == true {   // 本地读取
+                sself.advertImageView.image = MHCache.mh_readImage(model.picurl)
+                sself.startTime()
+            }else { // 下载
+                let url = URL(string: model.picurl ?? "")
+                sself.advertImageView.kf.setImage(with: url, completionHandler: { (image, error, type, url) in
+                    sself.startTime()
+                })
+            }
+            }, failed: { [weak self] (error) in
+                guard let sself = self else { return }
+                if sself.jumpClosure != nil {
+                    sself.jumpClosure!()
+                }
+            })
+    }
+    
+    /// 定时器
+    fileprivate func startTime() {
+        
+        advertImageView.isHidden = false
+        jumpButton.isHidden = false
+        
+        // 创建定时任务
+        timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.global())
+        timer?.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .seconds(0))
+        timer?.setEventHandler { [weak self] in
+            time -= 1
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let sself = self else { return }
+                let attStr = sself.addAttributed(time)
+                sself.jumpButton.setAttributedTitle(attStr, for: .normal)
+                
+                if time == 0 {
+                    sself.view.removeFromSuperview()
+                    sself.timer?.cancel()
+                    if sself.jumpClosure != nil {
+                        sself.jumpClosure!()
+                    }
+                }
+            }
+        }
+        
+        timer?.resume()
+    }
+    
+}
 
 extension AdvertController {
     

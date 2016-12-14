@@ -32,7 +32,8 @@ class RecomGameViewCell: UICollectionViewCell {
                 return
             }
             iconImage.kf.setImage(with: URL(string: imageURL )) { [weak self] (image, error, type, url) in
-                self?.iconImage.image = (image! as UIImage).circleImage()
+                guard let sself = self else { return }
+                sself.iconImage.image = (image! as UIImage).circleImage()
             }
         }
     }
@@ -51,7 +52,7 @@ class RecomGameViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.contentView.backgroundColor = UIColor.white
+        self.contentView.backgroundColor = .white
         
         setupUI()
     }

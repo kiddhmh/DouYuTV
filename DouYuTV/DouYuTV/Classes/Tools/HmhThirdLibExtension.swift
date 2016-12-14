@@ -67,7 +67,7 @@ extension MBProgressHUD {
         let hud = MBProgressHUD.showAdded(to: toView, animated: true)
         hud.label.text = message
         hud.removeFromSuperViewOnHide = true
-        hud.backgroundColor = UIColor.white
+        hud.backgroundColor = .white
     }
     
     /**

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 /// 定义通用的系统相关参数
 struct HmhDevice {
@@ -97,9 +98,35 @@ struct HmhTools {
 }
 
 
-
-
-
+class MHCache: NSObject {
+    
+    
+    /// 判断该图片是否缓存
+    public class func mh_isCache(_ key: String?) -> Bool {
+        
+        let cache = KingfisherManager.shared.cache
+        let result = cache.isImageCached(forKey: key!)
+        return result.cached
+    }
+    
+    
+    /// 从磁盘里读取缓存的图片(默认路径)
+    public class func mh_readImage(_ name: String?) -> UIImage {
+        
+        let cache = KingfisherManager.shared.cache
+        let image = cache.retrieveImageInDiskCache(forKey: name!)
+        return image!
+    }
+    
+    /// 清除所有缓存
+    public class func mh_clearAllCache() {
+        let cache = KingfisherManager.shared.cache
+        cache.clearDiskCache()//清除硬盘缓存
+        cache.clearMemoryCache()//清理网络缓存
+        cache.cleanExpiredDiskCache()//清理过期的，或者超过硬盘限制大小的
+    }
+    
+}
 
 
 

@@ -131,7 +131,7 @@ class PageTitleView: UIView {
         // 添加底部Line
         let bottomLine = UIView()
         bottomLine.frame = CGRect(x: 0, y: bounds.height - 0.5, width: bounds.width, height: 0.5)
-        bottomLine.backgroundColor = UIColor.lightGray
+        bottomLine.backgroundColor = .lightGray
         addSubview(bottomLine)
 
         // 设置滑动的View

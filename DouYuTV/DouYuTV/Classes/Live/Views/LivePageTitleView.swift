@@ -51,13 +51,13 @@ class LivePageTitleView: UIView {
     private lazy var scrollLine: UIView = {
         
         let lineView = UIView()
-        lineView.backgroundColor = UIColor.white
+        lineView.backgroundColor = .white
         
         return lineView
     }()
     
     /// 记录字体数组的宽度
-    private lazy var titleLabelWidth: [CGFloat] = [CGFloat]()
+    private lazy var titleLabelWidth: [CGFloat] = []
     
     weak open var delegate: LivePageTitleViewDelegate?
     
@@ -166,7 +166,7 @@ class LivePageTitleView: UIView {
         }
         scrollLine.frame = CGRect(x: x, y: y, width: w, height: h)
         
-        firstLabeld.textColor = UIColor.white
+        firstLabeld.textColor = .white
     }
     
     
@@ -191,7 +191,7 @@ class LivePageTitleView: UIView {
         let newLabel = titleLabels[index]
         let oldLabel = titleLabels[currentIndex]
         
-        newLabel.textColor = UIColor.white
+        newLabel.textColor = .white
         oldLabel.textColor = normalColor
         
         var scrollEndX = (scrollLine.width + 2 * S.scrollLineMargin) * CGFloat(index) + S.scrollLineMargin
@@ -235,14 +235,32 @@ class LivePageTitleView: UIView {
         let kSelectRGB: (CGFloat, CGFloat, CGFloat) = (255, 255, 255)
         let kDeltaRGB = (kSelectRGB.0 - kNormalRGB.0, kSelectRGB.1 - kNormalRGB.1, kSelectRGB.2 - kNormalRGB.2)
         
-        
         let sourceLabel = titleLabels[sourceIndex]
         let targetLabel = titleLabels[targetIndex]
         
         let moveMargin = targetLabel.left - sourceLabel.left
+        let centerMargin = targetLabel.centerX - sourceLabel.centerX
         
         if isScrollEnable == true {
-            scrollLine.left = (sourceLabel.left - 0.5 * S.scrollLineMargin) + moveMargin * progress
+            scrollLine.left = sourceLabel.left + moveMargin * progress - 0.5 * S.titleMargin
+            scrollLine.width = sourceLabel.width + S.titleMargin + (targetLabel.width - sourceLabel.width) * progress
+            
+            // 移动scrollView
+            let oldCenterX = sourceLabel.centerX
+            let newCenterX = targetLabel.centerX
+            
+            if newCenterX > scrollView.width * 0.5 {
+                let offset = oldCenterX - HmhDevice.screenW * 0.5
+                scrollView.setContentOffset(CGPoint(x: offset + centerMargin * progress , y: 0), animated: true)
+            }else { // 前端不可以超过
+                scrollView.setContentOffset(CGPoint.zero, animated: true)
+            }
+            
+            if (scrollView.contentSize.width - oldCenterX) < scrollView.width * 0.5 {
+                // 最后不可以超过
+                scrollView.setContentOffset(CGPoint(x: (titleLabels.last?.right)! + 0.5 * S.scrollLineMargin - scrollView.width, y: 0) , animated: true)
+            }
+            
         }else {
             scrollLine.left = sourceLabel.left + moveMargin * progress
         }

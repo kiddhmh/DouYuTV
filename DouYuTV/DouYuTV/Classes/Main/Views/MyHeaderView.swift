@@ -28,7 +28,7 @@ class MyHeaderView: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = .white
         collectionView.register(MyHeaderViewCell.self, forCellWithReuseIdentifier: kItemID)
         
         return collectionView
@@ -36,7 +36,7 @@ class MyHeaderView: UIView {
     
     fileprivate lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.tintColor = UIColor.lightGray
+        pageControl.tintColor = .lightGray
         pageControl.currentPageIndicatorTintColor = C.mainColor
         return pageControl
     }()

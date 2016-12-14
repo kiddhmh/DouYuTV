@@ -21,7 +21,7 @@ class BaseAnchorViewController: BaseViewController {
     
     var refreshControl:MHRefreshControl?
     
-    fileprivate var startOffsetY: CGFloat = 0
+    public var startOffsetY: CGFloat = 0
     
     // MARK: - lazy
     public lazy var collectionView: UICollectionView = { [unowned self] in
@@ -36,7 +36,7 @@ class BaseAnchorViewController: BaseViewController {
         
         // 创建CollectionView
         let collectionView: UICollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -49,7 +49,12 @@ class BaseAnchorViewController: BaseViewController {
         
         return collectionView
         }()
-    
+
+    /// 坑！！！更新collectionView位置，否则有无法想象的错误 ~ 切记
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view.frame = (self.view.superview?.frame)!
+    }
     
     override func viewDidLoad() {
         
@@ -69,7 +74,7 @@ extension BaseAnchorViewController {
         
         contentView = collectionView
         view.addSubview(contentView!)
-        refreshControl = MHRefreshControl(frame: CGRect(x: 0, y: 0, width: HmhDevice.screenW, height: 66))
+        refreshControl = MHRefreshControl(frame: CGRect(x: 0, y: 0, width: HmhDevice.screenW, height: 66), style: .animationView)
         collectionView.addSubview(refreshControl!)
         refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
     }

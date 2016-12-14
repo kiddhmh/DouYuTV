@@ -50,24 +50,28 @@ extension RecommentViewController {
         super.loadData()
         
         recomVM.requestData(complectioned: { [weak self] in
-            self?.gameView.groups = self?.recomVM.hotGroup
-            if self?.gameView.groups?.count == 0 {return}
-            self?.collectionView.reloadData()
-            self?.loadDataFinished()
+            guard let sself = self else { return }
+            sself.gameView.groups = self?.recomVM.hotGroup
+            if sself.gameView.groups?.count == 0 {return}
+            sself.collectionView.reloadData()
+            sself.loadDataFinished()
             
             // 结束刷新
-            self?.refreshControl?.endRefreshing()
+            sself.refreshControl?.endRefreshing()
             }, failed: {[weak self] (error) in
-            MBProgressHUD.showError(error.errorMessage!)
-            self?.loadDataFailed()
+                guard let sself = self else { return }
+                MBProgressHUD.showError(error.errorMessage!)
+                sself.loadDataFailed()
         })
         
         
         recomVM.requestCycleData(complectioned: { [weak self] in
-            self?.cycleView.dataArr = self?.recomVM.cycleGroup
+            guard let sself = self else { return }
+            sself.cycleView.dataArr = self?.recomVM.cycleGroup
             }, failed: { [weak self] (error) in
+                guard let sself = self else { return }
                 MBProgressHUD.showError(error.errorMessage!)
-                self?.loadDataFailed()
+                sself.loadDataFailed()
         })
     }
 }
@@ -96,29 +100,18 @@ extension RecommentViewController: MHCycleViewDelegate {
 extension RecommentViewController: UICollectionViewDelegateFlowLayout {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if recomVM.bigGroup.count == 0 {
-            return 0
-        }else {
-            return kSectionCount
-        }
+        return recomVM.bigGroup.count == 0 ? 0 : kSectionCount
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return 8
-        }else {
-            return super.collectionView(collectionView, numberOfItemsInSection: section)
-        }
+        
+        return section == 0 ? 8 : super.collectionView(collectionView, numberOfItemsInSection: section)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        if indexPath.section == 1 {
-            return CGSize(width: kItemW, height: kPrettyItemH)
-        }
-        
-        return CGSize(width: kItemW, height: kNormalItemH)
+        return indexPath.section == 1 ? CGSize(width: kItemW, height: kPrettyItemH) : CGSize(width: kItemW, height: kNormalItemH)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

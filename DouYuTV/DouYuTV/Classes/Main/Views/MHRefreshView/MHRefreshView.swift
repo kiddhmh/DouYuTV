@@ -82,7 +82,7 @@ class MHRefreshView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.white
+        backgroundColor = .white
         
         setupUI()
         self.refreshStatus = .normal

@@ -21,10 +21,11 @@ class RecomGameView: UIView {
     }
     
     lazy var collectionView: UICollectionView = { [weak self] in
+        guard let sself = self else { return UICollectionView()}
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: (self?.bounds)!, collectionViewLayout: flowLayout)
-        collectionView.backgroundColor = UIColor.white
+        let collectionView = UICollectionView(frame: sself.bounds, collectionViewLayout: flowLayout)
+        collectionView.backgroundColor = .white
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false
         collectionView.delegate = self

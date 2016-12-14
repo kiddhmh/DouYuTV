@@ -13,7 +13,7 @@ class EnmentViewModel: NSObject {
     
     fileprivate var enModelReequest: MyHttpRequest?
     
-    lazy var enModels: [HotModel] = [HotModel]()
+    lazy var enModels: [HotModel] = []
     
     override init() {
         super.init()

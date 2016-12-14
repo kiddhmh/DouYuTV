@@ -15,9 +15,9 @@ class LiveTitleViewModel: NSObject {
     
     fileprivate var allRequest: MyHttpRequest?
     
-    lazy var titleModels: [LiveTitleModel] = [LiveTitleModel]()
+    lazy var titleModels: [LiveTitleModel] = []
     
-    lazy var allModels: [AnchorModel] = [AnchorModel]()
+    lazy var allModels: [AnchorModel] = []
     
     override init() {
         super.init()

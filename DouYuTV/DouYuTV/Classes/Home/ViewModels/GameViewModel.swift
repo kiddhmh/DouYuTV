@@ -13,7 +13,7 @@ class GameViewModel: NSObject {
     
     fileprivate var gameModelReequest: MyHttpRequest?
     
-    lazy var gameModels: [HotModel] = [HotModel]()
+    lazy var gameModels: [HotModel] = []
     
     override init() {
         super.init()

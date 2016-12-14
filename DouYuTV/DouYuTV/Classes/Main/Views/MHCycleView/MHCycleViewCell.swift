@@ -43,7 +43,7 @@ class MHCycleViewCell: UICollectionViewCell {
         }
         titleLab.backgroundColor = UIColor(r: 178, g: 178, b: 178, a: 0.5)
         titleLab.tag = 2
-        titleLab.textColor = UIColor.white
+        titleLab.textColor = .white
         titleLab.textAlignment = .left
         titleLab.font = UIFont.systemFont(ofSize: 14, weight: 8)
         titleLab.alpha = 0.6

@@ -36,6 +36,12 @@ struct MyNetWorkingConfig {
     
     /// 全部游戏
     static let LIVE_ALLGAME_DATA = "http://capi.douyucdn.cn/api/v1/live"
+    
+    /// 直播-每个模块全部房间
+    static let LIVE_ALLCOLUMNLIST_DATA = "http://capi.douyucdn.cn/api/v1/getColumnRoom/"
+    
+    /// 直播上方分类导航条数据
+    static let LIVE_NAV_TITLE_DATA = "http://capi.douyucdn.cn/api/v1/getColumnDetail"
 }
 
 

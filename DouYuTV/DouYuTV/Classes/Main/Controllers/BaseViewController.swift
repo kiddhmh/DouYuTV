@@ -43,6 +43,12 @@ class BaseViewController: UIViewController {
     func loadDataFailed() {
         
         loadDataFinished()
+        
+        for view in (UIApplication.shared.keyWindow?.subviews)! {
+            if view.isKind(of: BaseFailedView.self) == true {
+                return
+            }
+        }
         UIApplication.shared.keyWindow?.addSubview(failedView)
     }
 }

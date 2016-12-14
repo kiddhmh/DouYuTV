@@ -85,8 +85,16 @@ extension MHRefreshFooterView {
         changeState(isend: true)
     }
     
+    
+    func allDataLoad() {
+        changeState(isend: true)
+        loadMoreBtn.setTitle("已经全部加载完毕", for: .normal)
+        loadMoreBtn.isUserInteractionEnabled = false
+    }
+    
     private func changeState(isend: Bool) {
         loadMoreBtn.isHidden = !isend
+        loadMoreBtn.isUserInteractionEnabled = isend
         tipLabel.isHidden = isend
         indicatorView.isHidden = isend
         isend == true ? indicatorView.stopAnimating() : indicatorView.startAnimating()

@@ -51,7 +51,7 @@ class PageContentView: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.bounces = false
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = .white
         collectionView.scrollsToTop = false
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -72,6 +72,12 @@ class PageContentView: UIView {
         collectionView.frame = bounds
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -85,6 +91,15 @@ class PageContentView: UIView {
         let offset = CGPoint(x: CGFloat(index) * collectionView.bounds.width, y: 0)
         collectionView.setContentOffset(offset, animated: false)
         
+    }
+    
+    /// 更新视图
+    public func uploadVC(childVc: [UIViewController]) {
+        guard childVc.count != 0 else { return }
+        self.childVcs.removeAll()
+        self.childVcs = childVc
+        collectionView.reloadData()
+        currentPage = 1
     }
 }
 
@@ -116,7 +131,15 @@ extension PageContentView: UICollectionViewDataSource {
 }
 
 
-extension PageContentView: UICollectionViewDelegate {
+extension PageContentView: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        childVcs[indexPath.item].view.frame = cell.bounds
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        childVcs[indexPath.item].view.frame = cell.bounds
+    }
     
     //获取开始下标值
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

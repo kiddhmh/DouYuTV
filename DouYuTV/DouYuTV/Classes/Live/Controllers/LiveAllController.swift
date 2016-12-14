@@ -13,13 +13,17 @@ class LiveAllController: BaseAnchorViewController {
     
     fileprivate lazy var titleVM = LiveTitleViewModel()
     
-    fileprivate lazy var dataArray = [AnchorModel]()
+    public lazy var dataArray: [AnchorModel] = []   //数据源
     
-    fileprivate lazy var footerView: MHRefreshFooterView = MHRefreshFooterView()
+    public lazy var footerView: MHRefreshFooterView = MHRefreshFooterView()
     
-    fileprivate var limit: String = "20"    // 每次请求的数据量
+    public var limit: String = "20"    // 每次请求的数据量
     
-    fileprivate var offset: Int?            // 每次请求的起始位置
+    public var offset: Int?            // 每次请求的起始位置
+    
+    public var baseModel: LiveTitleModel?    // 提供给子类使用
+    
+    public var maxCount: Int = 0  // 最大房间数
     
     var reciveData: reciveTitleClosure?
     
@@ -41,58 +45,62 @@ extension LiveAllController {
     override func loadData() {
         /// 获取标题数据
         titleVM.requestTitleData(complectioned: { [weak self] in
-            
+            guard let sself = self else { return }
             guard let models = self?.titleVM.titleModels else {return}
             if models.count == 0 {return}
             
                 // 通知父视图加载标题数据
-            if self?.reciveData != nil {
-                self?.reciveData!(models as AnyObject)
+            if sself.reciveData != nil {
+                sself.reciveData!(models as AnyObject)
             }
             
-                self?.loadDataFinished()
-                self?.refreshControl?.endRefreshing()
+                sself.loadDataFinished()
+                sself.refreshControl?.endRefreshing()
             }, failed: {[weak self] (error) in
-                self?.loadDataFailed()
+                guard let sself = self else { return }
+                sself.loadDataFailed()
                 MBProgressHUD.showError(error.errorMessage!)
             })
         
         /// 获取下方房间数据
         titleVM.requestAllData(limit: limit, offset: "0", complectioned: { [weak self] in
+                guard let sself = self else { return }
                 guard let modes = self?.titleVM.allModels else {return}
                 if modes.count == 0 {return}
                 // 每次下拉刷新先清除之前的
-                self?.dataArray.removeAll()
-                self?.offset = 0
-                self?.dataArray = modes
-                self?.collectionView.reloadData()
+                sself.dataArray.removeAll()
+                sself.offset = 0
+                sself.dataArray = modes
+                sself.collectionView.reloadData()
             
-                self?.loadDataFinished()
-                self?.refreshControl?.endRefreshing()
+                sself.loadDataFinished()
+                sself.refreshControl?.endRefreshing()
             }, failed: { [weak self] (error) in
-                self?.loadDataFailed()
+                guard let sself = self else { return }
+                sself.loadDataFailed()
                 MBProgressHUD.showError(error.errorMessage!)
         })
     }
     
     
     /// 上拉加载更多
-    fileprivate func loadMoreData(_ limit: String, _ offset: String) {
+    public func loadMoreData(_ limit: String, _ offset: String) {
         
         titleVM.requestAllData(limit: limit, offset: offset, complectioned: { [weak self] in
+            guard let sself = self else { return }
             guard let modes = self?.titleVM.allModels else {return}
             if modes.count == 0 {return}
             // 每次下拉刷新先清除之前的
-            self?.offset = Int(offset)
-            self?.dataArray += modes
-            self?.collectionView.reloadData()
+            sself.offset = Int(offset)
+            sself.dataArray += modes
+            sself.collectionView.reloadData()
             
-            self?.loadDataFinished()
-            self?.refreshControl?.endRefreshing()
-            self?.footerView.endRefresh()
+            sself.loadDataFinished()
+            sself.refreshControl?.endRefreshing()
+            sself.footerView.endRefresh()
             }, failed: { [weak self] (error) in
-                
-                self?.footerView.endRefresh()
+                guard let sself = self else { return }
+                sself.footerView.endRefresh()
                 MBProgressHUD.showError(error.errorMessage!)
             })
     }
@@ -107,6 +115,7 @@ extension LiveAllController {
         
         loadData()
     }
+    
 }
 
 
@@ -143,8 +152,10 @@ extension LiveAllController: UICollectionViewDelegateFlowLayout {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CellID.LiveSectionFooterID, for: indexPath) as! MHRefreshFooterView
             self.footerView = footerView
             footerView.loadMoreData = { [weak self] in
-                self?.loadMoreData((self?.limit)!, "\((self?.offset)! + 20)")
+                guard let sself = self else { return }
+                sself.loadMoreData((self?.limit)!, "\((self?.offset)! + 20)")
             }
+            footerView.isHidden = true
             return footerView
         }else {
             return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
@@ -154,9 +165,32 @@ extension LiveAllController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
         if elementKind == UICollectionElementKindSectionFooter {
+            if dataArray.count < 20 {return}    // 如果数据太少，隐藏上拉刷新
             let footerView = view as! MHRefreshFooterView
+            footerView.isHidden = false
             footerView.beginRefresh()
         }
+    }
+    
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.isKind(of: UICollectionView.self) == true {
+            
+            let offsetY = scrollView.contentOffset.y
+            guard offsetY > 0 || offsetY > collectionView.height else {return}
+            
+            if startOffsetY > offsetY { //显示
+                if C.isLiveNavBarHidden == false { return }
+                hiddenBlock?(false, true)
+                C.isLiveNavBarHidden = false
+            }else { //隐藏
+                if C.isLiveNavBarHidden == true { return }
+                hiddenBlock?(true, true)
+                C.isLiveNavBarHidden = true
+            }
+        }
+        
     }
     
 }

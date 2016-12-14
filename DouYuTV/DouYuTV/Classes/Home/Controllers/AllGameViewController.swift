@@ -22,7 +22,7 @@ class AllGameViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(RecomGameViewCell.self, forCellWithReuseIdentifier: CellID.RecommentGameCellID)
 
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = .white
         return collectionView
     }()
     
@@ -35,12 +35,8 @@ class AllGameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
         self.title = "游戏"
-        
-        
-//        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         
         view.addSubview(collectionView)
     }
@@ -75,9 +71,3 @@ extension AllGameViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
-//extension AllGameViewController: UIGestureRecognizerDelegate {
-//    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return true
-//    }
-//}

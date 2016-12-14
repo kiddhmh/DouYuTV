@@ -13,7 +13,7 @@ class FunViewModel: NSObject {
     
     fileprivate var funRequest: MyHttpRequest?
     
-    lazy var funModels: [HotModel] = [HotModel]()
+    lazy var funModels: [HotModel] = []
     
     override init() {
         super.init()

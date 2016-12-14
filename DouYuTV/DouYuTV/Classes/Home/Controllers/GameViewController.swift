@@ -15,7 +15,7 @@ class GameViewController: BaseAnchorViewController {
     
     fileprivate lazy var gameVM = GameViewModel()
     
-    fileprivate lazy var dataArray = [HotModel]()
+    fileprivate lazy var dataArray: [HotModel] = []
     
     fileprivate lazy var headerView: MyHeaderView = {
         let headerView = MyHeaderView(frame: CGRect(x: 0, y: -S.ColHeaderViewH, width: HmhDevice.screenW, height: S.ColHeaderViewH))
@@ -42,30 +42,31 @@ extension GameViewController {
         super.loadData()
         
         gameVM.requestGameData(complectioned: { [weak self] in
-            
+            guard let sself = self else { return }
             guard let models = self?.gameVM.gameModels else {return}
             if models.count == 0 {return}
             var headrModels = [HotModel]()
             for i in 1..<16 {
                 headrModels.append(models[i])
             }
-            self?.headerView.headerData = headrModels
-            self?.headerView.isAddMoreBtn = true
+            sself.headerView.headerData = headrModels
+            sself.headerView.isAddMoreBtn = true
             
             // 筛选房间数大于1的类型
             let dataModels = models.filter{ ($0.room_list?.count)! > 1 }
             //  获取前15个显示
             for i in 0..<15{
-                self?.dataArray.append(dataModels[i])
+                sself.dataArray.append(dataModels[i])
             }
             
-            self?.collectionView.reloadData()
+            sself.collectionView.reloadData()
             
-            self?.loadDataFinished()
-            self?.refreshControl?.endRefreshing()
+            sself.loadDataFinished()
+            sself.refreshControl?.endRefreshing()
             }, failed: {[weak self] (error) in
+                guard let sself = self else { return }
                 MBProgressHUD.showError(error.errorMessage!)
-                self?.loadDataFailed()
+                sself.loadDataFailed()
             })
     }
 }
@@ -74,21 +75,13 @@ extension GameViewController {
 extension GameViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if self.dataArray.count == 0 {
-            return 0
-        }else {
-            return self.dataArray.count
-        }
+        return dataArray.count == 0 ? 0 : dataArray.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let model = dataArray[section]
-        if model.room_list?.count == 4 {
-            return 4
-        }else {
-            return 2
-        }
+        return model.room_list?.count == 4 ? 4 : 2
     }
     
     

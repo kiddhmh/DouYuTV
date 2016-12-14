@@ -17,10 +17,10 @@ class RecomViewModel: NSObject {
     fileprivate var faceRequest: MyHttpRequest?
     fileprivate var cycleRequest: MyHttpRequest?
     
-    lazy var bigGroup: [AnchorModel] = [AnchorModel]()
-    lazy var faceGroup: [RecomFaceModel] = [RecomFaceModel]()
-    lazy var hotGroup: [HotModel] = [HotModel]()
-    lazy var cycleGroup: [CycleModel] = [CycleModel]()
+    lazy var bigGroup: [AnchorModel] = []
+    lazy var faceGroup: [RecomFaceModel] = []
+    lazy var hotGroup: [HotModel] = []
+    lazy var cycleGroup: [CycleModel] = []
     
     override init() {
         super.init()

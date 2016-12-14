@@ -75,31 +75,18 @@ class HomeViewController: UIViewController {
         for vc in childVcs {
             let baseVC = vc as? BaseViewController
             baseVC?.hiddenBlock = { [weak self] in
-                self?.navigationController?.setNavigationBarHidden($0, animated: $1)
+                guard let sself = self else { return }
+                sself.navigationController?.setNavigationBarHidden($0, animated: $1)
                 let offsetYY: CGFloat = $0 ? -HmhDevice.kNavigationBarH : HmhDevice.kNavigationBarH
                 UIView.animate(withDuration: 0.3, animations: {
-                    self?.pageTitleView.top += offsetYY
-                    self?.pageContentView.top += offsetYY
-                    self?.pageContentView.height -= offsetYY
+                    sself.pageTitleView.top += offsetYY
+                    sself.pageContentView.top += offsetYY
+                    sself.pageContentView.height -= offsetYY
                 })
-                if offsetYY > 0 {
-                    
-                    let layout = UICollectionViewFlowLayout()
-                    layout.itemSize = (self?.pageContentView.bounds.size)!
-                    layout.minimumLineSpacing = 0
-                    layout.minimumInteritemSpacing = 0
-                    layout.scrollDirection = .horizontal
-                    self?.pageContentView.collectionView.setCollectionViewLayout(layout, animated: false)
-                    self?.pageContentView.collectionView.height -= offsetYY
-                }else {
-                    self?.pageContentView.collectionView.height -= offsetYY
-                    let layout = UICollectionViewFlowLayout()
-                    layout.itemSize = (self?.pageContentView.bounds.size)!
-                    layout.minimumLineSpacing = 0
-                    layout.minimumInteritemSpacing = 0
-                    layout.scrollDirection = .horizontal
-                    self?.pageContentView.collectionView.setCollectionViewLayout(layout, animated: false)
-                }
+                let layout = sself.pageContentView.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+                layout.itemSize = sself.pageContentView.bounds.size
+                sself.pageContentView.collectionView.setCollectionViewLayout(layout, animated: false)
+                sself.pageContentView.collectionView.height -= offsetYY
             }
         }
     }

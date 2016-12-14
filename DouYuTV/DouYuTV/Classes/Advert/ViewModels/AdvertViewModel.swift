@@ -13,7 +13,7 @@ class AdvertViewModel: NSObject {
     
     fileprivate var advertRequest: MyHttpRequest?
     
-    lazy var advertModels: [AdvertModel]? = [AdvertModel]()
+    var advertModels: AdvertModel?
     
     override init() {
         super.init()
@@ -27,21 +27,22 @@ class AdvertViewModel: NSObject {
 
 extension AdvertViewModel {
 
-    func requestAvertData(complectioned complection:@escaping () -> (), failed fail: (_ error: MyError) -> ()) {
-        let params = ["aid":"ios","time":"1480942380", "token":"1457555_11_f407d33ac96d2af1_2_18650423", "auth":"68e31a10a1ff0cb6ce06aec0d831ed28"]
+    func requestAvertData(complectioned complection:@escaping () -> (), failed fail: @escaping (_ error: MyError) -> ()) {
         
-        advertRequest = HttpClient.sharedHttpClient().get(MyNetWorkingConfig.ADVERT_DATA, parameters: params, complection: { (myResponse) in
+        advertRequest = HttpDriver.get(URLString: "http://api2.pianke.me/pub/screen") { (response) in
             
-//            switch  myResponse.state {
-//            case .Success(let value):
-//                
-//            case .Error(let error):
-//                fail(error)
-//            }
-            
+            switch response.state {
+            case .Success(let value):
+                self.advertModels = Mapper<AdvertModel>().map(JSON: value as! [String : Any])
+            case .Error(let error):
+                fail(error)
+                return
+            }
             complection()
-            
-        })
+        }
+        
+        
+        
     }
     
 }

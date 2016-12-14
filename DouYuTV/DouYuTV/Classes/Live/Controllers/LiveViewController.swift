@@ -31,9 +31,9 @@ class LiveViewController: UIViewController {
         
         let allVC = LiveAllController()
         allVC.reciveData = { [weak self] in
+            guard let sself = self else { return }
             let models: [LiveTitleModel] = $0 as! [LiveTitleModel]
-            self?.upLoadView(models)
-            print(models)
+            sself.upLoadView(models)
         }
         childVcs.append(allVC)
         
@@ -60,35 +60,7 @@ class LiveViewController: UIViewController {
         view.addSubview(pageContentView)
         
         // 设置导航栏消失和隐藏
-        for vc in childVcs {
-            let baseVC = vc as? BaseViewController
-            baseVC?.hiddenBlock = { [weak self] in
-                self?.navigationController?.setNavigationBarHidden($0, animated: $1)
-                let offsetYY: CGFloat = $0 ? -HmhDevice.kNavigationBarH : HmhDevice.kNavigationBarH
-                UIView.animate(withDuration: 0.3, animations: {
-                    self?.pageContentView.top += offsetYY
-                    self?.pageContentView.height -= offsetYY
-                })
-                if offsetYY > 0 {
-                    
-                    let layout = UICollectionViewFlowLayout()
-                    layout.itemSize = (self?.pageContentView.bounds.size)!
-                    layout.minimumLineSpacing = 0
-                    layout.minimumInteritemSpacing = 0
-                    layout.scrollDirection = .horizontal
-                    self?.pageContentView.collectionView.setCollectionViewLayout(layout, animated: false)
-                    self?.pageContentView.collectionView.height -= offsetYY
-                }else {
-                    self?.pageContentView.collectionView.height -= offsetYY
-                    let layout = UICollectionViewFlowLayout()
-                    layout.itemSize = (self?.pageContentView.bounds.size)!
-                    layout.minimumLineSpacing = 0
-                    layout.minimumInteritemSpacing = 0
-                    layout.scrollDirection = .horizontal
-                    self?.pageContentView.collectionView.setCollectionViewLayout(layout, animated: false)
-                }
-            }
-        }
+        setupNavHiddenClosure()
     }
     
     deinit {
@@ -107,6 +79,25 @@ extension LiveViewController {
         navigationItem.titleView = pageTitleView
     }
     
+    /// 设置导航栏消失和隐藏  isLiveNavBarHidden
+    fileprivate func setupNavHiddenClosure() {
+        for vc in childVcs {
+            let baseVC = vc as? BaseViewController
+            baseVC?.hiddenBlock = { [weak self] in
+                guard let sself = self else { return }
+                sself.navigationController?.setNavigationBarHidden($0, animated: $1)
+                let offsetYY: CGFloat = $0 ? -HmhDevice.kNavigationBarH : HmhDevice.kNavigationBarH
+                UIView.animate(withDuration: 0.3, animations: {
+                    sself.pageContentView.top += offsetYY
+                    sself.pageContentView.height -= offsetYY
+                })
+                let layout = sself.pageContentView.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+                layout.itemSize = sself.pageContentView.bounds.size
+                sself.pageContentView.collectionView.setCollectionViewLayout(layout, animated: false)
+                sself.pageContentView.collectionView.height -= offsetYY
+            }
+        }
+    }
     
     fileprivate func upLoadView(_ titleModels: [LiveTitleModel]) {
         
@@ -115,7 +106,28 @@ extension LiveViewController {
             titles.append(model.cate_name!)
         }
         
+        addChildVCs(titleModels)
+        // 设置导航栏消失和隐藏
+        setupNavHiddenClosure()
+        
+        pageContentView.uploadVC(childVc: childVcs)
         pageTitleView.uploadTitle(titles)
+    }
+    
+    private func addChildVCs(_ models: [LiveTitleModel]) {
+        
+        if childVcs.count == 10 { return }
+        for i in 0..<models.count {
+            if models[i].cate_name == "颜值" {
+                let faceVC = LiveFaceController()
+                faceVC.baseModel = models[i]
+                childVcs.append(faceVC)
+            }else {
+                let anchorVC = LiveAnchorController()
+                anchorVC.baseModel = models[i]
+                childVcs.append(anchorVC)
+            }
+        }
     }
 }
 
@@ -142,11 +154,5 @@ extension LiveViewController: LivePageTitleViewDelegate {
     func pageTitleView(_ pageTitleView: LivePageTitleView, didSelectedIndex index: Int) {
         
         pageContentView.scrollToIndex(index)
-        
     }
-    
 }
-
-
-
-

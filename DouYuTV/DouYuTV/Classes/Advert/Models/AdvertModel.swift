@@ -11,12 +11,15 @@ import ObjectMapper
 
 class AdvertModel: Mappable {
     
+    var result: String?
+    var picurl: String?
     
     required init?(map: Map) {
         
     }
     
     func mapping(map: Map) {
-        
+        result <- map["result"]
+        picurl <- map["data.picurl"]
     }
 }

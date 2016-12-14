@@ -40,7 +40,7 @@ extension MGameViewController {
         super.loadData()
         
         mgameVM.requestHederData(complectioned: { [weak self] in
-            
+            guard let sself = self else { return }
             guard let models = self?.mgameVM.mModels else {return}
             if models.count == 0 {return}
             var headrModels = [HotModel]()
@@ -48,16 +48,17 @@ extension MGameViewController {
             for i in 1..<16 {
                 headrModels.append(models[i])
             }
-            self?.headerView.headerData = headrModels
-            self?.headerView.isAddMoreBtn = true
+            sself.headerView.headerData = headrModels
+            sself.headerView.isAddMoreBtn = true
             
-            self?.collectionView.reloadData()
+            sself.collectionView.reloadData()
             
-            self?.loadDataFinished()
-            self?.refreshControl?.endRefreshing()
+            sself.loadDataFinished()
+            sself.refreshControl?.endRefreshing()
             }, failed: {[weak self] (error) in
+                guard let sself = self else { return }
                 MBProgressHUD.showError(error.errorMessage!)
-                self?.loadDataFailed()
+                sself.loadDataFailed()
         })
     }
 }
@@ -67,11 +68,7 @@ extension MGameViewController {
 extension MGameViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if mgameVM.mModels.count == 0 {
-            return 0
-        }else {
-            return kGameSection
-        }
+        return mgameVM.mModels.count == 0 ? 0 : kGameSection
     }
     
     
@@ -82,7 +79,6 @@ extension MGameViewController {
         
             return cell
         }
-    
 
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
