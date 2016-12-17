@@ -105,7 +105,15 @@ extension RecommentViewController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return section == 0 ? 8 : super.collectionView(collectionView, numberOfItemsInSection: section)
+        if section == 0 {   // 最热
+            return 8
+        }else if section == 1 { // 颜值
+            return 4
+        }else { // 推荐
+            let hotModels = recomVM.hotGroup.filter { ($0.room_list?.count)! > 0 }
+            let anchorModels = hotModels[section - 2].room_list
+            return anchorModels?.count == 4 ? 4 : 2
+        }
     }
     
     

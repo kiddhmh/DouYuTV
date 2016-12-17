@@ -93,7 +93,16 @@ class HomeViewController: UIViewController {
     
     
     func RefreshData() {
-        print("刷新数据")
+        // 获取当前位置视图
+        let currentPage = pageContentView.collectionView.contentOffset.x / view.width
+        let currentVC = childVcs[Int(currentPage)] as? BaseAnchorViewController
+        guard currentVC?.refreshControl?.isRefresh == false else {
+            return
+        }
+        currentVC?.refreshControl?.refreshState = .pulling
+        let offSetY = currentVC?.collectionView.contentOffset.y
+        let point = CGPoint(x: 0, y: offSetY! - (currentVC?.refreshControl?.MHRefreshOffset)!)
+        currentVC?.collectionView.setContentOffset(point, animated: false)
     }
     
     deinit {

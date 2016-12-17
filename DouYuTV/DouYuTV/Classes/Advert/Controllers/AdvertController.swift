@@ -21,6 +21,12 @@ class AdvertController: UIViewController {
         return imageView
     }()
     
+    fileprivate lazy var launchView: UIImageView = {
+        let imageView = UIImageView(frame: HmhDevice.screenRect)
+        imageView.image = UIImage(named: "LaunchImage-800-667h@2x")
+        return imageView
+    }()
+    
     fileprivate var advertModel: AdvertModel?
     
     fileprivate lazy var advertVM: AdvertViewModel = AdvertViewModel()
@@ -57,12 +63,14 @@ class AdvertController: UIViewController {
         
         view.addSubview(advertImageView)
         view.addSubview(jumpButton)
+        view.addSubview(launchView)
         advertImageView.isHidden = true
         jumpButton.isHidden = true
+        launchView.isHidden = false
         
         jumpButton.snp.makeConstraints { (make) in
-            make.right.equalTo(view.snp.right).offset(-10)
-            make.top.equalTo(view.snp.top).offset(10)
+            make.right.equalTo(view.snp.right).offset(-15)
+            make.top.equalTo(view.snp.top).offset(15)
         }
     }
     
@@ -97,6 +105,7 @@ extension AdvertController {
     /// 定时器
     fileprivate func startTime() {
         
+        launchView.isHidden = true
         advertImageView.isHidden = false
         jumpButton.isHidden = false
         

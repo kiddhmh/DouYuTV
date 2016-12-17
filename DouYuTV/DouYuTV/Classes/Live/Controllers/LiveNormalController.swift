@@ -112,6 +112,7 @@ extension LiveNormalController: UICollectionViewDataSource {
         let model = dataArray[indexPath.item]
         cell.title = model.tag_name
         cell.imageURL = model.icon_url
+        cell.isHiddenCutLine = false
         return cell
     }
 }

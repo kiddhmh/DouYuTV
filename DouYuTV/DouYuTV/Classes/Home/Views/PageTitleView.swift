@@ -104,7 +104,7 @@ class PageTitleView: UIView {
                 titleX = CGFloat(index) * titleW
             }else {
                 
-                let size = (title as NSString).boundingRect(with: CGSize(width: Int(MAXFLOAT), height: 0), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: label.font], context: nil)
+                let size = (title as NSString).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 0), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: label.font], context: nil)
                 
                 titleW = size.width
                 if index != 0 {

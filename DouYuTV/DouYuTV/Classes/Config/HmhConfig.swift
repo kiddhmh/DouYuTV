@@ -35,6 +35,13 @@ struct C {
     
     /// 字体主要颜色
     static let mainTextColor = UIColor(r: 111, g: 121, b: 121, a: 1)
+    
+    /// 下拉框选中颜色
+    static let column_selectedColor = UIColor(r: 221, g: 221, b: 221)
+    
+    /// 下拉框普通颜色
+    static let column_normalColor = UIColor(r: 205, g: 205, b: 205)
+    
 }
 
 

@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         advertVC.jumpClosure = {    // 广告到时间，切换控制器
             self.window?.rootViewController = baseVC
         }
+        
         self.window?.rootViewController = advertVC
         
         self.window?.makeKeyAndVisible()

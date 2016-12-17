@@ -80,7 +80,7 @@ extension LiveAnchorViewModel {
     }
     
     
-    /// 其他类别数据
+    /// 其他类别数据(默认全部)
     func requestAnchorData(shortName: String? = nil, cate_id: String, limit: String, offset: String, complectioned complection:@escaping () -> (), failed fail:@escaping (_ error:MyError) -> ()) {
         
         let paramData = ["limit":limit,"offset":offset,"time": Date.nowDate().toTimestamp()]
@@ -123,5 +123,26 @@ extension LiveAnchorViewModel {
             complection()
         }
     }
-
+    
+    
+    /// 具体某个类别数据
+    func requestConcreteData(tag_id: String, limit: String, offset: String, complectioned complection:@escaping () -> (), failed fail:@escaping (_ error:MyError) -> ()) {
+        
+        let paramData = ["limit":limit,"offset":offset]
+        
+        anchorRequest = HttpClient.sharedHttpClient().get(MyNetWorkingConfig.LIVE_ALLGAME_DATA + "/\(tag_id)", parameters: paramData, complection: { (myResponse) in
+            
+            switch  myResponse.state {
+            case .Success(let value):
+                let models = Mapper<BaseModel<AnchorModel>>().map(JSON: value as! [String: Any])
+                self.anchorGroup = (models?.data)!
+            case .Error(let error):
+                fail(error)
+                return
+            }
+            complection()
+        })
+        
+    }
+    
 }

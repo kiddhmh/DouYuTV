@@ -24,6 +24,42 @@ class RecomGameViewCell: UICollectionViewCell {
         return label
     }()
     
+    /// 右边分割线
+    private lazy var rightView: UIImageView! = {
+        let rightView = UIImageView(image: UIImage(named: "column_vline"))
+        rightView.isHidden = true
+        return rightView
+    }()
+    
+    /// 左边分割线
+    private lazy var bottomView: UIImageView! = {
+        let bottomView = UIImageView(image: UIImage(named: "column_hline"))
+        bottomView.isHidden = true
+        return bottomView
+    }()
+    
+    /// 右下角选中按钮
+    private lazy var selectedImage: UIImageView! = {
+        let imageView = UIImageView(image: UIImage(named: "column_selected"))
+        imageView.isHidden = true
+        return imageView
+    }()
+    
+    var isHiddenCutLine: Bool? {
+        didSet {
+            guard let isHiddenCutLine = isHiddenCutLine else {return}
+            bottomView.isHidden = isHiddenCutLine
+            rightView.isHidden = isHiddenCutLine
+        }
+    }
+    
+    var isSelectedView: Bool? {
+        didSet {
+            guard let isSelectedView = isSelectedView else {return}
+            selectedImage.isHidden = isSelectedView
+        }
+    }
+    
     var imageURL: String? {
         didSet {
             guard let imageURL = imageURL else {
@@ -33,11 +69,12 @@ class RecomGameViewCell: UICollectionViewCell {
             }
             iconImage.kf.setImage(with: URL(string: imageURL )) { [weak self] (image, error, type, url) in
                 guard let sself = self else { return }
-                sself.iconImage.image = (image! as UIImage).circleImage()
+                guard let image = image else { return }
+                sself.iconImage.image = (image as UIImage).circleImage()
             }
         }
     }
-    
+     
     var title: String? {
 
         didSet {
@@ -74,6 +111,24 @@ class RecomGameViewCell: UICollectionViewCell {
         titleLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(self)
             make.top.equalTo(self.iconImage.snp.bottom).offset(5)
+        }
+        
+        addSubview(rightView)
+        addSubview(bottomView)
+        
+        rightView.snp.makeConstraints { (make) in
+            make.width.equalTo(1)
+            make.right.height.centerY.equalTo(self)
+        }
+        bottomView.snp.makeConstraints { (make) in
+            make.height.equalTo(1)
+            make.bottom.width.centerX.equalTo(self)
+        }
+        
+        addSubview(selectedImage)
+        selectedImage.snp.makeConstraints { (make) in
+            make.width.height.equalTo(14)
+            make.bottom.right.equalTo(self)
         }
     }
     

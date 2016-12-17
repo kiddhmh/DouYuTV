@@ -36,6 +36,24 @@ class MHRefreshControl: UIControl {
         return 66
     }
     
+    /// 设置刷新状态
+    var refreshState: MHRefreshState? {
+        didSet {
+            guard let refreshState = refreshState else {return}
+            refreshView.refreshStatus = refreshState
+        }
+    }
+    
+    /// 是否在刷新
+    var isRefresh: Bool? {
+        get {
+            guard refreshView.refreshStatus == .willRefresh else {
+                return false
+            }
+            return true
+        }
+    }
+    
     fileprivate var style: MHRfreshViewStyle
     
     init(frame: CGRect, style: MHRfreshViewStyle) {
