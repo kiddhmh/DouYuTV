@@ -22,13 +22,24 @@ class LiveAnchorController: LiveAllController {
         return navTitleView
     }()
     
+    /// 暂无数据
+    fileprivate lazy var noDataView: LiveNoDataView = LiveNoDataView()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        view.addSubview(noDataView)
         view.addSubview(navTitleView)
+        noDataView.isHidden = true
         navTitleView.isHidden = true
         collectionView.top += navTitleView.bottom
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        noDataView.frame = collectionView.frame
     }
     
 }
@@ -110,8 +121,15 @@ extension LiveAnchorController {
     /// 加载具体某个数据
     func loadConrfeteData(tag_id: String, maxcount: Int, limit: String, offset: String) {
         
+        guard  maxcount != 0 else {
+            // 显示暂无数据
+            noDataView.isHidden = false
+            contentView?.isHidden = true
+            return
+        }
+        
         let count = Int(self.offset!) + Int(limit)!
-        if count >= maxcount {  // 提示加载完毕
+        if count >= maxcount && self.offset! > 0 {  // 提示加载完毕
             footerView.allDataLoad()
             return
         }
@@ -128,6 +146,7 @@ extension LiveAnchorController {
             sself.loadDataFinished()
             sself.refreshControl?.endRefreshing()
             sself.footerView.endRefresh()
+            sself.noDataView.isHidden = true
             }, failed: { [weak self] (error) in
                 guard let sself = self else { return }
                 sself.footerView.endRefresh()

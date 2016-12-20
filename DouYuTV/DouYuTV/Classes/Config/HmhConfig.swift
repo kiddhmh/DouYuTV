@@ -33,6 +33,9 @@ struct C {
     /// 直播默认导航栏字体
     static let livePageTitles: [String] = ["常用","全部"]
     
+    /// 关注导航栏字体
+    static let profileTitles: [String] = ["直播关注","视频订阅"]
+    
     /// 字体主要颜色
     static let mainTextColor = UIColor(r: 111, g: 121, b: 121, a: 1)
     
@@ -49,7 +52,7 @@ struct L {
     static let loading = "正在加载..."
     static let netWorkError = "网络异常"
     static let loadendind = "数据加载完毕"
-    
+    static let nodatamessage = "暂无直播，去其它栏目看看吧~"
 }
 
 

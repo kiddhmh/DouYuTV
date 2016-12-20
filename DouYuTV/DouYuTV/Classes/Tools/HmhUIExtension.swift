@@ -67,6 +67,57 @@ extension UIImage {
         
         return image
     }
+    
+    
+    /// 向二维码中添加图片(不能过大)
+    ///
+    /// - Parameters:
+    ///   - icon: 添加的图片
+    ///   - iconSize: 添加图片的大小
+    func addIconToQRCodeImage(_ icon:UIImage, _ iconSize:CGSize? = nil) -> UIImage {
+        UIGraphicsBeginImageContext(self.size)
+        
+        let imgw = self.size.width
+        let imgh = self.size.height
+        let iconSize = iconSize == nil ? CGSize(width: imgw / 3, height: imgh / 3) : iconSize
+        let icow = iconSize!.width
+        let icoh = iconSize!.height
+        
+        self.draw(in: CGRect(x: 0, y: 0, width: imgw, height: imgh))
+        icon.draw(in: CGRect(x: (imgw-icow)/2.0, y: (imgh-icoh)/2.0, width: icow, height: icoh))
+        let qrImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return qrImage!
+    }
+    
+    
+    /// 二维码图片读取
+    ///
+    /// - Parameters:
+    ///   - completion: 成功回调
+    ///   - failed: 失败回调
+    func readQRImage(_ completion: (_ value: String) -> (), _ failed: (_ message: String) -> ()) {
+        //二维码读取
+        let ciImage:CIImage = CIImage(image: self)!
+        let context = CIContext(options: nil)
+        let detector:CIDetector = CIDetector(ofType: CIDetectorTypeQRCode,
+                                           context: context, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])!
+        let features=detector.features(in: ciImage)
+        
+        var stringValue:String = ""
+        
+        if features.count<=0 {
+            failed("无法解析图片")
+            return
+        }else {
+            //遍历所有的二维码，并框出
+            for feature in features as! [CIQRCodeFeature] {
+                stringValue = feature.messageString!
+            }
+        }
+        completion(stringValue)
+    }
+    
 }
 
 

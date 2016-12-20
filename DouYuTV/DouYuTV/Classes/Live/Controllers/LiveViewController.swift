@@ -10,8 +10,6 @@ import UIKit
 
 class LiveViewController: UIViewController {
     
-    fileprivate lazy var titleVM = LiveTitleViewModel()
-    
     fileprivate lazy var pageTitleView: LivePageTitleView = {
        
         let pageTitleRect = CGRect(x: 0, y: 0, width: HmhDevice.screenW, height: HmhDevice.kNavigationBarH)
@@ -46,10 +44,13 @@ class LiveViewController: UIViewController {
         setupNav()
         
         setupUI()
+        
+        // 设置导航栏消失和隐藏
+        setupNavHiddenClosure()
     }
     
     
-    private func setupUI() {
+    public func setupUI() {
         
         // 创建容器视图
         let contentRect = CGRect(x: 0, y: HmhDevice.navigationBarH, width: HmhDevice.screenW, height: HmhDevice.screenH - HmhDevice.navigationBarH - HmhDevice.tabBarH)
@@ -58,9 +59,6 @@ class LiveViewController: UIViewController {
         self.pageContentView = pageContentView
         pageContentView.currentPage = 1
         view.addSubview(pageContentView)
-        
-        // 设置导航栏消失和隐藏
-        setupNavHiddenClosure()
     }
     
     deinit {
@@ -72,7 +70,7 @@ class LiveViewController: UIViewController {
 
 extension LiveViewController {
     
-    fileprivate func setupNav() {
+    public func setupNav() {
         automaticallyAdjustsScrollViewInsets = false
         
         // 设置pageTitleView为navgation的titleView
@@ -99,7 +97,7 @@ extension LiveViewController {
         }
     }
     
-    fileprivate func upLoadView(_ titleModels: [LiveTitleModel]) {
+    public func upLoadView(_ titleModels: [LiveTitleModel]) {
         
         var titles: [String] = C.livePageTitles
         for model in titleModels {

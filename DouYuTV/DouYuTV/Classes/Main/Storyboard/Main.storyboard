@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1aE-Qs-otf">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +17,6 @@
                     <connections>
                         <segue destination="khJ-pB-Z6W" kind="relationship" relationship="viewControllers" id="xps-0p-Xbv"/>
                         <segue destination="XhB-SB-rDG" kind="relationship" relationship="viewControllers" id="6ei-yS-61B"/>
-                        <segue destination="rqj-ae-0Pq" kind="relationship" relationship="viewControllers" id="O6f-jl-DdY"/>
                         <segue destination="mrf-fS-5oQ" kind="relationship" relationship="viewControllers" id="SWn-Rw-kGY"/>
                         <segue destination="FvG-DX-lZF" kind="relationship" relationship="viewControllers" id="nQL-wb-MF5"/>
                     </connections>
@@ -30,8 +28,9 @@
         <!--我的-->
         <scene sceneID="Qga-LN-La8">
             <objects>
-                <navigationController id="FvG-DX-lZF" customClass="BaseNavigationController" customModule="DouYuTV" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController wantsFullScreenLayout="YES" id="FvG-DX-lZF" customClass="BaseNavigationController" customModule="DouYuTV" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的" image="tabMine" selectedImage="tabMineHL" id="CtN-Lw-jUa"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mSB-1A-Rwg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -42,7 +41,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xnl-XT-pgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-113" y="928"/>
+            <point key="canvasLocation" x="-266" y="504"/>
         </scene>
         <!--Profile Controller-->
         <scene sceneID="bzT-BU-z8e">
@@ -61,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7m8-sh-s9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="714" y="928"/>
+            <point key="canvasLocation" x="566" y="503"/>
         </scene>
         <!--关注-->
         <scene sceneID="qt1-92-uNE">
@@ -78,7 +77,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0M-9l-ECJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-114" y="168"/>
+            <point key="canvasLocation" x="-265" y="-217"/>
         </scene>
         <!--Follow Controller-->
         <scene sceneID="cBx-lM-O24">
@@ -97,43 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TGO-2g-VQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="702" y="168"/>
-        </scene>
-        <!--视频-->
-        <scene sceneID="7L5-gc-3zG">
-            <objects>
-                <navigationController id="rqj-ae-0Pq" customClass="BaseNavigationController" customModule="DouYuTV" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="视频" image="tabVideo" selectedImage="tabVideoHL" id="ckB-2R-wmd"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nx7-hD-Vvg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="oNX-yM-PUe" kind="relationship" relationship="rootViewController" id="wrH-8w-Fdw"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tW2-US-bFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-111" y="-572"/>
-        </scene>
-        <!--Movie Controller-->
-        <scene sceneID="Gwt-Q3-hUt">
-            <objects>
-                <viewController storyboardIdentifier="MovieVC" id="oNX-yM-PUe" customClass="MovieController" customModule="DouYuTV" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eIG-Vv-xdQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="qjO-LK-mcl"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tkA-fc-w2P">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="6pf-bU-hGg"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yyw-Uh-Qoz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="702" y="-573"/>
+            <point key="canvasLocation" x="566" y="-217"/>
         </scene>
         <!--直播-->
         <scene sceneID="2OE-YS-lLJ">
@@ -150,7 +113,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apU-Xw-GMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-111" y="-1289"/>
+            <point key="canvasLocation" x="-266" y="-1007"/>
         </scene>
         <!--Live View Controller-->
         <scene sceneID="eFs-zd-gYd">
@@ -169,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWa-bY-Fvg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="702" y="-1290"/>
+            <point key="canvasLocation" x="566" y="-1007"/>
         </scene>
         <!--首页-->
         <scene sceneID="WX9-ik-jzo">
@@ -186,7 +149,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NUO-T9-jWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-111" y="-2008"/>
+            <point key="canvasLocation" x="-266" y="-1797"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="Aqc-4m-OO2">
@@ -205,7 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Of5-4n-eMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="702" y="-2008"/>
+            <point key="canvasLocation" x="566" y="-1798"/>
         </scene>
     </scenes>
     <resources>
@@ -217,7 +180,5 @@
         <image name="tabLivingHL" width="24" height="24"/>
         <image name="tabMine" width="24" height="24"/>
         <image name="tabMineHL" width="24" height="24"/>
-        <image name="tabVideo" width="24" height="24"/>
-        <image name="tabVideoHL" width="24" height="24"/>
     </resources>
 </document>

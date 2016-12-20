@@ -105,6 +105,12 @@ class HomeViewController: UIViewController {
         currentVC?.collectionView.setContentOffset(point, animated: false)
     }
     
+    /// 进入二维码界面
+    @objc fileprivate func presentQRVC() {
+        let qrCodeVC = MHQRCodeController()
+        navigationController?.pushViewController(qrCodeVC, animated: true)
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -152,7 +158,7 @@ extension HomeViewController {
         let size = CGSize(width: 40, height: 44)
         
         let historyItem = UIBarButtonItem(image: #imageLiteral(resourceName: "viewHistoryIcon"), highlightImage: nil, size: size, target: self, action: #selector(RefreshData))
-        let scanItem = UIBarButtonItem(image: #imageLiteral(resourceName: "scanIcon"), highlightImage: nil, size: size, target: self, action: #selector(RefreshData))
+        let scanItem = UIBarButtonItem(image: #imageLiteral(resourceName: "scanIcon"), highlightImage: nil, size: size, target: self, action: #selector(presentQRVC))
         let searchItem = UIBarButtonItem(image: #imageLiteral(resourceName: "searchBtnIcon"), highlightImage: nil, size: size, target: self, action: #selector(RefreshData))
         
         navigationItem.rightBarButtonItems = [historyItem, scanItem, searchItem]

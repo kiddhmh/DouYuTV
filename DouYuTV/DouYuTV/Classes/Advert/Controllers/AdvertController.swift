@@ -70,7 +70,7 @@ class AdvertController: UIViewController {
         
         jumpButton.snp.makeConstraints { (make) in
             make.right.equalTo(view.snp.right).offset(-15)
-            make.top.equalTo(view.snp.top).offset(15)
+            make.top.equalTo(view.snp.top).offset(20)
         }
     }
     
