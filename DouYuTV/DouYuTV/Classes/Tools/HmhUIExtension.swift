@@ -166,6 +166,20 @@ extension UIColor {
         self.init(red: CGFloat(Float(r) / 255.0), green: CGFloat(Float(g) / 255.0), blue: CGFloat(Float(b) / 255.0), alpha: CGFloat(alpha))
     }
 
+    
+    /// 把颜色转换成图片
+    public func colorImage() -> UIImage {
+        
+        let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(self.cgColor)
+        context?.fill(rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
 }
 
 
@@ -317,6 +331,83 @@ extension UIView {
             var center = self.center
             center.y = newCenterY
             self.center = center
+        }
+    }
+    
+    
+    /// 为UIView添加圆角效果(高效)
+    func addCorner(radius: CGFloat) {
+        self.addCorner(radius: radius, borderWidth: 1, backgroundColor: .clear, borderColor: .white)
+    }
+    
+    
+    
+    /// 添加圆角
+    ///
+    /// - Parameters:
+    ///   - radius: 圆角半径
+    ///   - borderWidth: 边框线宽度
+    ///   - backgroundColor: 背景色
+    ///   - borderColor: 边框色
+    func addCorner(radius: CGFloat,
+                      borderWidth: CGFloat,
+                      backgroundColor: UIColor,
+                      borderColor: UIColor) {
+        let imageView = UIImageView(image: drawRectWithRoundedCorner(radius: radius,
+                                                                        borderWidth: borderWidth,
+                                                                        backgroundColor: backgroundColor,
+                                                                        borderColor: borderColor))
+        self.insertSubview(imageView, at: 0)
+    }
+    
+    /// 生成圆角图片
+    func drawRectWithRoundedCorner(radius: CGFloat,
+                                      borderWidth: CGFloat,
+                                      backgroundColor: UIColor,
+                                      borderColor: UIColor) -> UIImage {
+        
+        let sizeToFit = CGSize(width: self.width, height: self.height)
+        let halfBorderWidth = borderWidth / 2.0
+        
+        UIGraphicsBeginImageContextWithOptions(sizeToFit, false, UIScreen.main.scale)
+        let context = UIGraphicsGetCurrentContext()
+        
+        context?.setLineWidth(borderWidth)
+        context?.setStrokeColor(borderColor.cgColor)
+        context?.setFillColor(backgroundColor.cgColor)
+        
+        let width = sizeToFit.width, height = sizeToFit.height
+        context?.move(to: CGPoint(x: width - halfBorderWidth, y: radius + halfBorderWidth))  // 开始坐标右边开始
+        context?.addArc(tangent1End: CGPoint(x: width - halfBorderWidth, y: height - halfBorderWidth), tangent2End: CGPoint(x: width - radius - halfBorderWidth, y: height - halfBorderWidth), radius: radius)  // 右下角角度
+        context?.addArc(tangent1End: CGPoint(x: halfBorderWidth, y: height - halfBorderWidth), tangent2End: CGPoint(x: halfBorderWidth, y: height - radius - halfBorderWidth), radius: radius)          // 左下角角度
+        
+        context?.addArc(tangent1End: CGPoint(x: halfBorderWidth, y: halfBorderWidth), tangent2End: CGPoint(x: width - halfBorderWidth, y: halfBorderWidth), radius: radius)          // 左上角
+        context?.addArc(tangent1End: CGPoint(x: width - halfBorderWidth, y: halfBorderWidth), tangent2End: CGPoint(x: width - halfBorderWidth - halfBorderWidth, y: radius + halfBorderWidth), radius: radius)          // 右上角
+        
+        UIGraphicsGetCurrentContext()?.drawPath(using: .fillStroke)
+        let output = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return output!
+    }
+    
+    
+}
+
+
+private var key: Void?
+private var key1: Void?
+
+extension UIButton {
+    
+    /// 边框颜色(用于StoryBoard)
+    public var borderFromUIColor: UIColor? {
+        
+        get {
+            return objc_getAssociatedObject(self, &key) as? UIColor
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            layer.borderColor = borderFromUIColor?.cgColor
         }
     }
     

@@ -17,6 +17,28 @@ class ProfileController: UIViewController {
     
     fileprivate lazy var headerView: ProfileHeaderView = ProfileHeaderView()
     
+    /// 登录页面
+    fileprivate var loginView: ProfileTotalLoginView?
+    
+    /// 登录页面遮罩层
+    fileprivate lazy var blurView: UIView = {
+        let blureffect = UIBlurEffect(style: .dark)
+        let effectView = UIVisualEffectView(effect: blureffect)
+        effectView.frame = HmhDevice.screenRect
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hiddenLoginView(_:)))
+        effectView.addGestureRecognizer(tap)
+        effectView.alpha = 0.0
+        return effectView
+    }()
+    
+    /// 关闭按钮
+    fileprivate lazy var closeBtn: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "image_close_login"), for: .normal)
+        btn.setImage(UIImage(named: "image_close_login_pressed"), for: .highlighted)
+        btn.addTarget(self, action: #selector(hiddenLoginView(_:)), for: .touchUpInside)
+        return btn
+    }()
     
     fileprivate lazy var tableView: UITableView = { [unowned self] in
         let tableView: UITableView = UITableView(frame: self.view.frame, style: .grouped)
@@ -40,9 +62,71 @@ class ProfileController: UIViewController {
         
         view.addSubview(tableView)
         headerView.frame = CGRect(x: tableView.left, y: tableView.top, width: tableView.width, height: 260)
+        headerView.gotoInforClosure = { [unowned self] in
+            let infoVC = ProfileInforController()
+            self.navigationController?.pushViewController(infoVC, animated: true)
+        }
+        
+        headerView.showLoginViewClosure = { [unowned self] in
+            self.showLoginView()
+        }
+        
         tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showLogin), name: Notification.Name.MHSHowLogin, object: nil)
     }
     
+    
+    
+    /// 显示登录页面
+    private func showLoginView() {
+        self.blurView.alpha = 0.0
+        loginView = ProfileTotalLoginView.totalLoginView()
+        UIApplication.shared.keyWindow?.addSubview(blurView)
+        UIApplication.shared.keyWindow?.addSubview(loginView!)
+        loginView?.addSubview(closeBtn)
+        
+        UIView.animate(withDuration: 0.5) {
+            self.blurView.alpha = 1.0
+        }
+        
+        loginView!.snp.makeConstraints { (make) in
+            make.centerX.equalTo(blurView)
+            make.centerY.equalTo(blurView).offset(-30)
+            make.left.equalTo(blurView).offset(30)
+            make.height.equalTo(HmhDevice.screenW)
+        }
+        
+        closeBtn.snp.makeConstraints { (make) in
+            make.top.equalTo(loginView!.snp.bottom).offset(30)
+            make.centerX.equalTo(loginView!)
+            make.width.height.equalTo(24)
+        }
+        
+        loginView!.animate()
+    }
+    
+    
+    // 隐藏登录页面
+    @objc private func hiddenLoginView(_ tap: UITapGestureRecognizer) {
+        
+        loginView!.animation = "zoomOut"
+        loginView?.animate()
+        
+        UIView.animate(withDuration: 0.5, animations: { 
+            self.blurView.alpha = 0.0
+        }) { (bool) in
+            guard bool == true else { return }
+            self.blurView.removeFromSuperview()
+            self.loginView?.removeFromSuperview()
+        }
+        
+        closeBtn.removeFromSuperview()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 
@@ -88,5 +172,13 @@ extension ProfileController: UITableViewDelegate {
         } else {
             UIApplication.shared.openURL(url!)
         }
+    }
+}
+
+/// 通知方法
+extension ProfileController {
+    
+    @objc fileprivate func showLogin() {
+        headerView.loginButtonHidden(false)
     }
 }

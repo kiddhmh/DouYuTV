@@ -125,7 +125,6 @@ class MHCache: NSObject {
         cache.clearMemoryCache()//清理网络缓存
         cache.cleanExpiredDiskCache()//清理过期的，或者超过硬盘限制大小的
     }
-    
 }
 
 

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,16 +15,18 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MVy-pt-9mn" id="1sx-6L-pYO">
-                <frame key="frameInset" width="375" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_my_recruitment" translatesAutoresizingMaskIntoConstraints="NO" id="6Gw-6L-sUB">
+                        <rect key="frame" x="18" y="11" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="G4b-ng-I7e"/>
                             <constraint firstAttribute="height" constant="22" id="ihX-6Y-XPq"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主播招募" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAb-pi-fHA">
+                        <rect key="frame" x="55" y="11" width="100" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="3XJ-v2-nf9"/>
                             <constraint firstAttribute="width" constant="100" id="XPS-ev-HFb"/>
@@ -31,6 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_my_arrow_rigth_gray" translatesAutoresizingMaskIntoConstraints="NO" id="IUa-fr-9JI">
+                        <rect key="frame" x="343" y="11" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="aEw-Wn-ZXj"/>
                             <constraint firstAttribute="height" constant="22" id="fGF-WB-rN3"/>

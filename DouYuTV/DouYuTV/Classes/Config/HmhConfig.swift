@@ -27,6 +27,12 @@ struct C {
     /// 系统主要颜色
     static let mainColor = #imageLiteral(resourceName: "Img_orange").getColorCustom()
     
+    /// 登录按钮高亮颜色
+    static let loginColor = UIColor(r: 255, g: 60, b: 30, a: 1)
+    
+    /// 注册图片颜色
+    static let registerColor = UIColor(r: 102, g: 102, b: 102, a: 1)
+    
     /// 首页标题栏
     static let pageTitles: [String] = ["推荐","手游","娱乐","游戏","趣玩"]
     
@@ -104,5 +110,8 @@ extension Notification.Name {
     
     /// 切换TabbarController
     public static let MHChangeSelectedController: Notification.Name = Notification.Name("MHChangeSelectedController")
+    
+    /// 我的页面显示登录注册
+    public static let MHSHowLogin: Notification.Name = Notification.Name("MHSHowLogin")
 }
 

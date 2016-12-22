@@ -74,6 +74,12 @@
 		A2C9C6C61DF6BA8C00793FEF /* HotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6C51DF6BA8C00793FEF /* HotModel.swift */; };
 		A2C9C6C81DF7A94A00793FEF /* EnmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6C71DF7A94A00793FEF /* EnmentViewModel.swift */; };
 		A2C9C6CA1DF7B47300793FEF /* FunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6C91DF7B47300793FEF /* FunViewModel.swift */; };
+		A2EAAD001E0A2A2500922F02 /* ProfileLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EAACFF1E0A2A2500922F02 /* ProfileLoginController.swift */; };
+		A2EAAD021E0A2A3900922F02 /* ProfileInforController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EAAD011E0A2A3900922F02 /* ProfileInforController.swift */; };
+		A2EAAD041E0A2CAF00922F02 /* ProfileInfoBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EAAD031E0A2CAF00922F02 /* ProfileInfoBottomView.swift */; };
+		A2EAAD061E0A572300922F02 /* MHNoHighlighButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EAAD051E0A572300922F02 /* MHNoHighlighButton.swift */; };
+		A2EAAD081E0A617D00922F02 /* ProfileTotalLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EAAD071E0A617D00922F02 /* ProfileTotalLoginView.swift */; };
+		A2EAAD0A1E0A61BA00922F02 /* ProfileTotalLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2EAAD091E0A61BA00922F02 /* ProfileTotalLoginView.xib */; };
 		A2F4A5501DF8F0FF0095995A /* LiveNormalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4A54F1DF8F0FF0095995A /* LiveNormalController.swift */; };
 		A2F4A5521DF8F48C0095995A /* BaseAnchorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4A5511DF8F48C0095995A /* BaseAnchorViewController.swift */; };
 		A2F4A5541DF92DDC0095995A /* LiveAllController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4A5531DF92DDC0095995A /* LiveAllController.swift */; };
@@ -183,6 +189,12 @@
 		A2C9C6C51DF6BA8C00793FEF /* HotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotModel.swift; sourceTree = "<group>"; };
 		A2C9C6C71DF7A94A00793FEF /* EnmentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnmentViewModel.swift; sourceTree = "<group>"; };
 		A2C9C6C91DF7B47300793FEF /* FunViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunViewModel.swift; sourceTree = "<group>"; };
+		A2EAACFF1E0A2A2500922F02 /* ProfileLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileLoginController.swift; sourceTree = "<group>"; };
+		A2EAAD011E0A2A3900922F02 /* ProfileInforController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInforController.swift; sourceTree = "<group>"; };
+		A2EAAD031E0A2CAF00922F02 /* ProfileInfoBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoBottomView.swift; sourceTree = "<group>"; };
+		A2EAAD051E0A572300922F02 /* MHNoHighlighButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHNoHighlighButton.swift; sourceTree = "<group>"; };
+		A2EAAD071E0A617D00922F02 /* ProfileTotalLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTotalLoginView.swift; sourceTree = "<group>"; };
+		A2EAAD091E0A61BA00922F02 /* ProfileTotalLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTotalLoginView.xib; sourceTree = "<group>"; };
 		A2F4A54F1DF8F0FF0095995A /* LiveNormalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveNormalController.swift; sourceTree = "<group>"; };
 		A2F4A5511DF8F48C0095995A /* BaseAnchorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAnchorViewController.swift; sourceTree = "<group>"; };
 		A2F4A5531DF92DDC0095995A /* LiveAllController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveAllController.swift; sourceTree = "<group>"; };
@@ -302,10 +314,14 @@
 		A2AD0DDE1E07AA8A0006BF13 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A2EAAD071E0A617D00922F02 /* ProfileTotalLoginView.swift */,
+				A2EAAD091E0A61BA00922F02 /* ProfileTotalLoginView.xib */,
 				A2AD0DDF1E07ABCF0006BF13 /* ProfileHeaderView.swift */,
 				A2AD0DE11E07AD510006BF13 /* ProfileTableViewCell.swift */,
+				A2EAAD051E0A572300922F02 /* MHNoHighlighButton.swift */,
 				A2AD0DE51E07C96C0006BF13 /* MHCustomButton.swift */,
 				A2AD0DE31E07ADA60006BF13 /* ProfileTableViewCell.xib */,
+				A2EAAD031E0A2CAF00922F02 /* ProfileInfoBottomView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -643,6 +659,8 @@
 			isa = PBXGroup;
 			children = (
 				A2F546341DE418B300F62A81 /* ProfileController.swift */,
+				A2EAAD011E0A2A3900922F02 /* ProfileInforController.swift */,
+				A2EAACFF1E0A2A2500922F02 /* ProfileLoginController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -768,7 +786,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CMCC;
 				TargetAttributes = {
 					A2F5455F1DE29B0000F62A81 = {
@@ -824,6 +842,7 @@
 				A2AE30CC1DE6B738009BD9DE /* RecommentNormalCell.xib in Resources */,
 				A2AD0DE41E07ADA60006BF13 /* ProfileTableViewCell.xib in Resources */,
 				A2F5456B1DE29B0000F62A81 /* Assets.xcassets in Resources */,
+				A2EAAD0A1E0A61BA00922F02 /* ProfileTotalLoginView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,6 +917,7 @@
 			files = (
 				A2F546351DE418B300F62A81 /* ProfileController.swift in Sources */,
 				A2C9C6C61DF6BA8C00793FEF /* HotModel.swift in Sources */,
+				A2EAAD021E0A2A3900922F02 /* ProfileInforController.swift in Sources */,
 				A2C9C6B61DF1492300793FEF /* MHAnimatorRefreshView.swift in Sources */,
 				A2C9C6C81DF7A94A00793FEF /* EnmentViewModel.swift in Sources */,
 				A22759681DE584C70087E87F /* MGameViewController.swift in Sources */,
@@ -948,14 +968,17 @@
 				A2C9C6A01DF00C7800793FEF /* CycleModel.swift in Sources */,
 				A227596A1DE584E10087E87F /* FunViewController.swift in Sources */,
 				A2C9C6961DF005F500793FEF /* MHCycleView.swift in Sources */,
+				A2EAAD081E0A617D00922F02 /* ProfileTotalLoginView.swift in Sources */,
 				A2AD0DE21E07AD510006BF13 /* ProfileTableViewCell.swift in Sources */,
 				A2C853691DF80452000F3322 /* LivePageTitleView.swift in Sources */,
 				A2C9C67D1DED723200793FEF /* HttpApiSign.swift in Sources */,
 				A2AE30C81DE6B4AD009BD9DE /* RecommendSectionHeaderView.swift in Sources */,
+				A2EAAD061E0A572300922F02 /* MHNoHighlighButton.swift in Sources */,
 				A253C4191E09314A0004950C /* MHQRResultContoller.swift in Sources */,
 				A2F4A5501DF8F0FF0095995A /* LiveNormalController.swift in Sources */,
 				A2C8536B1DF8092F000F3322 /* LiveTitleViewModel.swift in Sources */,
 				A2AE30CE1DE6E648009BD9DE /* RecommendPrettyCell.swift in Sources */,
+				A2EAAD041E0A2CAF00922F02 /* ProfileInfoBottomView.swift in Sources */,
 				A2C9C6CA1DF7B47300793FEF /* FunViewModel.swift in Sources */,
 				A2AD0DE01E07ABCF0006BF13 /* ProfileHeaderView.swift in Sources */,
 				A2209B351E079121002287C7 /* FollowZBController.swift in Sources */,
@@ -968,6 +991,7 @@
 				A2C9C6C21DF68C0600793FEF /* AllGameViewController.swift in Sources */,
 				A2C9C6B41DF1490E00793FEF /* MHRefreshView.swift in Sources */,
 				A2F546371DE4195700F62A81 /* HmhTools.swift in Sources */,
+				A2EAAD001E0A2A2500922F02 /* ProfileLoginController.swift in Sources */,
 				A2C9C6B21DF1490100793FEF /* MHRefreshControl.swift in Sources */,
 				A21F604C1E011A6C00BAC589 /* LiveAnchorViewModel.swift in Sources */,
 			);
