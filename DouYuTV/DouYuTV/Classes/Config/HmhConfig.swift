@@ -100,6 +100,8 @@ struct CellID {
     static let RecommentPrettyCellID: String = "RecommentPrettyCellID"
     
     static let RecommentGameCellID: String = "RecomGameCellID"
+    
+    static let SearchHotCellID: String = "SearchHotCellID"
 }
 
 

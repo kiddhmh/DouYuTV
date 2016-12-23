@@ -131,9 +131,10 @@ class LivePageTitleView: UIView {
                     titleX = 0.5 * S.titleMargin
                 }
                 
-                // 缓存高度
-                titleLabelWidth.append(size.width)
             }
+            
+            // 缓存宽度
+            titleLabelWidth.append(titleW)
             
             label.frame = CGRect(x: titleX, y: titleY, width: titleW, height: titleH)
             

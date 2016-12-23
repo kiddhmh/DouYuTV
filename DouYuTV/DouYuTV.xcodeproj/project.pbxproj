@@ -25,7 +25,14 @@
 		A227596A1DE584E10087E87F /* FunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22759691DE584E10087E87F /* FunViewController.swift */; };
 		A23254351E08D3AB0054A7DC /* MHQRCodeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23254341E08D3AB0054A7DC /* MHQRCodeTool.swift */; };
 		A24768F41DFA4A8D0007A3D5 /* MHRefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24768F31DFA4A8D0007A3D5 /* MHRefreshFooterView.swift */; };
+		A24EBCD61E0CF5BF00B00E8D /* MHSearchHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EBCD51E0CF5BF00B00E8D /* MHSearchHotViewModel.swift */; };
+		A24EBCDA1E0CF7D800B00E8D /* SearchHotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EBCD91E0CF7D800B00E8D /* SearchHotModel.swift */; };
+		A24EBCDC1E0D081900B00E8D /* MHSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EBCDB1E0D081900B00E8D /* MHSearchView.swift */; };
+		A24EBCDE1E0D1C4200B00E8D /* MHSearchTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EBCDD1E0D1C4200B00E8D /* MHSearchTypeView.swift */; };
 		A253C4191E09314A0004950C /* MHQRResultContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A253C4181E09314A0004950C /* MHQRResultContoller.swift */; };
+		A2703EBE1E0CBF6E008651DD /* MHSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2703EBD1E0CBF6E008651DD /* MHSearchViewController.swift */; };
+		A2703EC31E0CD7A4008651DD /* MHTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2703EC21E0CD7A4008651DD /* MHTransitionManager.swift */; };
+		A2703EC51E0CD7C1008651DD /* MHTransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2703EC41E0CD7C1008651DD /* MHTransitionZoom.swift */; };
 		A2AD0DE01E07ABCF0006BF13 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD0DDF1E07ABCF0006BF13 /* ProfileHeaderView.swift */; };
 		A2AD0DE21E07AD510006BF13 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD0DE11E07AD510006BF13 /* ProfileTableViewCell.swift */; };
 		A2AD0DE41E07ADA60006BF13 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2AD0DE31E07ADA60006BF13 /* ProfileTableViewCell.xib */; };
@@ -140,7 +147,14 @@
 		A22759691DE584E10087E87F /* FunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunViewController.swift; sourceTree = "<group>"; };
 		A23254341E08D3AB0054A7DC /* MHQRCodeTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHQRCodeTool.swift; sourceTree = "<group>"; };
 		A24768F31DFA4A8D0007A3D5 /* MHRefreshFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHRefreshFooterView.swift; sourceTree = "<group>"; };
+		A24EBCD51E0CF5BF00B00E8D /* MHSearchHotViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHSearchHotViewModel.swift; sourceTree = "<group>"; };
+		A24EBCD91E0CF7D800B00E8D /* SearchHotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHotModel.swift; sourceTree = "<group>"; };
+		A24EBCDB1E0D081900B00E8D /* MHSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHSearchView.swift; sourceTree = "<group>"; };
+		A24EBCDD1E0D1C4200B00E8D /* MHSearchTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHSearchTypeView.swift; sourceTree = "<group>"; };
 		A253C4181E09314A0004950C /* MHQRResultContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHQRResultContoller.swift; sourceTree = "<group>"; };
+		A2703EBD1E0CBF6E008651DD /* MHSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHSearchViewController.swift; sourceTree = "<group>"; };
+		A2703EC21E0CD7A4008651DD /* MHTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHTransitionManager.swift; sourceTree = "<group>"; };
+		A2703EC41E0CD7C1008651DD /* MHTransitionZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHTransitionZoom.swift; sourceTree = "<group>"; };
 		A2AD0DDF1E07ABCF0006BF13 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		A2AD0DE11E07AD510006BF13 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		A2AD0DE31E07ADA60006BF13 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
@@ -276,6 +290,15 @@
 			path = MHNavTitleView;
 			sourceTree = "<group>";
 		};
+		A2703EC11E0CD77B008651DD /* MHTransition */ = {
+			isa = PBXGroup;
+			children = (
+				A2703EC21E0CD7A4008651DD /* MHTransitionManager.swift */,
+				A2703EC41E0CD7C1008651DD /* MHTransitionZoom.swift */,
+			);
+			path = MHTransition;
+			sourceTree = "<group>";
+		};
 		A2AD0DD91E07AA3F0006BF13 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +432,7 @@
 			children = (
 				A2C9C66F1DED68CC00793FEF /* RecomFaceModel.swift */,
 				A2C9C69F1DF00C7800793FEF /* CycleModel.swift */,
+				A24EBCD91E0CF7D800B00E8D /* SearchHotModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -421,6 +445,7 @@
 				A2C9C6C71DF7A94A00793FEF /* EnmentViewModel.swift */,
 				A2C9C6BF1DF518DE00793FEF /* MGameViewModel.swift */,
 				A2C9C6C91DF7B47300793FEF /* FunViewModel.swift */,
+				A24EBCD51E0CF5BF00B00E8D /* MHSearchHotViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -608,6 +633,7 @@
 		A2F5461A1DE411F500F62A81 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				A2703EC11E0CD77B008651DD /* MHTransition */,
 				A2C9C6791DED722600793FEF /* NetWork */,
 				A2F546361DE4195700F62A81 /* HmhTools.swift */,
 				A2F546381DE4223700F62A81 /* HmhUIExtension.swift */,
@@ -629,6 +655,7 @@
 				A2C9C6C11DF68C0600793FEF /* AllGameViewController.swift */,
 				A2BED41B1E08DB0A005B8C26 /* MHQRCodeController.swift */,
 				A253C4181E09314A0004950C /* MHQRResultContoller.swift */,
+				A2703EBD1E0CBF6E008651DD /* MHSearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -707,6 +734,8 @@
 				A2AE30CF1DE6E667009BD9DE /* RecommendPrettyCell.xib */,
 				A2C9C6A11DF05BA200793FEF /* RecomGameView.swift */,
 				A2C9C6A31DF05BE300793FEF /* RecomGameViewCell.swift */,
+				A24EBCDB1E0D081900B00E8D /* MHSearchView.swift */,
+				A24EBCDD1E0D1C4200B00E8D /* MHSearchTypeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -925,10 +954,14 @@
 				A24768F41DFA4A8D0007A3D5 /* MHRefreshFooterView.swift in Sources */,
 				A2C853281DF7E7B4000F3322 /* AdvertViewModel.swift in Sources */,
 				A2F5463E1DE4379D00F62A81 /* PageTitleView.swift in Sources */,
+				A2703EC51E0CD7C1008651DD /* MHTransitionZoom.swift in Sources */,
 				A2F5462B1DE417C000F62A81 /* BaseTabBarController.swift in Sources */,
 				A2C9C69A1DF0060D00793FEF /* MHCycleModel.swift in Sources */,
 				A2AE30C61DE69431009BD9DE /* BaseViewController.swift in Sources */,
 				A2C9C66A1DED5BC400793FEF /* BaseModel.swift in Sources */,
+				A24EBCDC1E0D081900B00E8D /* MHSearchView.swift in Sources */,
+				A24EBCD61E0CF5BF00B00E8D /* MHSearchHotViewModel.swift in Sources */,
+				A2703EBE1E0CBF6E008651DD /* MHSearchViewController.swift in Sources */,
 				A2F545641DE29B0000F62A81 /* AppDelegate.swift in Sources */,
 				A2C9C6701DED68CC00793FEF /* RecomFaceModel.swift in Sources */,
 				A2C8532A1DF7E7D9000F3322 /* AdvertModel.swift in Sources */,
@@ -980,10 +1013,13 @@
 				A2AE30CE1DE6E648009BD9DE /* RecommendPrettyCell.swift in Sources */,
 				A2EAAD041E0A2CAF00922F02 /* ProfileInfoBottomView.swift in Sources */,
 				A2C9C6CA1DF7B47300793FEF /* FunViewModel.swift in Sources */,
+				A24EBCDA1E0CF7D800B00E8D /* SearchHotModel.swift in Sources */,
 				A2AD0DE01E07ABCF0006BF13 /* ProfileHeaderView.swift in Sources */,
 				A2209B351E079121002287C7 /* FollowZBController.swift in Sources */,
 				A22759601DE541F80087E87F /* PageContentView.swift in Sources */,
+				A2703EC31E0CD7A4008651DD /* MHTransitionManager.swift in Sources */,
 				A2C9C6981DF0060200793FEF /* MHCycleViewCell.swift in Sources */,
+				A24EBCDE1E0D1C4200B00E8D /* MHSearchTypeView.swift in Sources */,
 				A2F5463B1DE4266F00F62A81 /* BaseNavigationController.swift in Sources */,
 				A2C9C6A41DF05BE300793FEF /* RecomGameViewCell.swift in Sources */,
 				A2C9C6BA1DF5055D00793FEF /* MyHeaderView.swift in Sources */,

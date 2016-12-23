@@ -43,12 +43,19 @@ class HomeViewController: UIViewController {
         return childVcs
     }()
     
+    /// 搜索历史页面
+    fileprivate lazy var searchVC: MHSearchViewController = MHSearchViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupNavgationBar()
         
         setupUI()
+        
+        // 设置转场动画代理
+        searchVC.modalPresentationStyle = .fullScreen
+        searchVC.transitioningDelegate = self
         
         // 注册通知，切换控制器
         NotificationCenter.default.addObserver(self, selector: #selector(pushViewController(_:)), name: NSNotification.Name.MHPushViewController, object: nil)
@@ -91,28 +98,23 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
-    func RefreshData() {
-        // 获取当前位置视图
-        let currentPage = pageContentView.collectionView.contentOffset.x / view.width
-        let currentVC = childVcs[Int(currentPage)] as? BaseAnchorViewController
-        guard currentVC?.refreshControl?.isRefresh == false else {
-            return
-        }
-        currentVC?.refreshControl?.refreshState = .pulling
-        let offSetY = currentVC?.collectionView.contentOffset.y
-        let point = CGPoint(x: 0, y: offSetY! - (currentVC?.refreshControl?.MHRefreshOffset)!)
-        currentVC?.collectionView.setContentOffset(point, animated: false)
-    }
-    
-    /// 进入二维码界面
-    @objc fileprivate func presentQRVC() {
-        let qrCodeVC = MHQRCodeController()
-        navigationController?.pushViewController(qrCodeVC, animated: true)
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+
+// MARK: - UIViewControllerTransitioningDelegate协议
+// MARK: - 作为代理，需要提供present和dismiss时的animator，有时候一个animator可以同时在present和dismiss时用
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return MHTransitionManager()
+    }
+    
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return MHTransitionZoom()
     }
 }
 
@@ -159,13 +161,45 @@ extension HomeViewController {
         
         let historyItem = UIBarButtonItem(image: #imageLiteral(resourceName: "viewHistoryIcon"), highlightImage: nil, size: size, target: self, action: #selector(RefreshData))
         let scanItem = UIBarButtonItem(image: #imageLiteral(resourceName: "scanIcon"), highlightImage: nil, size: size, target: self, action: #selector(presentQRVC))
-        let searchItem = UIBarButtonItem(image: #imageLiteral(resourceName: "searchBtnIcon"), highlightImage: nil, size: size, target: self, action: #selector(RefreshData))
+        let searchItem = UIBarButtonItem(image: #imageLiteral(resourceName: "searchBtnIcon"), highlightImage: nil, size: size, target: self, action: #selector(gotoSearchVC))
         
-        navigationItem.rightBarButtonItems = [historyItem, scanItem, searchItem]
+        navigationItem.rightBarButtonItems = [searchItem, scanItem, historyItem]
     }
 }
 
 
+/// MARK: - RightBarButtonItemsAction
+extension HomeViewController {
+    
+    func RefreshData() {
+        // 获取当前位置视图
+        let currentPage = pageContentView.collectionView.contentOffset.x / view.width
+        let currentVC = childVcs[Int(currentPage)] as? BaseAnchorViewController
+        guard currentVC?.refreshControl?.isRefresh == false else {
+            return
+        }
+        currentVC?.refreshControl?.refreshState = .pulling
+        let offSetY = currentVC?.collectionView.contentOffset.y
+        let point = CGPoint(x: 0, y: offSetY! - (currentVC?.refreshControl?.MHRefreshOffset)!)
+        currentVC?.collectionView.setContentOffset(point, animated: false)
+    }
+    
+    /// 进入二维码界面
+    @objc fileprivate func presentQRVC() {
+        let qrCodeVC = MHQRCodeController()
+        navigationController?.pushViewController(qrCodeVC, animated: true)
+    }
+    
+    /// 进入搜索界面
+    @objc fileprivate func gotoSearchVC() {
+        
+        self.present(searchVC, animated: true, completion: nil)
+    }
+    
+}
+
+
+// MARK: - PageTitleViewDelegate
 extension HomeViewController: PageTitleViewDelegate {
     
     func pageTitleView(_ pageTitleView: PageTitleView, didSelectedIndex index: Int) {
@@ -175,6 +209,7 @@ extension HomeViewController: PageTitleViewDelegate {
 }
 
 
+// MARK: - PageContentViewDelegate
 extension HomeViewController: pageContentViewDelegate {
     
     func pageContentView(pageContentView: PageContentView, sourceIndex: Int, targetIndex: Int, progress: Double) {

@@ -12,6 +12,9 @@ struct MyNetWorkingConfig {
     // 启动广告
     static let ADVERT_DATA = "http://capi.douyucdn.cn/lapi/sign/appapi/getinfo"
     
+    /// 热门搜索
+    static let SEARCH_HISTORY = "http://apiv2.douyucdn.cn/video/search/getTodayTopData"
+    
     /// 推荐
     static let RECOMMEND_FACE = "http://capi.douyucdn.cn/api/v1/getVerticalRoom"
     static let RECOMMEND_HOT_GAME = "http://capi.douyucdn.cn/api/v1/getHotCate"
@@ -42,6 +45,7 @@ struct MyNetWorkingConfig {
     
     /// 直播上方分类导航条数据
     static let LIVE_NAV_TITLE_DATA = "http://capi.douyucdn.cn/api/v1/getColumnDetail"
+    
 }
 
 
