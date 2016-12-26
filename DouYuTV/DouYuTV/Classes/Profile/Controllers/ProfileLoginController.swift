@@ -15,6 +15,7 @@ class ProfileLoginController: UIViewController {
         
         /// 坑的一B
         edgesForExtendedLayout = []
+        
     }
     
 }

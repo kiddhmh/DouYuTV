@@ -23,13 +23,6 @@ class MHSearchViewController: UIViewController {
         tableView.dataSource = self
         // 分割线至屏幕边缘
         tableView.separatorInset = .zero
-        // 注册cell
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellID.SearchHotCellID)
-        
-        let h = UIView()
-        h.backgroundColor = .red
-        h.bounds = CGRect(x: 0, y: 0, width: 375, height: 44)
-        tableView.tableHeaderView = h
         
         tableView.tableFooterView = UIView()
         return tableView
@@ -46,6 +39,23 @@ class MHSearchViewController: UIViewController {
         return btn
     }()
     
+    /// tableView顶部视图
+    fileprivate lazy var tableHeaderView: UITableViewHeaderFooterView = {
+        
+        let headerView = UITableViewHeaderFooterView(reuseIdentifier: "SearchTabelHeaderView")
+        headerView.contentView.backgroundColor = .white
+        let label = UILabel(frame: CGRect(x: 15, y: 0, width: 100, height: 43.5))
+        label.textColor = C.mainTextColor
+        label.text = "今日热搜"
+        label.font = UIFont.systemFont(ofSize: 14)
+        headerView.contentView.addSubview(label)
+        let line = UIView(frame: CGRect(x: 0, y: 43.5, width: HmhDevice.screenW, height: 0.5))
+        line.backgroundColor = UIColor(r: 198.9, g: 198.9, b: 204, a: 1)
+        headerView.contentView.addSubview(line)
+        
+        return headerView
+    }()
+    
     /// 顶部搜索框
     fileprivate lazy var searchView: MHSearchView = {
         let searView = MHSearchView(frame: CGRect(x: kMargin, y: kSearchY, width: HmhDevice.screenW - kMargin - kCancelBtnW, height: kSearchH))
@@ -55,7 +65,7 @@ class MHSearchViewController: UIViewController {
     /// 搜索框下方线
     fileprivate lazy var searchBottomLine: UIView = {
         let line = UIView()
-        line.backgroundColor = .gray
+        line.backgroundColor = UIColor(r: 198.9, g: 198.9, b: 204, a: 1)
         return line
     }()
     
@@ -71,7 +81,7 @@ class MHSearchViewController: UIViewController {
     private func setupUI() {
         
         view.addSubview(searchView)
-        searchBottomLine.frame = CGRect(x: 0, y: HmhDevice.navigationBarH - 1, width: HmhDevice.screenW, height: 1)
+        searchBottomLine.frame = CGRect(x: 0, y: HmhDevice.navigationBarH - 1, width: HmhDevice.screenW, height: 0.5)
         view.addSubview(searchBottomLine)
         
         cancelBtn.frame = CGRect(x: searchView.right, y: searchView.top, width: kCancelBtnW, height: searchView.height)
@@ -92,8 +102,7 @@ extension MHSearchViewController {
     fileprivate func loadData() {
         
         searchVM.requestHistoryData(complectioned: { [unowned self] in //刷新数据
-            guard let models = self.searchVM.searchHotModel else { return }
-            print(models.data ?? "1")
+            guard self.searchVM.searchHotModel != nil else { return }
             self.hotTableView.reloadData()
             
         }, failed: { (error) in
@@ -102,13 +111,22 @@ extension MHSearchViewController {
         })
         
     }
-    
 }
 
 
 extension MHSearchViewController: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableHeaderView
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 
@@ -125,8 +143,10 @@ extension MHSearchViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellID.SearchHotCellID, for: indexPath)
-        cell.textLabel?.text = searchVM.searchHotModel?.data?[indexPath.row] ?? ""
+        
+        let cell = SearchHistoryCell.cell(withTableView: tableView, indexPath)
+        let title = searchVM.searchHotModel?.data?[indexPath.row] ?? ""
+        cell.setTitle(title, withIndex: indexPath.row)
         return cell
     }
     

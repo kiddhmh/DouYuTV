@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Wd-QQ-oeh">
-                    <rect key="frame" x="31" y="29.5" width="60" height="1"/>
+                    <rect key="frame" x="31" y="30" width="60" height="1"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="3H1-Jf-smU"/>
@@ -33,7 +33,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFo-YX-rW4">
-                    <rect key="frame" x="210" y="29.5" width="60" height="1"/>
+                    <rect key="frame" x="210" y="30" width="60" height="1"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="1GH-0i-6mG"/>
@@ -54,6 +54,9 @@
                     <state key="highlighted" title="微信登录" image="btn_login_weixin_HL">
                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="wxLogin:" destination="g0d-f1-PVn" eventType="touchUpInside" id="9Gr-fO-e0c"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Glc-TZ-Uhs" userLabel="QQ">
                     <rect key="frame" x="30" y="116" width="240" height="35"/>
@@ -69,6 +72,9 @@
                     <state key="highlighted" title="QQ登录" image="btn_login_qq_HL">
                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="qqLogin:" destination="g0d-f1-PVn" eventType="touchUpInside" id="ai6-CK-2sq"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Y4-iO-Vsz" userLabel="微博">
                     <rect key="frame" x="30" y="166" width="240" height="35"/>
@@ -84,6 +90,9 @@
                     <state key="highlighted" title="微博登录" image="btn_login_sina_HL">
                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="sinaLogin:" destination="g0d-f1-PVn" eventType="touchUpInside" id="C5v-JT-IPm"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSP-eW-z1C">
                     <rect key="frame" x="129" y="216" width="42" height="21"/>
@@ -117,6 +126,9 @@
                     <state key="normal" title="快速注册">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="quickLogin:" destination="g0d-f1-PVn" eventType="touchUpInside" id="F39-xC-0Uw"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

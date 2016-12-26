@@ -22,6 +22,8 @@ class MHQRCodeController: UIViewController {
         return qrCodeView
     }()
     
+    fileprivate var isAddObserver: Bool = false
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -77,6 +79,7 @@ class MHQRCodeController: UIViewController {
         view.layer.addSublayer(layer!)
         
         session.addObserver(self, forKeyPath: "running", options: .new, context: nil)
+        isAddObserver = true
         
         if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) == .authorized {
             
@@ -103,7 +106,9 @@ class MHQRCodeController: UIViewController {
     
     
     deinit{
-        session.removeObserver(self, forKeyPath: "running", context: nil)
+        if isAddObserver {
+            session.removeObserver(self, forKeyPath: "running", context: nil)
+        }
     }
 }
 

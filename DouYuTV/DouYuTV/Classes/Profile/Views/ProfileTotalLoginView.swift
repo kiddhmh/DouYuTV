@@ -65,6 +65,28 @@ class ProfileTotalLoginView: SpringView {
     }
     
     
+    // 微信
+    @IBAction func wxLogin(_ sender: UIButton) {
+    }
+    
+    
+    // QQ
+    @IBAction func qqLogin(_ sender: UIButton) {
+    }
+    
+    
+    // 微博
+    @IBAction func sinaLogin(_ sender: UIButton) {
+    }
+    
+    
+    // 快速注册
+    @IBAction func quickLogin(_ sender: UIButton) {
+        
+        
+        
+    }
+    
 }
 
 
@@ -77,11 +99,12 @@ extension ProfileTotalLoginView {
     }
     
     
-    /// 点击按钮
+    /// 点击按钮(登录)
     @objc fileprivate func loginBtnClick() {
         changeColor(false)
+        
+        
     }
-    
     
     /// 改变背景色
     private func changeColor(_ isHighLight: Bool) {
@@ -89,6 +112,10 @@ extension ProfileTotalLoginView {
         let color = isHighLight ? C.loginColor : C.mainColor
         loginButton.addCorner(radius: 8, borderWidth: 1, backgroundColor: color, borderColor: color)
     }
+    
+    
+    
+    
     
 }
 

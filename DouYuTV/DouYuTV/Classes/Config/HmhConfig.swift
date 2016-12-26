@@ -101,7 +101,7 @@ struct CellID {
     
     static let RecommentGameCellID: String = "RecomGameCellID"
     
-    static let SearchHotCellID: String = "SearchHotCellID"
+    static let SearchHistoryCellID: String = "SearchHistoryCellID"
 }
 
 

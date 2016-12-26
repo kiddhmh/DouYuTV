@@ -72,7 +72,6 @@ extension MHSearchTypeView {
         contentView.left = 3
     }
     
-    
     /// 隐藏
     ///
     /// - Parameter complection: 完成的回调

@@ -29,6 +29,7 @@
 		A24EBCDA1E0CF7D800B00E8D /* SearchHotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EBCD91E0CF7D800B00E8D /* SearchHotModel.swift */; };
 		A24EBCDC1E0D081900B00E8D /* MHSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EBCDB1E0D081900B00E8D /* MHSearchView.swift */; };
 		A24EBCDE1E0D1C4200B00E8D /* MHSearchTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EBCDD1E0D1C4200B00E8D /* MHSearchTypeView.swift */; };
+		A24EBCE01E1005FB00B00E8D /* SearchHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EBCDF1E1005FB00B00E8D /* SearchHistoryCell.swift */; };
 		A253C4191E09314A0004950C /* MHQRResultContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A253C4181E09314A0004950C /* MHQRResultContoller.swift */; };
 		A2703EBE1E0CBF6E008651DD /* MHSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2703EBD1E0CBF6E008651DD /* MHSearchViewController.swift */; };
 		A2703EC31E0CD7A4008651DD /* MHTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2703EC21E0CD7A4008651DD /* MHTransitionManager.swift */; };
@@ -151,6 +152,7 @@
 		A24EBCD91E0CF7D800B00E8D /* SearchHotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHotModel.swift; sourceTree = "<group>"; };
 		A24EBCDB1E0D081900B00E8D /* MHSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHSearchView.swift; sourceTree = "<group>"; };
 		A24EBCDD1E0D1C4200B00E8D /* MHSearchTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHSearchTypeView.swift; sourceTree = "<group>"; };
+		A24EBCDF1E1005FB00B00E8D /* SearchHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryCell.swift; sourceTree = "<group>"; };
 		A253C4181E09314A0004950C /* MHQRResultContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHQRResultContoller.swift; sourceTree = "<group>"; };
 		A2703EBD1E0CBF6E008651DD /* MHSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHSearchViewController.swift; sourceTree = "<group>"; };
 		A2703EC21E0CD7A4008651DD /* MHTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHTransitionManager.swift; sourceTree = "<group>"; };
@@ -736,6 +738,7 @@
 				A2C9C6A31DF05BE300793FEF /* RecomGameViewCell.swift */,
 				A24EBCDB1E0D081900B00E8D /* MHSearchView.swift */,
 				A24EBCDD1E0D1C4200B00E8D /* MHSearchTypeView.swift */,
+				A24EBCDF1E1005FB00B00E8D /* SearchHistoryCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 				A2C9C6881DED803400793FEF /* MyNetWorkingConfig.swift in Sources */,
 				A21F60421DFFD64A00BAC589 /* LiveFaceController.swift in Sources */,
 				A2F546411DE43C2400F62A81 /* HmhConfig.swift in Sources */,
+				A24EBCE01E1005FB00B00E8D /* SearchHistoryCell.swift in Sources */,
 				A2C9C67F1DED723200793FEF /* HttpDriver.swift in Sources */,
 				A2C9C6A01DF00C7800793FEF /* CycleModel.swift in Sources */,
 				A227596A1DE584E10087E87F /* FunViewController.swift in Sources */,

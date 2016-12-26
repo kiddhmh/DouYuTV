@@ -60,8 +60,6 @@ class MHSearchView: UITextField {
         
         self.font = UIFont.systemFont(ofSize: 14)
         
-        // 搜索类别
-        
     }
     
     fileprivate func creatBtn(_ title: String?, _ image: UIImage, _ tag: Int) -> MHNoHighlighButton {
