@@ -25,7 +25,7 @@ class ProfileController: UIViewController {
         let blureffect = UIBlurEffect(style: .dark)
         let effectView = UIVisualEffectView(effect: blureffect)
         effectView.frame = HmhDevice.screenRect
-        let tap = UITapGestureRecognizer(target: self, action: #selector(hiddenLoginView(_:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hiddenLoginView))
         effectView.addGestureRecognizer(tap)
         effectView.alpha = 0.0
         return effectView
@@ -36,7 +36,7 @@ class ProfileController: UIViewController {
         let btn = UIButton()
         btn.setImage(UIImage(named: "image_close_login"), for: .normal)
         btn.setImage(UIImage(named: "image_close_login_pressed"), for: .highlighted)
-        btn.addTarget(self, action: #selector(hiddenLoginView(_:)), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(hiddenLoginView), for: .touchUpInside)
         return btn
     }()
     
@@ -78,7 +78,7 @@ class ProfileController: UIViewController {
     
     
     
-    /// 显示登录页面
+    /// 弹出登录页面
     private func showLoginView() {
         self.blurView.alpha = 0.0
         loginView = ProfileTotalLoginView.totalLoginView()
@@ -104,11 +104,14 @@ class ProfileController: UIViewController {
         }
         
         loginView!.animate()
+        
+        // 添加登录回调闭包
+        setupLoginClosure()
     }
     
     
     // 隐藏登录页面
-    @objc private func hiddenLoginView(_ tap: UITapGestureRecognizer) {
+    @objc fileprivate func hiddenLoginView() {
         
         loginView!.animation = "zoomOut"
         loginView?.animate()
@@ -127,6 +130,38 @@ class ProfileController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+}
+
+
+extension ProfileController {
+    
+    fileprivate func setupLoginClosure() {
+        
+        loginView?.loginClosure = { [unowned self] in // 登录
+            
+            let LoginVC = ProfileLoginController()
+            let nav = BaseNavigationController(rootViewController: LoginVC)
+            self.present(nav, animated: true, completion: nil)
+            self.hiddenLoginView()
+        }
+        
+        loginView?.resgisterClosure = { // 注册
+            
+        }
+            
+        loginView?.wxClosure = { // 微信
+            
+        }
+        
+        loginView?.wbClosure = { // 微博
+            
+        }
+        
+        loginView?.qqClosure = { // QQ
+            
+        }
+    }
+    
 }
 
 

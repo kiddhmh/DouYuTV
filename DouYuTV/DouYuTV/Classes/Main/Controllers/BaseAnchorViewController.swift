@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 let kItemMargin: CGFloat = 10
 let kItemW: CGFloat = (HmhDevice.screenW - 3 * kItemMargin) / 2
@@ -88,7 +89,12 @@ extension BaseAnchorViewController {
     
     func loadData() {
         // 子类重写
-        
+        // 判断网络类型
+        guard HttpReachability.isReachable == true else {
+            MBProgressHUD.showError("当前网络不可用")
+            loadDataFailed()
+            return
+        }
     }
 }
 

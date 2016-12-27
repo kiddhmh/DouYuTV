@@ -29,7 +29,7 @@ extension AdvertViewModel {
 
     func requestAvertData(complectioned complection:@escaping () -> (), failed fail: @escaping (_ error: MyError) -> ()) {
         
-        advertRequest = HttpDriver.get(URLString: "http://api2.pianke.me/pub/screen") { (response) in
+        advertRequest = HttpDriver.get(URLString: MyNetWorkingConfig.ADVERT_DATA) { (response) in
             
             switch response.state {
             case .Success(let value):

@@ -81,6 +81,13 @@ extension AdvertController {
     
     fileprivate func loadData() {
         
+        guard HttpReachability.isReachable == true else {
+            if jumpClosure != nil {
+                jumpClosure!()
+            }
+            return
+        }
+        
         advertVM.requestAvertData(complectioned: { [weak self] in
             guard let sself = self else { return }
             guard let model = sself.advertVM.advertModels else { return }

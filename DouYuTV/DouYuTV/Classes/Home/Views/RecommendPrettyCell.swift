@@ -26,8 +26,8 @@ class RecommendPrettyCell: UICollectionViewCell {
             
             let url = URL(string: faceModel.vertical_src ?? "")
             backImage.kf.setImage(with: url, placeholder: UIImage(named: "live_cell_default_phone")) { [weak self] (image, error, type, url) in
-                guard let sself = self else { return }
-                sself.backImage.image = (image! as UIImage).imageWithCornerRadius(15)
+                guard let sself = self,let image = image else { return }
+                sself.backImage.image = (image as UIImage).imageWithCornerRadius(15)
             }
             
             

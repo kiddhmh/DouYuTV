@@ -10,7 +10,7 @@ import Foundation
 
 struct MyNetWorkingConfig {
     // 启动广告
-    static let ADVERT_DATA = "http://capi.douyucdn.cn/lapi/sign/appapi/getinfo"
+    static let ADVERT_DATA = "http://api2.pianke.me/pub/screen"
     
     /// 热门搜索
     static let SEARCH_HISTORY = "http://apiv2.douyucdn.cn/video/search/getTodayTopData"

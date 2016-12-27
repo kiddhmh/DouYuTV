@@ -48,6 +48,12 @@ extension LiveAnchorController {
     
     override func loadData() {
         
+        // 判断网络类型
+        guard HttpReachability.isReachable == true else {
+            MBProgressHUD.showError("当前网络不可用")
+            return
+        }
+        
         anchorVM.requestAnchorData(shortName: (baseModel?.short_name)!, cate_id: (baseModel?.cate_id)!, limit: limit, offset: "0", complectioned: { [weak self] in
             
             guard let sself = self else { return }

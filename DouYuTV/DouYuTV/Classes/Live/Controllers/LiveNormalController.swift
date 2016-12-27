@@ -68,6 +68,12 @@ extension LiveNormalController {
     
     @objc fileprivate func loadData() {
         
+        // 判断网络类型
+        guard HttpReachability.isReachable == true else {
+            MBProgressHUD.showError("当前网络不可用")
+            return
+        }
+        
         norVM.requestHederData(complectioned: { [weak self] in
             
             guard let sself = self else { return }

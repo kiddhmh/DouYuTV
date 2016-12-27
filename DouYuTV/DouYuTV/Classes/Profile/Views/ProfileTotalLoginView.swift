@@ -13,18 +13,23 @@ class ProfileTotalLoginView: SpringView {
     
     // 微信
     @IBOutlet weak var wxButton: UIButton!
-
+    var wxClosure: moreBtnClosure?
+    
     // QQ
     @IBOutlet weak var qqButton: UIButton!
+    var qqClosure: moreBtnClosure?
     
     // 微博
     @IBOutlet weak var wbButton: UIButton!
+    var wbClosure: moreBtnClosure?
     
     // 登录
     @IBOutlet weak var loginButton: UIButton!
+    var loginClosure: moreBtnClosure?
     
     // 快速注册
     @IBOutlet weak var registerButton: UIButton!
+    var resgisterClosure: moreBtnClosure?
     
     fileprivate var isAddCorner: Bool = false
     
@@ -67,24 +72,29 @@ class ProfileTotalLoginView: SpringView {
     
     // 微信
     @IBAction func wxLogin(_ sender: UIButton) {
+        guard let wxClosure = wxClosure else { return }
+        wxClosure()
     }
     
     
     // QQ
     @IBAction func qqLogin(_ sender: UIButton) {
+        guard let qqClosure = qqClosure else { return }
+        qqClosure()
     }
     
     
     // 微博
     @IBAction func sinaLogin(_ sender: UIButton) {
+        guard let wbClosure = wbClosure else { return }
+        wbClosure()
     }
     
     
     // 快速注册
     @IBAction func quickLogin(_ sender: UIButton) {
-        
-        
-        
+        guard let resgisterClosure = resgisterClosure else { return }
+        resgisterClosure()
     }
     
 }
@@ -103,7 +113,8 @@ extension ProfileTotalLoginView {
     @objc fileprivate func loginBtnClick() {
         changeColor(false)
         
-        
+        guard let loginClosure = loginClosure else { return }
+        loginClosure()
     }
     
     /// 改变背景色
@@ -112,11 +123,7 @@ extension ProfileTotalLoginView {
         let color = isHighLight ? C.loginColor : C.mainColor
         loginButton.addCorner(radius: 8, borderWidth: 1, backgroundColor: color, borderColor: color)
     }
-    
-    
-    
-    
-    
+
 }
 
 

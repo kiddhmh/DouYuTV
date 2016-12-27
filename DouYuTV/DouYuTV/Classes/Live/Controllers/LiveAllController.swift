@@ -43,6 +43,9 @@ class LiveAllController: BaseAnchorViewController {
 extension LiveAllController {
     
     override func loadData() {
+        
+        super.loadData()
+        
         /// 获取标题数据
         titleVM.requestTitleData(complectioned: { [weak self] in
             guard let sself = self else { return }

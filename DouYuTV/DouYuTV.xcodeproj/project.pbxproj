@@ -23,6 +23,7 @@
 		A22759661DE5849E0087E87F /* EntertainmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22759651DE5849E0087E87F /* EntertainmentController.swift */; };
 		A22759681DE584C70087E87F /* MGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22759671DE584C70087E87F /* MGameViewController.swift */; };
 		A227596A1DE584E10087E87F /* FunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22759691DE584E10087E87F /* FunViewController.swift */; };
+		A22817F41E1206B500485A37 /* HttpReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22817F31E1206B500485A37 /* HttpReachability.swift */; };
 		A23254351E08D3AB0054A7DC /* MHQRCodeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23254341E08D3AB0054A7DC /* MHQRCodeTool.swift */; };
 		A24768F41DFA4A8D0007A3D5 /* MHRefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24768F31DFA4A8D0007A3D5 /* MHRefreshFooterView.swift */; };
 		A24EBCD61E0CF5BF00B00E8D /* MHSearchHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EBCD51E0CF5BF00B00E8D /* MHSearchHotViewModel.swift */; };
@@ -146,6 +147,7 @@
 		A22759651DE5849E0087E87F /* EntertainmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntertainmentController.swift; sourceTree = "<group>"; };
 		A22759671DE584C70087E87F /* MGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGameViewController.swift; sourceTree = "<group>"; };
 		A22759691DE584E10087E87F /* FunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunViewController.swift; sourceTree = "<group>"; };
+		A22817F31E1206B500485A37 /* HttpReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpReachability.swift; sourceTree = "<group>"; };
 		A23254341E08D3AB0054A7DC /* MHQRCodeTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHQRCodeTool.swift; sourceTree = "<group>"; };
 		A24768F31DFA4A8D0007A3D5 /* MHRefreshFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHRefreshFooterView.swift; sourceTree = "<group>"; };
 		A24EBCD51E0CF5BF00B00E8D /* MHSearchHotViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHSearchHotViewModel.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				A2C9C67A1DED723200793FEF /* HttpApiSign.swift */,
 				A2C9C67B1DED723200793FEF /* HttpClient.swift */,
 				A2C9C67C1DED723200793FEF /* HttpDriver.swift */,
+				A22817F31E1206B500485A37 /* HttpReachability.swift */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -1029,6 +1032,7 @@
 				A2C9C6BA1DF5055D00793FEF /* MyHeaderView.swift in Sources */,
 				A2C9C68F1DEEC21900793FEF /* BaseFailedView.swift in Sources */,
 				A2C9C6C21DF68C0600793FEF /* AllGameViewController.swift in Sources */,
+				A22817F41E1206B500485A37 /* HttpReachability.swift in Sources */,
 				A2C9C6B41DF1490E00793FEF /* MHRefreshView.swift in Sources */,
 				A2F546371DE4195700F62A81 /* HmhTools.swift in Sources */,
 				A2EAAD001E0A2A2500922F02 /* ProfileLoginController.swift in Sources */,

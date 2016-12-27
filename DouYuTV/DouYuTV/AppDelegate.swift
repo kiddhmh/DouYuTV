@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         MHCache.mh_clearAllCache()
+        
+        // 开始网络监听
+        HttpReachability.startListening()
         
         let window = UIWindow(frame: HmhDevice.screenRect)
         self.window = window
@@ -31,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = advertVC
         
         self.window?.makeKeyAndVisible()
-        
+
         return true
     }
 

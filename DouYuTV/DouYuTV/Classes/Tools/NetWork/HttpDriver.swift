@@ -14,7 +14,6 @@ enum HttpResponseState {
     case Error(MyError)
 }
 
-
 // MARK: - 方法
 ///普通的get和post请求
 class HttpDriver {

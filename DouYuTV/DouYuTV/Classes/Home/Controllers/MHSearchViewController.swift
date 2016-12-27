@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 private let kCancelBtnW: CGFloat = 40
 private let kMargin: CGFloat     = 16
@@ -100,6 +101,12 @@ class MHSearchViewController: UIViewController {
 extension MHSearchViewController {
     
     fileprivate func loadData() {
+        
+        // 判断网络类型
+        guard HttpReachability.isReachable == true else {
+            MBProgressHUD.showError("当前网络不可用")
+            return
+        }
         
         searchVM.requestHistoryData(complectioned: { [unowned self] in //刷新数据
             guard self.searchVM.searchHotModel != nil else { return }
