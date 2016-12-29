@@ -105,6 +105,30 @@ struct CellID {
 }
 
 
+struct UMengShare {
+    // 友盟AppKey
+    static let AppKey = "58626ace677baa5cbd0014b2"
+    
+    // 新浪AppKey
+    static let SinaAppKey = "1869182749"
+    
+    // 新浪AppSecret
+    static let SinaAppSecret = "115301c2cc3aca99217fb388b509cfa1"
+    
+    // 微信AppKey
+    static let WxAppKey = "wxcd9c96144414fec1"
+    
+    // 微信AppSrcret
+    static let WxAppSecret = "88cbdf062de5bc62aa643a612e24706f"
+    
+    // QQAppID
+    static let QQAppID = "1105841373"
+    
+    // QQAppKey
+    static let QQAppKey = "k3qZrMKr8anTgPcE"
+}
+
+
 extension Notification.Name {
     
     /// 切换控制器通知

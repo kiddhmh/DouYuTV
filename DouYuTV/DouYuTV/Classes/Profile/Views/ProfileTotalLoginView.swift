@@ -45,18 +45,19 @@ class ProfileTotalLoginView: SpringView {
     
         loginButton.addTarget(self, action: #selector(highlightClick), for: .touchDown)
         loginButton.addTarget(self, action: #selector(loginBtnClick), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(touchCancel), for: .touchCancel)
         registerButton.setTitleColor(C.mainColor, for: .normal)
     }
     
     /// 设置圆角
     private func addCornerRadius() {
         
-        loginButton.addCorner(radius: 7, borderWidth: 1, backgroundColor: C.mainColor, borderColor: C.mainColor)
-        wxButton.addCorner(radius: 7, borderWidth: 1, backgroundColor: .white, borderColor: .green)
-        qqButton.addCorner(radius: 7, borderWidth: 1, backgroundColor: .white, borderColor: .blue)
-        wbButton.addCorner(radius: 7, borderWidth: 1, backgroundColor: .white, borderColor: .red)
+        loginButton.addCorner(radius: 5, borderWidth: 1, backgroundColor: C.mainColor, borderColor: C.mainColor)
+        wxButton.addCorner(radius: 5, borderWidth: 1, backgroundColor: .white, borderColor: .green)
+        qqButton.addCorner(radius: 5, borderWidth: 1, backgroundColor: .white, borderColor: .blue)
+        wbButton.addCorner(radius: 5, borderWidth: 1, backgroundColor: .white, borderColor: .red)
         
-        self.addCorner(radius: 7, borderWidth: 1, backgroundColor: .white, borderColor: .black)
+        self.addCorner(radius: 5, borderWidth: 1, backgroundColor: .white, borderColor: .black)
     }
     
     
@@ -117,11 +118,16 @@ extension ProfileTotalLoginView {
         loginClosure()
     }
     
+    
+    @objc fileprivate func touchCancel() {
+        changeColor(false)
+    }
+    
     /// 改变背景色
     private func changeColor(_ isHighLight: Bool) {
         loginButton.subviews.first?.removeFromSuperview()
         let color = isHighLight ? C.loginColor : C.mainColor
-        loginButton.addCorner(radius: 8, borderWidth: 1, backgroundColor: color, borderColor: color)
+        loginButton.addCorner(radius: 6, borderWidth: 1, backgroundColor: color, borderColor: color)
     }
 
 }

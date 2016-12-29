@@ -24,6 +24,10 @@
 		A22759681DE584C70087E87F /* MGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22759671DE584C70087E87F /* MGameViewController.swift */; };
 		A227596A1DE584E10087E87F /* FunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22759691DE584E10087E87F /* FunViewController.swift */; };
 		A22817F41E1206B500485A37 /* HttpReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22817F31E1206B500485A37 /* HttpReachability.swift */; };
+		A22817FC1E139A1900485A37 /* RealmTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22817FB1E139A1900485A37 /* RealmTool.swift */; };
+		A22818001E13A7B800485A37 /* RLMUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22817FF1E13A7B800485A37 /* RLMUser.swift */; };
+		A22818021E13B1BD00485A37 /* ProfileRegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22818011E13B1BD00485A37 /* ProfileRegisterController.swift */; };
+		A22818041E13B38100485A37 /* MHTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22818031E13B38100485A37 /* MHTextField.swift */; };
 		A23254351E08D3AB0054A7DC /* MHQRCodeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23254341E08D3AB0054A7DC /* MHQRCodeTool.swift */; };
 		A24768F41DFA4A8D0007A3D5 /* MHRefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24768F31DFA4A8D0007A3D5 /* MHRefreshFooterView.swift */; };
 		A24EBCD61E0CF5BF00B00E8D /* MHSearchHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24EBCD51E0CF5BF00B00E8D /* MHSearchHotViewModel.swift */; };
@@ -148,6 +152,11 @@
 		A22759671DE584C70087E87F /* MGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGameViewController.swift; sourceTree = "<group>"; };
 		A22759691DE584E10087E87F /* FunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunViewController.swift; sourceTree = "<group>"; };
 		A22817F31E1206B500485A37 /* HttpReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpReachability.swift; sourceTree = "<group>"; };
+		A22817F71E13573E00485A37 /* DouYuTV-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DouYuTV-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		A22817FB1E139A1900485A37 /* RealmTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmTool.swift; sourceTree = "<group>"; };
+		A22817FF1E13A7B800485A37 /* RLMUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMUser.swift; sourceTree = "<group>"; };
+		A22818011E13B1BD00485A37 /* ProfileRegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRegisterController.swift; sourceTree = "<group>"; };
+		A22818031E13B38100485A37 /* MHTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHTextField.swift; sourceTree = "<group>"; };
 		A23254341E08D3AB0054A7DC /* MHQRCodeTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHQRCodeTool.swift; sourceTree = "<group>"; };
 		A24768F31DFA4A8D0007A3D5 /* MHRefreshFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHRefreshFooterView.swift; sourceTree = "<group>"; };
 		A24EBCD51E0CF5BF00B00E8D /* MHSearchHotViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHSearchHotViewModel.swift; sourceTree = "<group>"; };
@@ -327,6 +336,7 @@
 		A2AD0DDC1E07AA8A0006BF13 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A22817FF1E13A7B800485A37 /* RLMUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +359,7 @@
 				A2AD0DE51E07C96C0006BF13 /* MHCustomButton.swift */,
 				A2AD0DE31E07ADA60006BF13 /* ProfileTableViewCell.xib */,
 				A2EAAD031E0A2CAF00922F02 /* ProfileInfoBottomView.swift */,
+				A22818031E13B38100485A37 /* MHTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -544,6 +555,7 @@
 				A2F5456A1DE29B0000F62A81 /* Assets.xcassets */,
 				A2F5456C1DE29B0000F62A81 /* LaunchScreen.storyboard */,
 				A2F5456F1DE29B0000F62A81 /* Info.plist */,
+				A22817F71E13573E00485A37 /* DouYuTV-Bridging-Header.h */,
 				A2F5460D1DE3E94500F62A81 /* Resource */,
 			);
 			path = DouYuTV;
@@ -644,6 +656,7 @@
 				A2F546381DE4223700F62A81 /* HmhUIExtension.swift */,
 				A2C9C6851DED7F9400793FEF /* HmhThirdLibExtension.swift */,
 				A23254341E08D3AB0054A7DC /* MHQRCodeTool.swift */,
+				A22817FB1E139A1900485A37 /* RealmTool.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -693,6 +706,7 @@
 				A2F546341DE418B300F62A81 /* ProfileController.swift */,
 				A2EAAD011E0A2A3900922F02 /* ProfileInforController.swift */,
 				A2EAACFF1E0A2A2500922F02 /* ProfileLoginController.swift */,
+				A22818011E13B1BD00485A37 /* ProfileRegisterController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -827,6 +841,7 @@
 					A2F5455F1DE29B0000F62A81 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = QN48SCAS64;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					A2F545731DE29B0100F62A81 = {
@@ -964,6 +979,7 @@
 				A2F5462B1DE417C000F62A81 /* BaseTabBarController.swift in Sources */,
 				A2C9C69A1DF0060D00793FEF /* MHCycleModel.swift in Sources */,
 				A2AE30C61DE69431009BD9DE /* BaseViewController.swift in Sources */,
+				A22818001E13A7B800485A37 /* RLMUser.swift in Sources */,
 				A2C9C66A1DED5BC400793FEF /* BaseModel.swift in Sources */,
 				A24EBCDC1E0D081900B00E8D /* MHSearchView.swift in Sources */,
 				A24EBCD61E0CF5BF00B00E8D /* MHSearchHotViewModel.swift in Sources */,
@@ -975,6 +991,7 @@
 				A2C853261DF7E764000F3322 /* AdvertController.swift in Sources */,
 				A2BED41F1E090D34005B8C26 /* MHQRCodeView.swift in Sources */,
 				A2BED41C1E08DB0A005B8C26 /* MHQRCodeController.swift in Sources */,
+				A22818021E13B1BD00485A37 /* ProfileRegisterController.swift in Sources */,
 				A2C9C6C01DF518DE00793FEF /* MGameViewModel.swift in Sources */,
 				A2AD0DE61E07C96C0006BF13 /* MHCustomButton.swift in Sources */,
 				A2AE30CA1DE6B718009BD9DE /* RecommentNormalCell.swift in Sources */,
@@ -991,6 +1008,7 @@
 				A21F60501E01220F00BAC589 /* LiveAnchorController.swift in Sources */,
 				A2C9C6761DED6D9500793FEF /* RecomViewModel.swift in Sources */,
 				A23254351E08D3AB0054A7DC /* MHQRCodeTool.swift in Sources */,
+				A22817FC1E139A1900485A37 /* RealmTool.swift in Sources */,
 				A22759661DE5849E0087E87F /* EntertainmentController.swift in Sources */,
 				A21F604E1E011D6000BAC589 /* LiveAnchorTitleModel.swift in Sources */,
 				A2C8536D1DF80A42000F3322 /* LiveTitleModel.swift in Sources */,
@@ -1001,6 +1019,7 @@
 				A2F4A5541DF92DDC0095995A /* LiveAllController.swift in Sources */,
 				A2C9C6A21DF05BA200793FEF /* RecomGameView.swift in Sources */,
 				A2C9C6881DED803400793FEF /* MyNetWorkingConfig.swift in Sources */,
+				A22818041E13B38100485A37 /* MHTextField.swift in Sources */,
 				A21F60421DFFD64A00BAC589 /* LiveFaceController.swift in Sources */,
 				A2F546411DE43C2400F62A81 /* HmhConfig.swift in Sources */,
 				A24EBCE01E1005FB00B00E8D /* SearchHistoryCell.swift in Sources */,
@@ -1125,7 +1144,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1169,7 +1188,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1184,6 +1203,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QN48SCAS64;
 				INFOPLIST_FILE = DouYuTV/Info.plist;
@@ -1191,6 +1211,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CMCC.com.DouYuTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DouYuTV-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1202,6 +1224,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QN48SCAS64;
 				INFOPLIST_FILE = DouYuTV/Info.plist;
@@ -1209,6 +1232,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CMCC.com.DouYuTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DouYuTV-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
