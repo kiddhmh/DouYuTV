@@ -31,3 +31,55 @@ class MHTextField: UITextField {
     }
     
 }
+
+
+extension MHTextField {
+    
+    // 判断是否满足密码条件
+    public func isAllowPassword(complection: (_ message: String, _ isAllow: Bool) -> ()) -> Bool {
+        
+        guard let text = self.text else { // 不能为空
+            complection("不能为空",false)
+            return false
+        }
+        
+        guard !text.isEmpty else {
+            complection("不能为空",false)
+            return false
+        }
+        
+        let length = text.length
+        guard length < 26 && length > 4  else {
+            complection("仅限5~25个字符", false)
+            return false
+        }
+        
+        complection("", true)
+        return true
+    }
+    
+    
+    // 判断是否满足登录条件
+    public func isAllowUserName(complection: (_ message: String, _ isAllow: Bool) -> ()) -> Bool {
+        
+        let result = isAllowPassword { (message, isAllow) in
+            guard isAllow else {
+                complection(message, isAllow)
+                return
+            }
+        }
+        
+        guard result else {
+            return false
+        }
+        
+        guard self.text!.isRightLogin else {
+            complection(self.placeholder ?? "请按照提示填写", false)
+            return false
+        }
+        
+        complection("", true)
+        return true
+    }
+    
+}

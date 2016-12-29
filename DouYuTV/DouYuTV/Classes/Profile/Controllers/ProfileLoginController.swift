@@ -23,6 +23,7 @@ class ProfileLoginController: UIViewController {
     // 密码
     fileprivate lazy var passTextField: UITextField = {
         let textField = MHTextField.init(placeholder: "输入密码", leftImage: #imageLiteral(resourceName: "tf_login_password"), leftViewSize: CGSize(width: normalH, height: normalH), frame: CGRect(x: 0, y: 0, width: HmhDevice.screenW - 2 * kMargin, height: normalH))
+        textField.isSecureTextEntry = true
         textField.delegate = self
         return textField
     }()

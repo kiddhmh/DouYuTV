@@ -26,5 +26,5 @@ class RLMUser: Object {
     dynamic var expiration: NSData? = nil   //授权token（accessToken）过期时间
     
     // 原始数据
-    dynamic var originalResponse: Any? = nil
+    dynamic var originalResponse: NSDate? = nil
 }

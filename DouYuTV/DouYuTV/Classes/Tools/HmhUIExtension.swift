@@ -9,6 +9,35 @@
 import Foundation
 import UIKit
 
+enum ValidatedType: String {
+    case userName = "^[a-zA-Z0-9\\u4e00-\\u9fa5]{5,25}$"
+    case phoneNumber = "^1[3|4|5|7|8][0-9]\\d{8}$"
+    case idCard = "\\d{14}[[0-9],0-9xX]"
+    case email = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$"
+}
+
+/// 正则表达式判断
+func ValidateText(validatedType type: ValidatedType, _ validateString: String) -> Bool {
+    
+    do {
+        
+        let regex: NSRegularExpression = try NSRegularExpression(pattern: type.rawValue, options: .caseInsensitive)
+        let matches = regex.matches(in: validateString, options: .reportProgress, range: NSRange(location: 0, length: validateString.characters.count))
+        return matches.count > 0
+    } catch {
+        return false
+    }
+}
+
+// MARK: - String
+extension String {
+    
+    var isRightLogin: Bool {
+        return ValidateText(validatedType: .userName, self)
+    }
+    
+}
+
 // MARK: - UIImage
 extension UIImage {
     
@@ -125,7 +154,7 @@ extension UIImage {
 extension UIColor {
     
     ///生成一个随机色
-    static var randomColor: UIColor {
+    @nonobjc static var randomColor: UIColor {
         return UIColor(r:Float(arc4random_uniform(256)), g:Float(arc4random_uniform(256)), b:Float(arc4random_uniform(256)))
     }
     
@@ -397,6 +426,7 @@ extension UIView {
 private var key: Void?
 private var key1: Void?
 
+// MARK: - UIButton
 extension UIButton {
     
     /// 边框颜色(用于StoryBoard)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 private let kMargin: CGFloat = 20
 private let normalH: CGFloat = 44
@@ -21,17 +22,19 @@ class ProfileRegisterController: UIViewController {
     }()
     
     // 密码
-    fileprivate lazy var passTextField: UITextField = {
+    fileprivate lazy var passTextField: MHTextField = {
         let textField = MHTextField.init(placeholder: "输入密码", leftImage: #imageLiteral(resourceName: "tf_login_password"), leftViewSize: CGSize(width: normalH, height: normalH), frame: CGRect(x: 0, y: 0, width: HmhDevice.screenW - 2 * kMargin, height: normalH))
         textField.delegate = self
+        textField.isSecureTextEntry = true
         return textField
     }()
     
     
     // 确认密码
-    fileprivate lazy var confirmTextField: UITextField = {
+    fileprivate lazy var confirmTextField: MHTextField = {
         let textField = MHTextField.init(placeholder: "确认密码", leftImage: #imageLiteral(resourceName: "tf_login_password"), leftViewSize: CGSize(width: normalH, height: normalH), frame: CGRect(x: 0, y: 0, width: HmhDevice.screenW - 2 * kMargin, height: normalH))
         textField.delegate = self
+        textField.isSecureTextEntry = true
         return textField
     }()
     
@@ -159,8 +162,62 @@ extension ProfileRegisterController {
     @objc fileprivate func loginBtnClick() {
         changeColor(false)
         
+        // 判断是否满足注册条件
+        if !isAllow() { return }
+        
+        // 向数据库注册一名新用户
+        let user = RLMUser()
+        user.name = nameTextField.text!
+        user.Password = passTextField.text!
+        
+        let result = RealmTool.addObject(user)
+        result ? MBProgressHUD.showSuccess("注册成功") : MBProgressHUD.showError("该昵称已存在")
+        
+        nameTextField.text = ""
+        passTextField.text = ""
+        confirmTextField.text = ""
         
     }
+    
+    
+    private func isAllow() -> Bool {
+        
+        let nameResult = nameTextField.isAllowUserName { (message, isAllow) in
+            guard isAllow else {
+                MBProgressHUD.showError(message)
+                return
+            }
+        }
+        
+        guard nameResult else { return  false}
+        
+        let passResult = passTextField.isAllowPassword { (message, isAllow) in
+            guard isAllow else {
+                MBProgressHUD.showError("密码" + message)
+                return
+            }
+        }
+        
+        guard passResult else { return  false}
+        
+        let confirmResult = confirmTextField.isAllowPassword { (message, isAllow) in
+            guard isAllow else {
+                MBProgressHUD.showError("密码" + message)
+                return
+            }
+        }
+        
+        guard confirmResult else { return  false}
+        
+        // 判断两次密码是否一致
+        guard passTextField.text! == confirmTextField.text! else {
+            MBProgressHUD.showError("两次密码输入的不一致")
+            return false
+        }
+        
+        return true
+    }
+    
     
     @objc fileprivate func touchOut() {
         changeColor(false)
