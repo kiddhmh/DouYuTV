@@ -1,0 +1,239 @@
+//
+//  LivePrettyController.swift
+//  DouYuTV
+//
+//  Created by 胡明昊 on 16/12/31.
+//  Copyright © 2016年 CMCC. All rights reserved.
+//
+
+import UIKit
+
+private let images: [UIImage] = [UIImage(named: "portrait_loading1_107x31_")!, UIImage(named: "portrait_loading2_107x31_")!, UIImage(named: "portrait_loading3_107x31_")!, UIImage(named: "portrait_loading4_107x31_")!, UIImage(named: "portrait_loading5_107x31_")!, UIImage(named: "portrait_loading6_107x31_")!, UIImage(named: "portrait_loading7_107x31_")!, UIImage(named: "portrait_loading8_107x31_")!, UIImage(named: "portrait_loading9_107x31_")!, UIImage(named: "portrait_loading10_107x31_")!]
+
+class LivePrettyController: UIViewController {
+    
+    var model: RecomFaceModel? {
+        didSet {
+            guard let model = model, let backUrl = model.vertical_src else { return }
+            UpLayerView.model = model
+            
+            let url = URL(string: backUrl)
+            placeholder.kf.setImage(with: url)
+        }
+    }
+    
+    // 直播播放器
+    fileprivate var moviePlayer: IJKFFMoviePlayerController?
+    
+    // 关闭按钮
+    fileprivate var backBtn: UIButton = {
+        let btn = UIButton()
+        btn.setImage(UIImage(named: "rank_btn_close"), for: .normal)
+        btn.setImage(UIImage(named: "rank_btn_close_pressed"), for: .highlighted)
+        btn.setBackgroundImage(UIImage(named: "Image_clear"), for: .normal)
+        btn.addTarget(self, action: #selector(dismissed), for: .touchUpInside)
+        return btn
+    }()
+    
+    // 直播上浮层
+    fileprivate var UpLayerView: LivePrettyLayerView = {
+        let view: LivePrettyLayerView = LivePrettyLayerView()
+        view.backgroundColor = UIColor(white: 0.8, alpha: 0.0)
+        return view
+    }()
+    
+    /// 播放器占位图
+    fileprivate var placeholder: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.frame = HmhDevice.screenRect
+        let blurEssect = UIBlurEffect(style: .light)
+        let visualEffectView = UIVisualEffectView(effect: blurEssect)
+        visualEffectView.frame = imageView.bounds
+        imageView.addSubview(visualEffectView)
+        return imageView
+    }()
+    
+    /// 等待动画Loading
+    fileprivate var loadingImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.animationDuration = 2.0
+        imageView.animationRepeatCount = 0
+        imageView.animationImages = images
+        return imageView
+    }()
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        moviePlayer?.shutdown()
+        moviePlayer?.view.removeFromSuperview()
+        UpLayerView.removeFromSuperview()
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        
+        setupUI()
+        
+        // 加载播放器
+        configIJKPlayView()
+    }
+    
+    
+    private func configIJKPlayView() {
+        let options: IJKFFOptions = IJKFFOptions.byDefault()
+        moviePlayer = IJKFFMoviePlayerController.init(contentURL: URL(string: "http://pull99.a8.com/live/1483286558507104.flv"), with: options)
+        moviePlayer?.view.frame = view.bounds
+        moviePlayer?.scalingMode = .aspectFill
+        moviePlayer?.shouldAutoplay = true
+        moviePlayer?.shouldShowHudView = false
+        view.insertSubview(moviePlayer?.view ?? UIView(), belowSubview: UpLayerView)
+        
+        moviePlayer?.prepareToPlay()
+        
+        // 设置监听
+        initPlayerObserver()
+    }
+    
+    private func setupUI() {
+        
+        //添加手势
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureView(_:)))
+        view.addGestureRecognizer(panGesture)
+        
+        view.addSubview(placeholder)
+        
+        view.addSubview(UpLayerView)
+        UpLayerView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        
+        view.addSubview(backBtn)
+        backBtn.snp.makeConstraints { (make) in
+            make.width.height.equalTo(14)
+            make.right.equalTo(view.snp.right).offset(-10)
+            make.top.equalTo(view.snp.top).offset(40)
+        }
+        
+        view.addSubview(loadingImage)
+        loadingImage.snp.makeConstraints { (make) in
+            make.height.equalTo(31)
+            make.width.equalTo(107)
+            make.center.equalTo(view)
+        }
+        loadingImage.startAnimating()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    // 关闭直播页面
+    @objc private func dismissed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    fileprivate func stopLoading() {
+        loadingImage.stopAnimating()
+        loadingImage.isHidden = true
+    }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+
+// 手势事件
+extension LivePrettyController {
+    
+    @objc fileprivate func panGestureView(_ pan: UIPanGestureRecognizer) {
+    
+        let point = pan.translation(in: pan.view)
+        switch pan.state {
+        case .began:
+            break
+        case .changed:
+            UpLayerView.left = HmhDevice.screenW + point.x
+            break
+        case .ended:
+            if UpLayerView.left > HmhDevice.screenW / 2 {
+                UIView.animate(withDuration: 0.3, animations: { [unowned self] in
+                    self.UpLayerView.left = HmhDevice.screenW
+                })
+            }else {
+                UIView.animate(withDuration: 0.3, animations: { [unowned self] in
+                    self.UpLayerView.left = 0
+                })
+            }
+            break
+        default:
+            break
+        }
+    }
+}
+
+
+// MARK: - IJKFFMoviePlayerObserver
+extension LivePrettyController {
+    
+    fileprivate func initPlayerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didFinish), name: NSNotification.Name.IJKMPMoviePlayerPlaybackDidFinish, object: moviePlayer)
+        NotificationCenter.default.addObserver(self, selector: #selector(stateDidChange), name: NSNotification.Name.IJKMPMoviePlayerLoadStateDidChange, object: moviePlayer)
+    }
+    
+    
+    @objc private func didFinish() {
+        
+        guard let moviePlayer = moviePlayer else { return }
+        print("加载状态 ===>>> \(moviePlayer.loadState)")
+        
+        // 因为网速或者其他原因导致直播stop了, 也要显示GIF
+        if !moviePlayer.loadState.isEmpty && !IJKMPMovieLoadState.stalled.isEmpty {
+            if !loadingImage.isAnimating {
+                loadingImage.isHidden = false
+                loadingImage.startAnimating()
+            }
+            return
+        }
+        
+        // 发送网络请求确认是否能成功播放，若失败---提示直播结束，关闭直播器
+        
+    }
+    
+    
+    @objc private func stateDidChange() {
+        
+        guard let moviePlayer = moviePlayer else { return }
+        
+        if !moviePlayer.loadState.isEmpty && !IJKMPMovieLoadState.playthroughOK.isEmpty {
+            
+            if !moviePlayer.isPlaying() {
+                moviePlayer.play()
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: { [unowned self] in
+                    self.placeholder.removeFromSuperview()
+                    self.stopLoading()
+                })
+            }else {
+                // 如果是网络状态不好, 断开后恢复, 也需要去掉加载
+                if loadingImage.isAnimating {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: { [unowned self] in
+                        self.stopLoading()
+                    })
+                }
+            }
+        }else if !moviePlayer.loadState.isEmpty && !IJKMPMovieLoadState.stalled.isEmpty { //网络不佳,自动暂停状态
+            if !loadingImage.isAnimating {
+                loadingImage.isHidden = false
+                loadingImage.startAnimating()
+            }
+        }
+    }
+}
+

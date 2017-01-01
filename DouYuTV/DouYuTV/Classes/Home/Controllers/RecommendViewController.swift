@@ -167,6 +167,22 @@ extension RecommentViewController: UICollectionViewDelegateFlowLayout {
         return sectionHeaderView
     }
     
+    
+    // 点击进入直播页面
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.section == 1 { // 颜值
+            
+            let model = recomVM.faceGroup[indexPath.item]
+            let prettyVC = LivePrettyController()
+            prettyVC.model = model
+            UIApplication.shared.keyWindow?.rootViewController?.present(prettyVC, animated: true, completion: nil)
+        }else { //普通
+            
+            
+            
+        }
+    }
 }
 
 

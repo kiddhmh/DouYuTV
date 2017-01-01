@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+import MBProgressHUD
 
 private let ProfileCellID = "ProfileCellID"
 
@@ -146,22 +148,70 @@ extension ProfileController {
         }
         
         loginView?.resgisterClosure = { // 注册
-            
-        }
-            
-        loginView?.wxClosure = { // 微信
-            
-        }
-        
-        loginView?.wbClosure = { // 微博
-            
+            let registerVC = ProfileRegisterController()
+            let nav = BaseNavigationController(rootViewController: registerVC)
+            self.present(nav, animated: true, completion: nil)
+            self.hiddenLoginView()
         }
         
-        loginView?.qqClosure = { // QQ
+        // 第三方登录
+        loginView?.thirdClosure = { [unowned self] type in
             
+            var platformType: UMSocialPlatformType
+            
+            switch type {
+            case .wx:
+              platformType = .wechatSession // 微信
+            case .qq:
+              platformType = .QQ            // QQ
+            case .sina:
+              platformType = .sina          // 微博
+            }
+            
+            MBProgressHUD.showLoading("请稍后", toView: self.loginView)
+            self.getUserInfoForPlatform(platformType)
         }
     }
     
+    
+    // 获取登录信息
+    fileprivate func getUserInfoForPlatform(_ platformType: UMSocialPlatformType) {
+        
+        UMSocialManager.default().getUserInfo(with: platformType, currentViewController: self) { [unowned self]  (result, error) in
+            guard error == nil else {
+                print("第三方登录错误信息 === \(error)")
+                return
+            }
+            
+            // 获取信息并存储
+            let resp = result as? UMSocialUserInfoResponse
+            guard let respp = resp else { return }
+            let user = RLMUser()
+            user.uid = respp.uid
+            user.openid = respp.openid ?? ""
+            user.accessToken = respp.accessToken ?? ""
+            user.refreshToken = respp.refreshToken ?? ""
+            user.expiration = respp.expiration as NSDate?
+            
+            user.name = respp.name ?? ""
+            user.iconurl = respp.iconurl ?? ""
+            user.gender = respp.gender ?? "m"
+            
+            // 保存登录后的用户昵称
+            let isRegister = RealmTool.isRegister(user)
+            if isRegister == false { // 未注册过
+                let isSuccess = RealmTool.addObject(user)
+                guard isSuccess == true else { return }
+            }
+            
+            HmhFileManager.simpleSave(user.name, forKey: "user")
+            
+            MBProgressHUD.hide(for: self.loginView!, animated: true)
+            
+            self.headerView.loginSuccess()
+            self.hiddenLoginView()
+        }
+    }
 }
 
 
@@ -213,6 +263,7 @@ extension ProfileController: UITableViewDelegate {
 /// 通知方法
 extension ProfileController {
     
+    // 弹出登录页面
     @objc fileprivate func showLogin() {
         headerView.loginButtonHidden(false)
     }

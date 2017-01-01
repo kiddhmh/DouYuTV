@@ -52,5 +52,8 @@ class ProfileInfoBottomView: UIView {
     @objc private func outLogin() {
         guard  let outClosure = outLoginClosure else { return }
         outClosure()
+        
+        // 清除保存的用户信息
+        HmhFileManager.simpleRemove("user")
     }
 }

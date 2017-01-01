@@ -23,8 +23,8 @@ class RLMUser: Object {
     dynamic var openid = ""                 //QQ，微信用户openid，其他平台没有
     dynamic var accessToken = ""
     dynamic var refreshToken = ""
-    dynamic var expiration: NSData? = nil   //授权token（accessToken）过期时间
+    dynamic var expiration: NSDate? = nil   //授权token（accessToken）过期时间
     
     // 原始数据
-    dynamic var originalResponse: NSDate? = nil
+    dynamic var originalResponse: NSData? = nil
 }

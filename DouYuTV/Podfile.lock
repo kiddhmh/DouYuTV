@@ -10,6 +10,7 @@ PODS:
     - Realm (= 2.1.2)
   - SnapKit (3.1.2)
   - Spring (1.0.3)
+  - SwiftKeychainWrapper (3.0.1)
   - UMengUShare/Core (6.1.2):
     - UMengUShare/Network
   - UMengUShare/Network (6.1.2)
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - RealmSwift
   - SnapKit
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
+  - SwiftKeychainWrapper
   - UMengUShare/Social/QQ
   - UMengUShare/Social/Sina
   - UMengUShare/Social/WeChat
@@ -54,8 +56,9 @@ SPEC CHECKSUMS:
   RealmSwift: 17d6ee30b6f9df86364408c2197492e33bfea567
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   UMengUShare: b8c38579f8a4f2ce8dfb0c944cf868022a441bd3
 
-PODFILE CHECKSUM: 42be52ef0a22d3f7f75496c7997769d19966ff8c
+PODFILE CHECKSUM: c37f5847b992bf545640e170d930563e07d36aa2
 
 COCOAPODS: 1.1.1

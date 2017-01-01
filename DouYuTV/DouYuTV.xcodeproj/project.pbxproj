@@ -87,6 +87,11 @@
 		A2C9C6C61DF6BA8C00793FEF /* HotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6C51DF6BA8C00793FEF /* HotModel.swift */; };
 		A2C9C6C81DF7A94A00793FEF /* EnmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6C71DF7A94A00793FEF /* EnmentViewModel.swift */; };
 		A2C9C6CA1DF7B47300793FEF /* FunViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C9C6C91DF7B47300793FEF /* FunViewModel.swift */; };
+		A2E855771E17E1CE0006891A /* LivePrettyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E855741E17E1CE0006891A /* LivePrettyController.swift */; };
+		A2E8557C1E17F08F0006891A /* LivePrettyLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E8557B1E17F08F0006891A /* LivePrettyLayerView.swift */; };
+		A2E8557E1E17F0F60006891A /* LivePrettyBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E8557D1E17F0F60006891A /* LivePrettyBottomView.swift */; };
+		A2E855801E17FB680006891A /* LivePrettyIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E8557F1E17FB680006891A /* LivePrettyIconView.swift */; };
+		A2E855841E1947C70006891A /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2E855831E1947C70006891A /* IJKMediaFramework.framework */; };
 		A2EAAD001E0A2A2500922F02 /* ProfileLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EAACFF1E0A2A2500922F02 /* ProfileLoginController.swift */; };
 		A2EAAD021E0A2A3900922F02 /* ProfileInforController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EAAD011E0A2A3900922F02 /* ProfileInforController.swift */; };
 		A2EAAD041E0A2CAF00922F02 /* ProfileInfoBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EAAD031E0A2CAF00922F02 /* ProfileInfoBottomView.swift */; };
@@ -216,6 +221,11 @@
 		A2C9C6C51DF6BA8C00793FEF /* HotModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotModel.swift; sourceTree = "<group>"; };
 		A2C9C6C71DF7A94A00793FEF /* EnmentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnmentViewModel.swift; sourceTree = "<group>"; };
 		A2C9C6C91DF7B47300793FEF /* FunViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunViewModel.swift; sourceTree = "<group>"; };
+		A2E855741E17E1CE0006891A /* LivePrettyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePrettyController.swift; sourceTree = "<group>"; };
+		A2E8557B1E17F08F0006891A /* LivePrettyLayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePrettyLayerView.swift; sourceTree = "<group>"; };
+		A2E8557D1E17F0F60006891A /* LivePrettyBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePrettyBottomView.swift; sourceTree = "<group>"; };
+		A2E8557F1E17FB680006891A /* LivePrettyIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePrettyIconView.swift; sourceTree = "<group>"; };
+		A2E855831E1947C70006891A /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
 		A2EAACFF1E0A2A2500922F02 /* ProfileLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileLoginController.swift; sourceTree = "<group>"; };
 		A2EAAD011E0A2A3900922F02 /* ProfileInforController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInforController.swift; sourceTree = "<group>"; };
 		A2EAAD031E0A2CAF00922F02 /* ProfileInfoBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoBottomView.swift; sourceTree = "<group>"; };
@@ -258,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D44614C0A26679A2F613C5B /* Pods_DouYuTV.framework in Frameworks */,
+				A2E855841E1947C70006891A /* IJKMediaFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +301,7 @@
 		49CD421535247287AECD338C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A2E855831E1947C70006891A /* IJKMediaFramework.framework */,
 				73E5FF7AC502A7222EB471C6 /* Pods_DouYuTV.framework */,
 			);
 			name = Frameworks;
@@ -525,6 +537,84 @@
 			path = MHRefreshView;
 			sourceTree = "<group>";
 		};
+		A2E8556E1E17C1CA0006891A /* LivePlay */ = {
+			isa = PBXGroup;
+			children = (
+				A2E8556F1E17C1CA0006891A /* Normal */,
+				A2E855701E17C1CA0006891A /* Pretty */,
+			);
+			path = LivePlay;
+			sourceTree = "<group>";
+		};
+		A2E8556F1E17C1CA0006891A /* Normal */ = {
+			isa = PBXGroup;
+			children = (
+				A2E855781E17E1F40006891A /* Controllers */,
+				A2E855791E17E2060006891A /* Model */,
+				A2E8557A1E17E2060006891A /* View */,
+			);
+			path = Normal;
+			sourceTree = "<group>";
+		};
+		A2E855701E17C1CA0006891A /* Pretty */ = {
+			isa = PBXGroup;
+			children = (
+				A2E855731E17E1CE0006891A /* Controllers */,
+				A2E855751E17E1CE0006891A /* Models */,
+				A2E855761E17E1CE0006891A /* Views */,
+			);
+			path = Pretty;
+			sourceTree = "<group>";
+		};
+		A2E855731E17E1CE0006891A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2E855741E17E1CE0006891A /* LivePrettyController.swift */,
+			);
+			name = Controllers;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A2E855751E17E1CE0006891A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A2E855761E17E1CE0006891A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A2E8557B1E17F08F0006891A /* LivePrettyLayerView.swift */,
+				A2E8557D1E17F0F60006891A /* LivePrettyBottomView.swift */,
+				A2E8557F1E17FB680006891A /* LivePrettyIconView.swift */,
+			);
+			name = Views;
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2E855781E17E1F40006891A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A2E855791E17E2060006891A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A2E8557A1E17E2060006891A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A2F545571DE29B0000F62A81 = {
 			isa = PBXGroup;
 			children = (
@@ -593,6 +683,7 @@
 			children = (
 				A2C853201DF7E5B8000F3322 /* Advert */,
 				A2F546231DE4171800F62A81 /* Main */,
+				A2E8556E1E17C1CA0006891A /* LivePlay */,
 				A2F546161DE411DA00F62A81 /* Home */,
 				A2F546171DE411DA00F62A81 /* Live */,
 				A2F546151DE411DA00F62A81 /* Follow */,
@@ -970,6 +1061,7 @@
 				A2EAAD021E0A2A3900922F02 /* ProfileInforController.swift in Sources */,
 				A2C9C6B61DF1492300793FEF /* MHAnimatorRefreshView.swift in Sources */,
 				A2C9C6C81DF7A94A00793FEF /* EnmentViewModel.swift in Sources */,
+				A2E8557E1E17F0F60006891A /* LivePrettyBottomView.swift in Sources */,
 				A22759681DE584C70087E87F /* MGameViewController.swift in Sources */,
 				A2C9C6BE1DF50B5300793FEF /* MyHeaderViewCell.swift in Sources */,
 				A24768F41DFA4A8D0007A3D5 /* MHRefreshFooterView.swift in Sources */,
@@ -1009,6 +1101,7 @@
 				A2C9C6761DED6D9500793FEF /* RecomViewModel.swift in Sources */,
 				A23254351E08D3AB0054A7DC /* MHQRCodeTool.swift in Sources */,
 				A22817FC1E139A1900485A37 /* RealmTool.swift in Sources */,
+				A2E8557C1E17F08F0006891A /* LivePrettyLayerView.swift in Sources */,
 				A22759661DE5849E0087E87F /* EntertainmentController.swift in Sources */,
 				A21F604E1E011D6000BAC589 /* LiveAnchorTitleModel.swift in Sources */,
 				A2C8536D1DF80A42000F3322 /* LiveTitleModel.swift in Sources */,
@@ -1029,6 +1122,7 @@
 				A2C9C6961DF005F500793FEF /* MHCycleView.swift in Sources */,
 				A2EAAD081E0A617D00922F02 /* ProfileTotalLoginView.swift in Sources */,
 				A2AD0DE21E07AD510006BF13 /* ProfileTableViewCell.swift in Sources */,
+				A2E855771E17E1CE0006891A /* LivePrettyController.swift in Sources */,
 				A2C853691DF80452000F3322 /* LivePageTitleView.swift in Sources */,
 				A2C9C67D1DED723200793FEF /* HttpApiSign.swift in Sources */,
 				A2AE30C81DE6B4AD009BD9DE /* RecommendSectionHeaderView.swift in Sources */,
@@ -1041,6 +1135,7 @@
 				A2C9C6CA1DF7B47300793FEF /* FunViewModel.swift in Sources */,
 				A24EBCDA1E0CF7D800B00E8D /* SearchHotModel.swift in Sources */,
 				A2AD0DE01E07ABCF0006BF13 /* ProfileHeaderView.swift in Sources */,
+				A2E855801E17FB680006891A /* LivePrettyIconView.swift in Sources */,
 				A2209B351E079121002287C7 /* FollowZBController.swift in Sources */,
 				A22759601DE541F80087E87F /* PageContentView.swift in Sources */,
 				A2703EC31E0CD7A4008651DD /* MHTransitionManager.swift in Sources */,
@@ -1206,6 +1301,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QN48SCAS64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DouYuTV/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1227,6 +1326,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QN48SCAS64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DouYuTV/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

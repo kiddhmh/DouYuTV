@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Spring
+import Kingfisher
 
 private let imgArray = ["image_my_history","image_my_focus","image_my_task","Image_my_pay"]
 private let titleArray = ["观看历史","关注管理","我的任务","鱼翅充值"]
@@ -47,7 +48,7 @@ class ProfileHeaderView: UIView {
     
     /// 头像
     fileprivate lazy var iconView: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
         return imageView
     }()
     
@@ -58,7 +59,6 @@ class ProfileHeaderView: UIView {
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 16)
         label.backgroundColor = .clear
-        label.text = "kidd风"
         return label
     }()
     
@@ -80,7 +80,7 @@ class ProfileHeaderView: UIView {
     
     /// 登录
     fileprivate lazy var loginButton: MHNoHighlighButton = {
-        let btn: MHNoHighlighButton = MHNoHighlighButton()
+        let btn: MHNoHighlighButton = MHNoHighlighButton(frame: CGRect(x: 0, y: 0, width: 80, height: 30))
         btn.backgroundColor = .clear
         btn.setTitle("登录", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -92,7 +92,7 @@ class ProfileHeaderView: UIView {
     
     /// 注册
     fileprivate lazy var registerButton: MHNoHighlighButton = {
-        let btn: MHNoHighlighButton = MHNoHighlighButton()
+        let btn: MHNoHighlighButton = MHNoHighlighButton(frame: CGRect(x: 0, y: 0, width: 80, height: 30))
         btn.backgroundColor = .clear
         btn.setTitle("注册", for: .normal)
         btn.isHidden = true
@@ -107,12 +107,26 @@ class ProfileHeaderView: UIView {
         
         setupUI()
         setupButton()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess), name: NSNotification.Name.LoginSuccess, object: nil)
+        
+        // 判断是否已经登录
+        let name = HmhFileManager.simpleRead("user") as? String
+        if name == nil {
+            loginButtonHidden(false)
+        }else {
+            // 设置信息
+            loginSuccess()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     private func setupUI() {
         addSubview(backImageView)
@@ -136,7 +150,6 @@ class ProfileHeaderView: UIView {
         }
         
         addSubview(iconView)
-        iconView.image = UIImage(named: "萌妹子")?.circleImage()
         iconView.snp.makeConstraints { (make) in
             make.centerY.equalTo(backImageView).offset(10)
             make.width.height.equalTo(70)
@@ -225,4 +238,41 @@ extension ProfileHeaderView {
         guard let showLoginViewClosure = showLoginViewClosure else { return }
         showLoginViewClosure()
     }
+}
+
+
+extension ProfileHeaderView {
+    
+    // 登录成功
+    @objc public func loginSuccess() {
+        
+        // 读取用户信息
+        let name = HmhFileManager.simpleRead("user") as? String
+        guard let namee = name, name != "" else { return }
+        
+        let results = RealmTool.searchUser(name: namee)
+        guard results.count != 0, results.first != nil else { return }
+        
+        let user = results.first!
+        // 设置头像
+        if user.iconurl == "" {
+            iconView.image = UIImage(named: "萌妹子")?.circleImage()
+        }else {
+            let resource = URL(string: user.iconurl)
+            iconView.kf.setImage(with: resource, placeholder: UIImage(named: "Image_column_default")?.circleImage(), completionHandler: { [weak self] (image, error, type, url) in
+                guard let sself = self, let image = image else { return }
+                if error?.domain == "NSURLErrorDomain" {return}
+                sself.iconView.image = (image as UIImage).circleImage()
+            })
+        }
+        
+        // 设置昵称
+        nameLabel.text = user.name
+        
+        loginButtonHidden(true)
+        
+        // 保存登录后的用户昵称
+        HmhFileManager.simpleSave(user.name, forKey: "user")
+    }
+    
 }

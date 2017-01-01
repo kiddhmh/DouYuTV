@@ -9,19 +9,26 @@
 import UIKit
 import Spring
 
+enum ThirdLogin {
+    case wx
+    case qq
+    case sina
+}
+typealias ThirdClosure = (_ type: ThirdLogin) -> ()
+
 class ProfileTotalLoginView: SpringView {
+    
+    // 第三方登录
+    var thirdClosure: ThirdClosure?
     
     // 微信
     @IBOutlet weak var wxButton: UIButton!
-    var wxClosure: moreBtnClosure?
     
     // QQ
     @IBOutlet weak var qqButton: UIButton!
-    var qqClosure: moreBtnClosure?
     
     // 微博
     @IBOutlet weak var wbButton: UIButton!
-    var wbClosure: moreBtnClosure?
     
     // 登录
     @IBOutlet weak var loginButton: UIButton!
@@ -73,22 +80,22 @@ class ProfileTotalLoginView: SpringView {
     
     // 微信
     @IBAction func wxLogin(_ sender: UIButton) {
-        guard let wxClosure = wxClosure else { return }
-        wxClosure()
+        guard let thirdClosure = thirdClosure else { return }
+        thirdClosure(.wx)
     }
     
     
     // QQ
     @IBAction func qqLogin(_ sender: UIButton) {
-        guard let qqClosure = qqClosure else { return }
-        qqClosure()
+        guard let thirdClosure = thirdClosure else { return }
+        thirdClosure(.qq)
     }
     
     
     // 微博
     @IBAction func sinaLogin(_ sender: UIButton) {
-        guard let wbClosure = wbClosure else { return }
-        wbClosure()
+        guard let thirdClosure = thirdClosure else { return }
+        thirdClosure(.sina)
     }
     
     
@@ -150,7 +157,6 @@ extension ProfileTotalLoginView {
         
         return super.hitTest(point, with: event)
     }
-    
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         

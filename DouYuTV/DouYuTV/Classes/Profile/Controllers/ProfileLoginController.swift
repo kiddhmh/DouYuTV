@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 private let kMargin: CGFloat = 20
 private let normalH: CGFloat = 44
@@ -21,7 +22,7 @@ class ProfileLoginController: UIViewController {
     }()
     
     // 密码
-    fileprivate lazy var passTextField: UITextField = {
+    fileprivate lazy var passTextField: MHTextField = {
         let textField = MHTextField.init(placeholder: "输入密码", leftImage: #imageLiteral(resourceName: "tf_login_password"), leftViewSize: CGSize(width: normalH, height: normalH), frame: CGRect(x: 0, y: 0, width: HmhDevice.screenW - 2 * kMargin, height: normalH))
         textField.isSecureTextEntry = true
         textField.delegate = self
@@ -164,7 +165,53 @@ extension ProfileLoginController {
     @objc fileprivate func loginBtnClick() {
         changeColor(false)
         
+        // 判断是否满足注册条件
+        if !isAllow() { return }
+        
+        // 查询用户
+        let result: (isLogin: Bool, message: String) = RealmTool.isRightToLogin(nameTextField.text!, passTextField.text!) { (user) in
+            // 保存登录后的用户昵称
+            HmhFileManager.simpleSave(user.name, forKey: "user")
+        }
+        
+        guard result.isLogin else { // 登录失败
+            MBProgressHUD.showError(result.message)
+            return
+        }
+        
+        nameTextField.text = ""
+        passTextField.text = ""
+        
+        // 进入登录成功界面
+        self.dismiss(animated: true) { 
+            NotificationCenter.default.post(name: Notification.Name.LoginSuccess, object: nil)
+        }
     }
+    
+    
+    private func isAllow() -> Bool {
+        
+        let nameResult = nameTextField.isAllowUserName { (message, isAllow) in
+            guard isAllow else {
+                MBProgressHUD.showError(message)
+                return
+            }
+        }
+        
+        guard nameResult else { return  false}
+        
+        let passResult = passTextField.isAllowPassword { (message, isAllow) in
+            guard isAllow else {
+                MBProgressHUD.showError("密码" + message)
+                return
+            }
+        }
+        
+        guard passResult else { return  false}
+        
+        return true
+    }
+    
     
     @objc fileprivate func touchOut() {
         changeColor(false)

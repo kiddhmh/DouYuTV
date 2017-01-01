@@ -139,5 +139,8 @@ extension Notification.Name {
     
     /// 我的页面显示登录注册
     public static let MHSHowLogin: Notification.Name = Notification.Name("MHSHowLogin")
+    
+    /// 登录成功
+    public static let LoginSuccess: Notification.Name = Notification.Name("LoginSuccess")
 }
 

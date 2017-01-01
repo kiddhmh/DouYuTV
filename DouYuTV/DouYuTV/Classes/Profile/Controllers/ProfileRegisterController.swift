@@ -177,6 +177,8 @@ extension ProfileRegisterController {
         passTextField.text = ""
         confirmTextField.text = ""
         
+        // 跳转到登录页面
+        _ = navigationController?.popViewController(animated: true)
     }
     
     

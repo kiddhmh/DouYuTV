@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import Kingfisher
+import SwiftKeychainWrapper
 
-/// 定义通用的系统相关参数
+//MARK: - 定义通用的系统相关参数
 struct HmhDevice {
     
     ///获取屏幕尺寸
@@ -62,7 +63,7 @@ struct HmhDevice {
 
 
 
-/// 定义工具类方法
+//MARK: -  定义工具类方法
 struct HmhTools {
     
     //通过storyboardName和identifier初始化controller的工具方法.
@@ -98,6 +99,7 @@ struct HmhTools {
 }
 
 
+// MARK: - 清理缓存
 class MHCache: NSObject {
     
     
@@ -128,6 +130,52 @@ class MHCache: NSObject {
 }
 
 
+// MARK: - 存储操作
+class HmhFileManager: NSObject {
+    
+// MARK: - UserDefaults
+    class func simpleSave(_ value: Any?, forKey: String) {
+        
+        UserDefaults.standard.set(value, forKey: forKey)
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func simpleRead(_ key: String) -> Any? {
+        return UserDefaults.standard.value(forKey: key)
+    }
+    
+    class func simpleRemove(_ key: String) {
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+    
+    
+// MARK: - SwiftKeychainWrapper
+    class func keychainSave(_ value: String, forKey: String) -> Bool {
+        return KeychainWrapper.standard.set(value, forKey: forKey)
+    }
+    
+    class func keychainRead(_ key:String) -> String? {
+        return KeychainWrapper.standard.string(forKey: key)
+    }
+    
+    class func keychainremove(_ key:String) -> Bool {
+        return KeychainWrapper.standard.removeObject(forKey: key)
+    }
+    
+}
 
 
+// MARK : - 判断是否是模拟器
+struct Platform {
+    
+    static let isSimulator: Bool = {
+        
+        var isSim = false
+        #if arch(i386) || arch(x86_64)
+            isSim = true
+        #endif
+        return isSim
+    }()
+
+}
 

@@ -11,6 +11,7 @@ target 'DouYuTV' do
     pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3' 
     pod 'RealmSwift'
     pod 'Kingfisher'
+    pod 'SwiftKeychainWrapper'
     pod 'UMengUShare/Social/Sina'
     pod 'UMengUShare/Social/WeChat'
     pod 'UMengUShare/Social/QQ'
