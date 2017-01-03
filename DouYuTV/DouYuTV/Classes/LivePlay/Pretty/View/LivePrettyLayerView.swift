@@ -12,13 +12,16 @@ import MBProgressHUD
 class LivePrettyLayerView: UIView {
     
     // 模型
-    var model: RecomFaceModel? {
+    var model: AnchorModel? {
         didSet {
             guard let model = model else { return }
             
             iconView.model = model
         }
     }
+    
+    // 分享链接
+    var shareURL: String?
     
     // 头像视图
     fileprivate var iconView: LivePrettyIconView = {
@@ -158,7 +161,7 @@ extension LivePrettyLayerView {
         let messageObjc = UMSocialMessageObject()
         messageObjc.text = "老司机~快来呀~"
         let webPageObjc = UMShareWebpageObject()
-        webPageObjc.webpageUrl = "http://blog.csdn.net/hmh007/article/details/53837859"
+        webPageObjc.webpageUrl = shareURL ?? "http://blog.csdn.net/hmh007/article/details/53837859"
         webPageObjc.title = "快快点击链接，你懂得~"
         webPageObjc.descr = "老司机，带带我，我要上昆明呀~"
         webPageObjc.thumbImage = model?.avatar_small ?? UIImage(named: "萌妹子")

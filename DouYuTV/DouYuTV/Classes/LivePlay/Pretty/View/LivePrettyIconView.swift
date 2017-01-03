@@ -11,7 +11,7 @@ import Kingfisher
 
 class LivePrettyIconView: UIView {
     
-    var model: RecomFaceModel? {
+    var model: AnchorModel? {
         didSet {
             guard let model = model, let icoURL = model.avatar_small else { return }
             let url = URL(string: icoURL)

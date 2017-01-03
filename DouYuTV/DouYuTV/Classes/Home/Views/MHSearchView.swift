@@ -119,7 +119,7 @@ extension MHSearchView {
     // 恢复按钮响应事件
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let rect = leftView?.frame
-        guard rect?.contains(point) == false else { return CustomLeftView }
+        guard !(rect?.contains(point) ?? false) else { return CustomLeftView }
         return super.hitTest(point, with: event)
     }
 }

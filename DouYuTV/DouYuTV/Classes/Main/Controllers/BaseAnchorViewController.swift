@@ -22,6 +22,8 @@ class BaseAnchorViewController: BaseViewController {
     
     var refreshControl:MHRefreshControl?
     
+    var anchorLiveModel: AnchorModel?
+    
     public var startOffsetY: CGFloat = 0
     
     // MARK: - lazy
@@ -162,6 +164,11 @@ extension BaseAnchorViewController: UICollectionViewDelegate {
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let prettyVC = LivePrettyController()
+        guard let model = anchorLiveModel else { return }
+        prettyVC.model = model
+        UIApplication.shared.keyWindow?.rootViewController?.present(prettyVC, animated: true, completion: nil)
         
     }
     

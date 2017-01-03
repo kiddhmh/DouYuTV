@@ -26,6 +26,8 @@ class RecommentViewController: BaseAnchorViewController {
         return gameView
     }()
     
+    fileprivate lazy var startLiveView: StartLiveView = StartLiveView()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -38,8 +40,8 @@ class RecommentViewController: BaseAnchorViewController {
             // 切换直播页面
             NotificationCenter.default.post(name: Notification.Name.MHChangeSelectedController, object: nil)
         }
+        
     }
-    
 }
 
 
@@ -172,16 +174,15 @@ extension RecommentViewController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.section == 1 { // 颜值
-            
-            let model = recomVM.faceGroup[indexPath.item]
-            let prettyVC = LivePrettyController()
-            prettyVC.model = model
-            UIApplication.shared.keyWindow?.rootViewController?.present(prettyVC, animated: true, completion: nil)
-        }else { //普通
-            
-            
-            
+             anchorLiveModel = recomVM.faceGroup[indexPath.item]
+        }else if indexPath.section == 0 { //普通 (暂时沿用颜值，后面抓到接口再换)
+             anchorLiveModel = recomVM.bigGroup[indexPath.item]
+        }else {
+            let totalModel = recomVM.hotGroup[indexPath.section].room_list
+             anchorLiveModel = totalModel?[indexPath.item]
         }
+        
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
     }
 }
 

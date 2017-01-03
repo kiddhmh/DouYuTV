@@ -16,6 +16,7 @@ class BaseNavigationController: UINavigationController,UIGestureRecognizerDelega
     }
     
     override func viewDidLoad() {
+        
         //去掉导航栏下方的线
 //        navigationBar.isTranslucent = false
 //        navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)

@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    fileprivate var startLiveView: StartLiveView = StartLiveView()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // 清除缓存
@@ -22,16 +24,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 开始网络监听
         HttpReachability.startListening()
         
+        // 配置友盟
         setupUmengShare()
         
         let window = UIWindow(frame: HmhDevice.screenRect)
         self.window = window
         
-        let baseVC = HmhTools.createViewController("Main", identifier: "BaseTabBarController")
+        let baseVC = HmhTools.createViewController("Main", identifier: "BaseTabBarController") as? UITabBarController
         
         let advertVC = AdvertController()
-        advertVC.jumpClosure = {    // 广告到时间，切换控制器
+        advertVC.jumpClosure = { [unowned self] in    // 广告到时间，切换控制器
             self.window?.rootViewController = baseVC
+            baseVC?.delegate = self
+            
+            // 添加录制按钮
+            self.setupStartLiveView()
         }
         
         self.window?.rootViewController = advertVC
@@ -41,6 +48,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    private func setupStartLiveView() {
+        let keyWindow = UIApplication.shared.keyWindow
+        keyWindow?.addSubview(startLiveView)
+        startLiveView.snp.makeConstraints { (make) in
+            make.width.height.equalTo(44)
+            make.bottom.equalTo(startLiveView.superview!).offset(-60)
+            make.right.equalTo(startLiveView.superview!).offset(-15)
+        }
+    }
+    
     // 设置友盟
     private func setupUmengShare() {
         
@@ -125,3 +142,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+extension AppDelegate : UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+        let index = tabBarController.selectedIndex
+        guard index == 0 || index == 3 else {
+            startLiveView.isHidden = true
+            return
+        }
+        startLiveView.isHidden = false
+    }
+}

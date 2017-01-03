@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 private let images: [UIImage] = [UIImage(named: "portrait_loading1_107x31_")!, UIImage(named: "portrait_loading2_107x31_")!, UIImage(named: "portrait_loading3_107x31_")!, UIImage(named: "portrait_loading4_107x31_")!, UIImage(named: "portrait_loading5_107x31_")!, UIImage(named: "portrait_loading6_107x31_")!, UIImage(named: "portrait_loading7_107x31_")!, UIImage(named: "portrait_loading8_107x31_")!, UIImage(named: "portrait_loading9_107x31_")!, UIImage(named: "portrait_loading10_107x31_")!]
 
 class LivePrettyController: UIViewController {
     
-    var model: RecomFaceModel? {
+    var model: AnchorModel? {
         didSet {
             guard let model = model, let backUrl = model.vertical_src else { return }
             UpLayerView.model = model
@@ -21,6 +22,11 @@ class LivePrettyController: UIViewController {
             placeholder.kf.setImage(with: url)
         }
     }
+    
+    fileprivate lazy var liveVM: LiveViewModel = LiveViewModel()
+    
+    // 播放地址
+    fileprivate var liveURL: String?
     
     // 直播播放器
     fileprivate var moviePlayer: IJKFFMoviePlayerController?
@@ -77,16 +83,19 @@ class LivePrettyController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        setupUI()
+        // 请求播放数据
+        loadData()
         
-        // 加载播放器
-        configIJKPlayView()
+        setupUI()
     }
     
     
-    private func configIJKPlayView() {
+    fileprivate func configIJKPlayView() {
+        
+        // 本来找到了auth的破解算法，结果斗鱼更新了，算法被换了，无法获取auth，导致无法获取 hls-url 地址，导致无法播放，没办法，准备先用映客的数据进行播放吧
+        
         let options: IJKFFOptions = IJKFFOptions.byDefault()
-        moviePlayer = IJKFFMoviePlayerController.init(contentURL: URL(string: "http://pull99.a8.com/live/1483286558507104.flv"), with: options)
+        moviePlayer = IJKFFMoviePlayerController(contentURL: URL(string: liveURL ?? ""), with: options)
         moviePlayer?.view.frame = view.bounds
         moviePlayer?.scalingMode = .aspectFill
         moviePlayer?.shouldAutoplay = true
@@ -145,6 +154,29 @@ class LivePrettyController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+
+extension LivePrettyController {
+    
+    fileprivate func loadData() {
+        
+        liveVM.requestLiveData(complectioned: { [unowned self] in
+            
+            let models = self.liveVM.liveModels
+            let count = UInt32(models.count)
+            guard count != 0 else { return }
+            let acrNum = Int(arc4random() % count)
+            self.liveURL = models[acrNum].stream_addr
+            self.UpLayerView.shareURL = models[acrNum].share_addr
+            
+            // 加载播放器
+            self.configIJKPlayView()
+        }, failed: { error in
+            MBProgressHUD.showError(error.errorMessage ?? "加载失败")
+        })
+        
     }
 }
 

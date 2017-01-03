@@ -97,6 +97,13 @@ extension MGameViewController {
         return sectionHeaderView
     }
     
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let totalModel = mgameVM.mModels[indexPath.section].room_list
+        anchorLiveModel = totalModel?[indexPath.item]
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
+    }
 }
 
 extension MGameViewController {

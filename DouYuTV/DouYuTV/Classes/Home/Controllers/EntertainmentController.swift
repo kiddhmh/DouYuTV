@@ -63,6 +63,7 @@ extension EntertainmentController {
 }
 
 
+// MARK: - UICollectionDataSource - Delegate
 extension EntertainmentController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -101,6 +102,12 @@ extension EntertainmentController {
     }
     
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let totalModel = dataArray[indexPath.section].room_list
+        anchorLiveModel = totalModel?[indexPath.item]
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
+    }
 }
 
 

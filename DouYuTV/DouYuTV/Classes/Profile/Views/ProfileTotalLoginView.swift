@@ -166,7 +166,7 @@ extension ProfileTotalLoginView {
         // 转换成相对于当前视图的位置
         let newRect = self.superview?.convert(rect, to: self)
         
-        guard newRect!.contains(point) == false else { return true }
+        guard !newRect!.contains(point) else { return true }
         return super.point(inside: point, with: event)
     }
     

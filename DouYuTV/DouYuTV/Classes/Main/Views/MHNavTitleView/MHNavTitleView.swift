@@ -433,7 +433,7 @@ extension MHNavTitleView: UICollectionViewDelegateFlowLayout {
     }
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        guard collectionView.frame.contains(point) == false, bottomView.frame.contains(point) == false else { return true }
+        guard !collectionView.frame.contains(point), !bottomView.frame.contains(point) else { return true }
         return super.point(inside: point, with: event)
     }
     

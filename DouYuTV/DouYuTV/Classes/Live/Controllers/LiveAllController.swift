@@ -141,6 +141,7 @@ extension LiveAllController: UICollectionViewDelegateFlowLayout {
         return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         return CGSize.zero
@@ -194,6 +195,13 @@ extension LiveAllController: UICollectionViewDelegateFlowLayout {
             }
         }
         
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        anchorLiveModel = dataArray[indexPath.item]
+        super.collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
 }

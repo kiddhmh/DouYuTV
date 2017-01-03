@@ -119,6 +119,10 @@
 		A2F5463B1DE4266F00F62A81 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5463A1DE4266F00F62A81 /* BaseNavigationController.swift */; };
 		A2F5463E1DE4379D00F62A81 /* PageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5463D1DE4379D00F62A81 /* PageTitleView.swift */; };
 		A2F546411DE43C2400F62A81 /* HmhConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F546401DE43C2400F62A81 /* HmhConfig.swift */; };
+		A2F5AC2D1E1B36C8005603A6 /* YKLiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5AC2C1E1B36C8005603A6 /* YKLiveModel.swift */; };
+		A2F5AC331E1B3843005603A6 /* LiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5AC321E1B3843005603A6 /* LiveViewModel.swift */; };
+		A2F5AC351E1B3C91005603A6 /* YKTotalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5AC341E1B3C91005603A6 /* YKTotalModel.swift */; };
+		A2F5AC381E1B53D3005603A6 /* StartLiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5AC371E1B53D3005603A6 /* StartLiveView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,6 +263,10 @@
 		A2F5463A1DE4266F00F62A81 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		A2F5463D1DE4379D00F62A81 /* PageTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTitleView.swift; sourceTree = "<group>"; };
 		A2F546401DE43C2400F62A81 /* HmhConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HmhConfig.swift; sourceTree = "<group>"; };
+		A2F5AC2C1E1B36C8005603A6 /* YKLiveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YKLiveModel.swift; sourceTree = "<group>"; };
+		A2F5AC321E1B3843005603A6 /* LiveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewModel.swift; sourceTree = "<group>"; };
+		A2F5AC341E1B3C91005603A6 /* YKTotalModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YKTotalModel.swift; sourceTree = "<group>"; };
+		A2F5AC371E1B53D3005603A6 /* StartLiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartLiveView.swift; sourceTree = "<group>"; };
 		DCD096C5090BE497F720DA8F /* Pods-DouYuTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DouYuTV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DouYuTV/Pods-DouYuTV.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -484,8 +492,7 @@
 				A2C9C66B1DED5F4700793FEF /* AnchorModel.swift */,
 				A2C9C6C51DF6BA8C00793FEF /* HotModel.swift */,
 			);
-			name = Models;
-			path = ../Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A2C9C6791DED722600793FEF /* NetWork */ = {
@@ -510,7 +517,7 @@
 				A2C9C6921DEEC58100793FEF /* BaseFailedView.xib */,
 				A2C9C6B91DF5055D00793FEF /* MyHeaderView.swift */,
 				A2C9C6BD1DF50B5300793FEF /* MyHeaderViewCell.swift */,
-				A2C9C6681DED5BB200793FEF /* Models */,
+				A2F5AC371E1B53D3005603A6 /* StartLiveView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -561,6 +568,7 @@
 			children = (
 				A2E855731E17E1CE0006891A /* Controllers */,
 				A2E855751E17E1CE0006891A /* Models */,
+				A2F5AC311E1B3843005603A6 /* ViewModels */,
 				A2E855761E17E1CE0006891A /* Views */,
 			);
 			path = Pretty;
@@ -578,6 +586,8 @@
 		A2E855751E17E1CE0006891A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A2F5AC341E1B3C91005603A6 /* YKTotalModel.swift */,
+				A2F5AC2C1E1B36C8005603A6 /* YKLiveModel.swift */,
 			);
 			name = Models;
 			path = Model;
@@ -684,6 +694,7 @@
 				A2C853201DF7E5B8000F3322 /* Advert */,
 				A2F546231DE4171800F62A81 /* Main */,
 				A2E8556E1E17C1CA0006891A /* LivePlay */,
+				A2F5AC361E1B4F4B005603A6 /* StartLive */,
 				A2F546161DE411DA00F62A81 /* Home */,
 				A2F546171DE411DA00F62A81 /* Live */,
 				A2F546151DE411DA00F62A81 /* Follow */,
@@ -807,6 +818,7 @@
 			children = (
 				A2F546251DE4173300F62A81 /* Storyboard */,
 				A2F546241DE4171800F62A81 /* Controllers */,
+				A2C9C6681DED5BB200793FEF /* Models */,
 				A2C9C68D1DEEC20500793FEF /* Views */,
 			);
 			path = Main;
@@ -858,6 +870,21 @@
 				A2F546401DE43C2400F62A81 /* HmhConfig.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		A2F5AC311E1B3843005603A6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A2F5AC321E1B3843005603A6 /* LiveViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A2F5AC361E1B4F4B005603A6 /* StartLive */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = StartLive;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1087,12 +1114,15 @@
 				A2C9C6C01DF518DE00793FEF /* MGameViewModel.swift in Sources */,
 				A2AD0DE61E07C96C0006BF13 /* MHCustomButton.swift in Sources */,
 				A2AE30CA1DE6B718009BD9DE /* RecommentNormalCell.swift in Sources */,
+				A2F5AC381E1B53D3005603A6 /* StartLiveView.swift in Sources */,
 				A2F546391DE4223700F62A81 /* HmhUIExtension.swift in Sources */,
 				A2C9C67E1DED723200793FEF /* HttpClient.swift in Sources */,
 				A2C9C66C1DED5F4700793FEF /* AnchorModel.swift in Sources */,
+				A2F5AC331E1B3843005603A6 /* LiveViewModel.swift in Sources */,
 				A2F5462F1DE4183500F62A81 /* LiveViewController.swift in Sources */,
 				A2F4A5521DF8F48C0095995A /* BaseAnchorViewController.swift in Sources */,
 				A2F546331DE4189000F62A81 /* FollowController.swift in Sources */,
+				A2F5AC351E1B3C91005603A6 /* YKTotalModel.swift in Sources */,
 				A2209B2C1E077988002287C7 /* LiveNoDataView.swift in Sources */,
 				A2F5462D1DE4180600F62A81 /* HomeViewController.swift in Sources */,
 				A2209B371E07913E002287C7 /* FollowMovieController.swift in Sources */,
@@ -1149,6 +1179,7 @@
 				A22817F41E1206B500485A37 /* HttpReachability.swift in Sources */,
 				A2C9C6B41DF1490E00793FEF /* MHRefreshView.swift in Sources */,
 				A2F546371DE4195700F62A81 /* HmhTools.swift in Sources */,
+				A2F5AC2D1E1B36C8005603A6 /* YKLiveModel.swift in Sources */,
 				A2EAAD001E0A2A2500922F02 /* ProfileLoginController.swift in Sources */,
 				A2C9C6B21DF1490100793FEF /* MHRefreshControl.swift in Sources */,
 				A21F604C1E011A6C00BAC589 /* LiveAnchorViewModel.swift in Sources */,
