@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Start Video Controller-->
+        <scene sceneID="fJ0-7s-pvJ">
+            <objects>
+                <viewController storyboardIdentifier="StartVideoController" id="edc-Gp-yt1" customClass="StartVideoController" customModule="DouYuTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zzd-oL-aZk"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y0G-su-H9r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1xF-28-byV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7do-3y-mRB" userLabel="返回">
+                                <rect key="frame" x="20" y="25" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="AI8-oR-N6X"/>
+                                    <constraint firstAttribute="width" constant="36" id="eVs-bK-JI3"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="dyla_预览白底返回"/>
+                                <connections>
+                                    <action selector="backHome:" destination="edc-Gp-yt1" eventType="touchUpInside" id="moI-e1-Dlk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svX-3J-nRi" userLabel="美颜">
+                                <rect key="frame" x="72" y="25" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="DcO-gH-1b8"/>
+                                    <constraint firstAttribute="width" constant="36" id="YHY-dJ-jGa"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="dyla_预览白底美颜"/>
+                                <state key="selected" image="dyla_预览白底美颜关闭"/>
+                                <connections>
+                                    <action selector="changeBeautity:" destination="edc-Gp-yt1" eventType="touchUpInside" id="Wk0-iN-Oc9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z21-VA-LKf" userLabel="切换摄像头">
+                                <rect key="frame" x="124" y="25" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="mGz-23-7Yg"/>
+                                    <constraint firstAttribute="width" constant="36" id="o2w-2a-CsK"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="dyla_预览白底相机"/>
+                                <connections>
+                                    <action selector="toggleCapture:" destination="edc-Gp-yt1" eventType="touchUpInside" id="uwX-cB-RvE"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkO-XI-2c1" userLabel="闪光灯">
+                                <rect key="frame" x="176" y="25" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="k5Q-43-kJM"/>
+                                    <constraint firstAttribute="height" constant="36" id="weQ-Ev-uGi"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="dyla_预览白底闪光灯关闭"/>
+                                <state key="selected" image="dyla_预览白底闪光灯"/>
+                                <connections>
+                                    <action selector="changeFlash:" destination="edc-Gp-yt1" eventType="touchUpInside" id="zLe-CI-LFN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhC-9q-zSD" userLabel="切换屏幕">
+                                <rect key="frame" x="324" y="25" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="6Q6-HL-2HV"/>
+                                    <constraint firstAttribute="width" constant="36" id="d5a-tl-ag3"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="dyla_录制_竖切横"/>
+                                <state key="selected" image="dyla_录制_横切竖"/>
+                                <connections>
+                                    <action selector="changeScreen:" destination="edc-Gp-yt1" eventType="touchUpInside" id="MKS-sa-YJW"/>
+                                </connections>
+                            </button>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsm-yK-0Ks" userLabel="遮罩">
+                                <rect key="frame" x="158" y="576" width="59" height="59"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xLW-9C-3E5">
+                                    <rect key="frame" x="0.0" y="0.0" width="59" height="59"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="9Ca-l5-MQl"/>
+                                    <constraint firstAttribute="width" constant="59" id="exd-e7-1e8"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdA-4R-ynn" userLabel="开始录制">
+                                <rect key="frame" x="166" y="584" width="43" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="43" id="G4b-F7-RA3"/>
+                                    <constraint firstAttribute="height" constant="43" id="WtD-du-zph"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="dyla_录制_开始"/>
+                                <connections>
+                                    <action selector="startToVideo:" destination="edc-Gp-yt1" eventType="touchUpInside" id="pnK-nX-Xif"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wkO-XI-2c1" firstAttribute="top" secondItem="Zzd-oL-aZk" secondAttribute="bottom" constant="5" id="1d9-X2-xcC"/>
+                            <constraint firstItem="z21-VA-LKf" firstAttribute="top" secondItem="Zzd-oL-aZk" secondAttribute="bottom" constant="5" id="4WL-8c-tfy"/>
+                            <constraint firstItem="7do-3y-mRB" firstAttribute="top" secondItem="1xF-28-byV" secondAttribute="top" constant="25" id="9DA-TB-qs8"/>
+                            <constraint firstAttribute="trailing" secondItem="dhC-9q-zSD" secondAttribute="trailing" constant="15" id="ETU-OB-K9h"/>
+                            <constraint firstItem="Y0G-su-H9r" firstAttribute="top" secondItem="ZdA-4R-ynn" secondAttribute="bottom" constant="40" id="MtR-S9-orq"/>
+                            <constraint firstItem="z21-VA-LKf" firstAttribute="leading" secondItem="svX-3J-nRi" secondAttribute="trailing" constant="16" id="NAp-Hv-E9c"/>
+                            <constraint firstItem="Y0G-su-H9r" firstAttribute="top" secondItem="dsm-yK-0Ks" secondAttribute="bottom" constant="32" id="WKi-mw-bHz"/>
+                            <constraint firstItem="dsm-yK-0Ks" firstAttribute="centerX" secondItem="1xF-28-byV" secondAttribute="centerX" id="XHs-Vo-8sC"/>
+                            <constraint firstItem="wkO-XI-2c1" firstAttribute="leading" secondItem="z21-VA-LKf" secondAttribute="trailing" constant="16" id="a1f-o1-NYk"/>
+                            <constraint firstItem="svX-3J-nRi" firstAttribute="top" secondItem="Zzd-oL-aZk" secondAttribute="bottom" constant="5" id="bKX-CD-Yjd"/>
+                            <constraint firstItem="dhC-9q-zSD" firstAttribute="top" secondItem="Zzd-oL-aZk" secondAttribute="bottom" constant="5" id="d25-AP-oRT"/>
+                            <constraint firstItem="svX-3J-nRi" firstAttribute="leading" secondItem="7do-3y-mRB" secondAttribute="trailing" constant="16" id="fOn-Bs-iit"/>
+                            <constraint firstItem="7do-3y-mRB" firstAttribute="leading" secondItem="1xF-28-byV" secondAttribute="leading" constant="20" id="hRu-Mg-lfX"/>
+                            <constraint firstItem="ZdA-4R-ynn" firstAttribute="centerX" secondItem="1xF-28-byV" secondAttribute="centerX" id="pxc-Ln-hHi"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="backBtn" destination="7do-3y-mRB" id="0yp-5N-lky"/>
+                        <outlet property="beautityBtn" destination="svX-3J-nRi" id="CGc-5f-6mk"/>
+                        <outlet property="changeScreenBtn" destination="dhC-9q-zSD" id="0ux-bw-LnQ"/>
+                        <outlet property="flashBtn" destination="wkO-XI-2c1" id="KSt-9d-gb3"/>
+                        <outlet property="startEffectView" destination="dsm-yK-0Ks" id="M9A-Za-22U"/>
+                        <outlet property="startVideoBtn" destination="ZdA-4R-ynn" id="ffF-Ai-opq"/>
+                        <outlet property="toggleBtn" destination="z21-VA-LKf" id="218-sY-hTd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5C3-t6-UBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="146" y="180"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="dyla_录制_开始" width="43" height="43"/>
+        <image name="dyla_录制_横切竖" width="36" height="36"/>
+        <image name="dyla_录制_竖切横" width="36" height="36"/>
+        <image name="dyla_预览白底相机" width="36" height="36"/>
+        <image name="dyla_预览白底美颜" width="36" height="36"/>
+        <image name="dyla_预览白底美颜关闭" width="36" height="36"/>
+        <image name="dyla_预览白底返回" width="36" height="36"/>
+        <image name="dyla_预览白底闪光灯" width="36" height="36"/>
+        <image name="dyla_预览白底闪光灯关闭" width="36" height="36"/>
+    </resources>
+</document>

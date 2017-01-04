@@ -40,7 +40,15 @@ class RecommentViewController: BaseAnchorViewController {
             // 切换直播页面
             NotificationCenter.default.post(name: Notification.Name.MHChangeSelectedController, object: nil)
         }
-        
+     
+        /// 添加录制按钮
+        view.insertSubview(startLiveView, aboveSubview: collectionView)
+        startLiveView.delegate = self
+        startLiveView.snp.makeConstraints { (make) in
+            make.width.height.equalTo(44)
+            make.bottom.equalTo(view).offset(-15)
+            make.right.equalTo(view).offset(-15)
+        }
     }
 }
 

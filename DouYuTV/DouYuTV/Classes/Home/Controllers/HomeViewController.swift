@@ -85,6 +85,8 @@ class HomeViewController: UIViewController {
                 guard let sself = self else { return }
                 sself.navigationController?.setNavigationBarHidden($0, animated: $1)
                 let offsetYY: CGFloat = $0 ? -HmhDevice.kNavigationBarH : HmhDevice.kNavigationBarH
+                let isHidden: Bool = $0
+                StartLiveView.liveView.isHidden = isHidden
                 UIView.animate(withDuration: 0.3, animations: {
                     sself.pageTitleView.top += offsetYY
                     sself.pageContentView.top += offsetYY

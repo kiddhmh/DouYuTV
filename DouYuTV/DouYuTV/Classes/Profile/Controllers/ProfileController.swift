@@ -42,6 +42,9 @@ class ProfileController: UIViewController {
         return btn
     }()
     
+    /// 录制按钮
+    fileprivate lazy var startLiveView: StartLiveView = StartLiveView.liveView
+    
     fileprivate lazy var tableView: UITableView = { [unowned self] in
         let tableView: UITableView = UITableView(frame: self.view.frame, style: .grouped)
         tableView.delegate = self
@@ -74,6 +77,15 @@ class ProfileController: UIViewController {
         }
         
         tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0)
+        
+        // 添加录制按钮
+        view.insertSubview(startLiveView, aboveSubview: tableView)
+        startLiveView.delegate = self
+        startLiveView.snp.makeConstraints { (make) in
+            make.width.height.equalTo(44)
+            make.bottom.equalTo(view).offset(-HmhDevice.tabBarH - 15)
+            make.right.equalTo(view).offset(-15)
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(showLogin), name: Notification.Name.MHSHowLogin, object: nil)
     }

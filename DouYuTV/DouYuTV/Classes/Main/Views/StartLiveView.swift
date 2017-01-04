@@ -25,8 +25,12 @@ class StartLiveView: UIView {
     // MARK: - public
     weak open var delegate: StartLiveViewDelegate?
     
+    open var dragEnable: Bool = true    // 是否可以拖拽
+    
     // MARK: - private
     fileprivate var isOpen: Bool = false    // 是否打开菜单
+    
+    fileprivate var startPoint: CGPoint = CGPoint(x: 0, y: 0)        // 启始位置
     
     fileprivate lazy var startLiveBtn: UIButton = {
         let btn = UIButton()
@@ -55,6 +59,8 @@ class StartLiveView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        isUserInteractionEnabled = true
         
         addSubview(liveBtn)
         liveBtn.snp.makeConstraints { (make) in
@@ -72,6 +78,13 @@ class StartLiveView: UIView {
         startLiveBtn.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
+        
+        
+        // 添加手势，可以拖拽
+        let panGes = UIPanGestureRecognizer(target: self, action: #selector(dragAction(_:)))
+        panGes.minimumNumberOfTouches = 1
+        panGes.maximumNumberOfTouches = 1
+        self.addGestureRecognizer(panGes)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -80,6 +93,15 @@ class StartLiveView: UIView {
     
 }
 
+
+extension StartLiveView {
+    
+    public static let liveView: StartLiveView = StartLiveView()
+    
+//    public var liveView: StartLiveView<self> {
+//        get { return StartLiveView(self) }
+//    }
+}
 
 // MARK: - UIButtonAction
 extension StartLiveView {
@@ -207,16 +229,96 @@ extension StartLiveView {
     
     // 点击直播
     @objc fileprivate func menuLiveClick() {
+        
+        openMenu()
         guard let delegate = delegate else { return }
         delegate.startLiveDidClick(self, .live)
     }
     
     // 点击录制
     @objc fileprivate func menuVideoClick() {
+        
+        openMenu()
         guard let delegate = delegate else { return }
         delegate.startLiveDidClick(self, .video)
     }
     
+}
+
+
+// MARK: - UIPanGestureRecognizerAction
+extension StartLiveView {
+    
+    @objc fileprivate func dragAction(_ pan: UIPanGestureRecognizer) {
+        // 判断是否可以拖拽
+        guard dragEnable else { return }
+        
+        switch pan.state {
+        case .began:
+            guard !isOpen else {
+                openMenu()
+                return
+            }
+            //  注意一旦你完成上述的移动，将translation重置为0十分重要。否则translation每次都会叠加
+            pan.setTranslation(CGPoint(x: 0, y: 0), in: self)
+            startPoint = pan.translation(in: self)
+        case .changed:
+            let point = pan.translation(in: self)
+            let dx = point.x - startPoint.x
+            let dy = point.y - startPoint.y
+            
+            //计算移动后的view中心点
+            var newCenter = CGPoint(x: self.centerX + dx, y: self.centerY + dy)
+            /* 限制用户不可将视图托出给定的范围 */
+            let halfw = self.width / 2
+            
+            // x坐标左边界
+            newCenter.x = max(halfw, newCenter.x)
+            // x坐标右边界
+            newCenter.x = min(HmhDevice.screenW - halfw, newCenter.x)
+            
+            self.center = newCenter
+            pan.setTranslation(CGPoint(x: 0, y: 0), in: self)
+            
+        case .ended:
+            keepBounds()
+        default:
+            break
+        }
+    }
+    
+    
+    // 自动贴边
+    private func keepBounds() {
+        
+        // 中心点
+        let centerX = (HmhDevice.screenW - self.width) / 2
+        let centerY = (HmhDevice.screenH - HmhDevice.tabBarH - HmhDevice.navigationBarH - self.width) / 2
+        var leftX   = self.left
+        var topY    = self.top
+        
+        if leftX < centerX { // 左边
+            leftX = 15
+        }else { // 右边
+            leftX = HmhDevice.screenW - self.width - 15
+        }
+        
+        if topY < centerY { // 上边
+            topY = 15
+        }else { // 下边
+            topY = HmhDevice.screenH - HmhDevice.tabBarH - HmhDevice.navigationBarH - self.width - 60
+        }
+        
+       UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.3, options: .curveLinear, animations: {
+        
+        self.left = leftX
+        self.top  = topY
+        self.startLiveBtn.snp.makeConstraints({ (make) in
+            make.edges.equalTo(self)
+        })
+        
+       }, completion: nil)
+    }
 }
 
 

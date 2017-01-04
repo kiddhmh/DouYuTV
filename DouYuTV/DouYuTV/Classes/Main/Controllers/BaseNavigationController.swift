@@ -69,9 +69,18 @@ class BaseNavigationController: UINavigationController,UIGestureRecognizerDelega
             viewController.hidesBottomBarWhenPushed = true
             viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "navBackBtn"), highlightImage: #imageLiteral(resourceName: "navBackBtnHL"), size: CGSize(width: 18, height: 18), target: self, action: #selector(popToParent))
             
+            StartLiveView.liveView.isHidden = true
         }
         
         super.pushViewController(viewController, animated: animated)
+    }
+
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag) { 
+            StartLiveView.liveView.isHidden = false
+            guard let completion = completion else { return }
+            completion()
+        }
     }
     
     @objc private func popToParent(){

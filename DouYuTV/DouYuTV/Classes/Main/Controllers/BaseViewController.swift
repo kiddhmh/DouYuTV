@@ -60,7 +60,6 @@ extension BaseViewController {
         
         startAnimation()
     }
-    
 }
 
 

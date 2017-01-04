@@ -16,4 +16,7 @@ target 'DouYuTV' do
     pod 'UMengUShare/Social/WeChat'
     pod 'UMengUShare/Social/QQ'
     pod 'UMengUShare/UI'
+    pod 'BarrageRenderer'
+   #pod 'GPUImage' 由于LFLiveKit里面已经集成了GPUImage
+    pod 'LFLiveKit'
 end 
