@@ -58,9 +58,8 @@ class HomeViewController: UIViewController {
         searchVC.transitioningDelegate = self
         
         // 注册通知，切换控制器
-        NotificationCenter.default.addObserver(self, selector: #selector(pushViewController(_:)), name: NSNotification.Name.MHPushViewController, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(changeSelectedController(_:)), name: Notification.Name.MHChangeSelectedController, object: nil)
+        MHNotification.addObserver(observer: self, selector: #selector(pushViewController(_:)), notification: .pushVC)
+        MHNotification.addObserver(observer: self, selector: #selector(changeSelectedController(_:)), notification: .changeSelectedVC)
     }
     
     
@@ -101,7 +100,7 @@ class HomeViewController: UIViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        MHNotification.removeAll(observer: self)
     }
 }
 

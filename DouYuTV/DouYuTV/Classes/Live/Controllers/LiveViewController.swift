@@ -62,7 +62,7 @@ class LiveViewController: UIViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        MHNotification.removeAll(observer: self)
     }
     
 }
@@ -109,12 +109,13 @@ extension LiveViewController {
         setupNavHiddenClosure()
         
         pageContentView.uploadVC(childVc: childVcs)
+        
         pageTitleView.uploadTitle(titles)
     }
     
     private func addChildVCs(_ models: [LiveTitleModel]) {
         
-        if childVcs.count == 10 { return }
+        if childVcs.count == 10 || childVcs.count == 9 { return }
         for i in 0..<models.count {
             if models[i].cate_name == "颜值" {
                 let faceVC = LiveFaceController()

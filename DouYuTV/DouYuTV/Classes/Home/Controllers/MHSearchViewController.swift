@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import RealmSwift
 
 private let kCancelBtnW: CGFloat = 40
 private let kMargin: CGFloat     = 16
@@ -60,6 +61,7 @@ class MHSearchViewController: UIViewController {
     /// 顶部搜索框
     fileprivate lazy var searchView: MHSearchView = {
         let searView = MHSearchView(frame: CGRect(x: kMargin, y: kSearchY, width: HmhDevice.screenW - kMargin - kCancelBtnW, height: kSearchH))
+        searView.delegate = self
         return searView
     }()
     
@@ -70,6 +72,9 @@ class MHSearchViewController: UIViewController {
         return line
     }()
     
+    /// 历史视图
+    fileprivate lazy var titleHistoryView: SearchHistoryView = SearchHistoryView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -77,6 +82,13 @@ class MHSearchViewController: UIViewController {
         setupUI()
         
         loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 刷新标签
+        configTitleHistoryView()
     }
     
     private func setupUI() {
@@ -87,13 +99,26 @@ class MHSearchViewController: UIViewController {
         
         cancelBtn.frame = CGRect(x: searchView.right, y: searchView.top, width: kCancelBtnW, height: searchView.height)
         view.addSubview(cancelBtn)
-        
+
+        titleHistoryView.frame = CGRect.init(x: hotTableView.left, y: hotTableView.top, width: hotTableView.width, height: 0)
+        hotTableView.tableHeaderView = self.titleHistoryView
         view.addSubview(hotTableView)
+
+        // 更新高度, 如何动态改变tableViewHeader高度，改变高度后要重新设置下headerView，否则不会生效
+        titleHistoryView.updateHeight = { [unowned self] height in
+            self.updateHeaderHeight(height)
+        }
     }
     
     
     @objc fileprivate func searchDismiss() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    fileprivate func updateHeaderHeight(_ height: CGFloat) {
+        
+        hotTableView.tableHeaderView?.height = height
+        hotTableView.tableHeaderView = self.titleHistoryView
     }
 }
 
@@ -112,12 +137,42 @@ extension MHSearchViewController {
             guard self.searchVM.searchHotModel != nil else { return }
             self.hotTableView.reloadData()
             
+            self.configTitleHistoryView()
+            
         }, failed: { (error) in
             
             print(error.errorMessage ?? "")
         })
         
     }
+    
+    
+    fileprivate func configTitleHistoryView() {
+        
+        // 获取历史数据
+        let history = self.loadHistoryData()
+        guard history.count != 0 else { //隐藏历史视图
+            titleHistoryView.isHidden = true
+            updateHeaderHeight(0)
+            return
+        }
+        
+        // 显示标签视图
+        titleHistoryView.removeAllTags()
+        titleHistoryView.isHidden = false
+        titleHistoryView.tags = history
+    }
+    
+    private func loadHistoryData() -> [String] {
+        
+        let results = RealmTool.userReaml.objects(SearchHistoryModel.self)
+        var history: [String] = []
+        for obj in results {
+            history.append(obj.text)
+        }
+        return history
+    }
+    
 }
 
 
@@ -155,6 +210,31 @@ extension MHSearchViewController: UITableViewDataSource {
         let title = searchVM.searchHotModel?.data?[indexPath.row] ?? ""
         cell.setTitle(title, withIndex: indexPath.row)
         return cell
+    }
+}
+
+
+extension MHSearchViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        let text = textField.text ?? ""
+        guard text != "" else { return true}
+        
+        // 添加到数据库
+        let searchObj = SearchHistoryModel()
+        searchObj.text = text
+        try! RealmTool.userReaml.write {
+            RealmTool.userReaml.add(searchObj)
+        }
+        
+        textField.text = ""
+        return true
     }
     
 }

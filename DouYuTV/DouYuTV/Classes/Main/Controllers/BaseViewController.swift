@@ -68,7 +68,8 @@ extension BaseViewController: BaseFailedViewDelegate {
     /// 切换控制器
     func pushViewController(_ ViewController: UIViewController, _ animated: Bool) {
         let userinfo = ["VC": ViewController, "animated": animated] as [String : Any]
-        NotificationCenter.default.post(name: Notification.Name.MHPushViewController, object: nil, userInfo: userinfo)
+        
+        MHNotification.postNotification(notification: .pushVC, userInfo: userinfo)
     }
 }
 

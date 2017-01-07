@@ -54,7 +54,7 @@
                                     <action selector="toggleCapture:" destination="edc-Gp-yt1" eventType="touchUpInside" id="uwX-cB-RvE"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkO-XI-2c1" userLabel="闪光灯">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkO-XI-2c1" userLabel="闪光灯">
                                 <rect key="frame" x="176" y="25" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="k5Q-43-kJM"/>
@@ -90,17 +90,28 @@
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdA-4R-ynn" userLabel="开始录制">
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZdA-4R-ynn" userLabel="开始录制">
                                 <rect key="frame" x="166" y="584" width="43" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="43" id="G4b-F7-RA3"/>
                                     <constraint firstAttribute="height" constant="43" id="WtD-du-zph"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="dyla_录制_开始"/>
+                                <state key="normal" image="dyla_录制_开始"/>
+                                <state key="selected" image="dyla_录制_暂停"/>
                                 <connections>
                                     <action selector="startToVideo:" destination="edc-Gp-yt1" eventType="touchUpInside" id="pnK-nX-Xif"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未连接" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQC-OM-VlJ" userLabel="直播状态">
+                                <rect key="frame" x="17" y="81" width="343" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dR8-Rk-ica"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -108,8 +119,11 @@
                             <constraint firstItem="z21-VA-LKf" firstAttribute="top" secondItem="Zzd-oL-aZk" secondAttribute="bottom" constant="5" id="4WL-8c-tfy"/>
                             <constraint firstItem="7do-3y-mRB" firstAttribute="top" secondItem="1xF-28-byV" secondAttribute="top" constant="25" id="9DA-TB-qs8"/>
                             <constraint firstAttribute="trailing" secondItem="dhC-9q-zSD" secondAttribute="trailing" constant="15" id="ETU-OB-K9h"/>
+                            <constraint firstAttribute="trailing" secondItem="ZQC-OM-VlJ" secondAttribute="trailing" constant="15" id="HRc-2Y-jYl"/>
+                            <constraint firstItem="ZQC-OM-VlJ" firstAttribute="leading" secondItem="1xF-28-byV" secondAttribute="leading" constant="17" id="J6z-Cz-wgK"/>
                             <constraint firstItem="Y0G-su-H9r" firstAttribute="top" secondItem="ZdA-4R-ynn" secondAttribute="bottom" constant="40" id="MtR-S9-orq"/>
                             <constraint firstItem="z21-VA-LKf" firstAttribute="leading" secondItem="svX-3J-nRi" secondAttribute="trailing" constant="16" id="NAp-Hv-E9c"/>
+                            <constraint firstItem="ZQC-OM-VlJ" firstAttribute="top" secondItem="dhC-9q-zSD" secondAttribute="bottom" constant="20" id="Vni-E9-vdk"/>
                             <constraint firstItem="Y0G-su-H9r" firstAttribute="top" secondItem="dsm-yK-0Ks" secondAttribute="bottom" constant="32" id="WKi-mw-bHz"/>
                             <constraint firstItem="dsm-yK-0Ks" firstAttribute="centerX" secondItem="1xF-28-byV" secondAttribute="centerX" id="XHs-Vo-8sC"/>
                             <constraint firstItem="wkO-XI-2c1" firstAttribute="leading" secondItem="z21-VA-LKf" secondAttribute="trailing" constant="16" id="a1f-o1-NYk"/>
@@ -126,6 +140,7 @@
                         <outlet property="beautityBtn" destination="svX-3J-nRi" id="CGc-5f-6mk"/>
                         <outlet property="changeScreenBtn" destination="dhC-9q-zSD" id="0ux-bw-LnQ"/>
                         <outlet property="flashBtn" destination="wkO-XI-2c1" id="KSt-9d-gb3"/>
+                        <outlet property="liveStateLabel" destination="ZQC-OM-VlJ" id="zDU-bI-OyT"/>
                         <outlet property="startEffectView" destination="dsm-yK-0Ks" id="M9A-Za-22U"/>
                         <outlet property="startVideoBtn" destination="ZdA-4R-ynn" id="ffF-Ai-opq"/>
                         <outlet property="toggleBtn" destination="z21-VA-LKf" id="218-sY-hTd"/>
@@ -133,11 +148,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5C3-t6-UBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="146" y="180"/>
+            <point key="canvasLocation" x="144.80000000000001" y="179.46026986506749"/>
         </scene>
     </scenes>
     <resources>
         <image name="dyla_录制_开始" width="43" height="43"/>
+        <image name="dyla_录制_暂停" width="20" height="21"/>
         <image name="dyla_录制_横切竖" width="36" height="36"/>
         <image name="dyla_录制_竖切横" width="36" height="36"/>
         <image name="dyla_预览白底相机" width="36" height="36"/>

@@ -236,6 +236,9 @@ class LivePageTitleView: UIView {
         let kSelectRGB: (CGFloat, CGFloat, CGFloat) = (255, 255, 255)
         let kDeltaRGB = (kSelectRGB.0 - kNormalRGB.0, kSelectRGB.1 - kNormalRGB.1, kSelectRGB.2 - kNormalRGB.2)
         
+        guard sourceIndex < titleLabels.count && targetIndex < titleLabels.count else { return }
+        
+        
         let sourceLabel = titleLabels[sourceIndex]
         let targetLabel = titleLabels[targetIndex]
         

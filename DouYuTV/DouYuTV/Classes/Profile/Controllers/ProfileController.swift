@@ -15,7 +15,7 @@ private let ProfileCellID = "ProfileCellID"
 private let imageData = ["image_my_recruitment","my_video_icon","Image_ticket","image_my_recommend","image_my_remind"]
 private let titleData = ["主播招募","我的视频","票务中心","游戏中心","开播提醒"]
 
-class ProfileController: UIViewController {
+class ProfileController: UIViewController, StartLiveViewDelegate {
     
     fileprivate lazy var headerView: ProfileHeaderView = ProfileHeaderView()
     
@@ -87,7 +87,7 @@ class ProfileController: UIViewController {
             make.right.equalTo(view).offset(-15)
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(showLogin), name: Notification.Name.MHSHowLogin, object: nil)
+        MHNotification.addObserver(observer: self, selector: #selector(showLogin), notification: .showLogin)
     }
     
     
@@ -142,7 +142,7 @@ class ProfileController: UIViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        MHNotification.removeAll(observer: self)
     }
 }
 

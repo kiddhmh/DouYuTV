@@ -364,3 +364,20 @@ extension StartLiveView {
     
 }
 
+
+// MARK: - 默认协议的实现，弹出录制页面
+extension StartLiveViewDelegate where Self: UIViewController {
+    
+    func startLiveDidClick(_ liveView: StartLiveView, _ type: LiveType) {
+        
+        switch type {
+        case .live:
+            print("点击直播")
+        case .video:
+            print("点击录制")
+            // 进入录制页面
+            let videoVC = HmhTools.createViewController("StartVideoController", identifier: "StartVideoController") as! StartVideoController
+            UIApplication.shared.keyWindow?.rootViewController!.present(videoVC, animated: true, completion: nil)
+        }
+    }
+}

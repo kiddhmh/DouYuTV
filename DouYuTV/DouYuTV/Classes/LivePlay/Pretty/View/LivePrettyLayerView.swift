@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import BarrageRenderer
 
 class LivePrettyLayerView: UIView {
     
@@ -85,6 +86,11 @@ class LivePrettyLayerView: UIView {
         return emitterLayer
     }()
     
+    fileprivate var timer: Timer?
+    
+    /// 弹幕View
+    fileprivate var renderer: BarrageRenderer?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -93,6 +99,8 @@ class LivePrettyLayerView: UIView {
         addGestureRecognizer(pan)
         
         setupUI()
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(autoSendBarrage), userInfo: nil, repeats: true)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -108,11 +116,12 @@ class LivePrettyLayerView: UIView {
         addSubview(iconView)
         
         addSubview(bottomView)
-        bottomView.clickBtnClosure = { [unowned self] type in
+        bottomView.clickBtnClosure = { [unowned self] (type, btn) in
             
             switch type {
             case .message:
-                MBProgressHUD.showTips("点击了信息")
+                btn.isSelected = !btn.isSelected
+                btn.isSelected == true ? self.renderer?.start() : self.renderer?.stop()
             case .share:
                 self.showShareView()
             case .gift:
@@ -137,6 +146,20 @@ class LivePrettyLayerView: UIView {
             make.width.equalTo(HmhDevice.screenW)
             make.left.bottom.equalTo(self)
         }
+        
+        renderer = BarrageRenderer()
+        renderer?.canvasMargin = UIEdgeInsetsMake(HmhDevice.screenH * 0.2, 15, HmhDevice.screenH * 0.5, 15)
+        addSubview((renderer?.view)!)
+    }
+    
+    override func removeFromSuperview() {
+        super.removeFromSuperview()
+        
+        renderer?.stop()
+        renderer?.view.removeFromSuperview()
+        renderer = nil
+        timer?.invalidate()
+        timer = nil
     }
 }
 
@@ -177,6 +200,39 @@ extension LivePrettyLayerView {
                 MBProgressHUD.showSuccess(response?.message ?? "分享成功")
             }
         }
+    }
+    
+    
+    // 发送弹幕
+    @objc fileprivate func autoSendBarrage() {
+        
+        let spriteNumber = renderer?.spritesNumber(withName: nil) ?? 0
+        guard spriteNumber <= 30 else { return } // 限制屏幕上的弹幕量
+        
+        renderer?.receive(walkTextSpriteDescriptorWithDirection(.R2L))
+    }
+    
+    // 创建弹幕
+    private func walkTextSpriteDescriptorWithDirection(_ direction: BarrageWalkDirection) -> BarrageDescriptor {
+        
+        let descriptor = BarrageDescriptor()
+        descriptor.spriteName = NSStringFromClass(BarrageWalkTextSprite.self)
+        let random = arc4random_uniform(UInt32(danMuText().count))
+        descriptor.params["text"] = danMuText()[Int(random)]
+        descriptor.params["textColor"] = UIColor.randomColor
+        descriptor.params["speed"] = 100 * Int(random) / Int(RAND_MAX) + 60
+        descriptor.params["direction"] = direction.rawValue
+        descriptor.params["clickAction"] = {
+            let alertView = UIAlertView.init(title: "提示", message: "弹幕被点击", delegate: nil, cancelButtonTitle: "取消")
+            alertView.show()
+        }
+        
+        return descriptor
+    }
+    
+    private func danMuText() -> [String] {
+        let url = Bundle.main.path(forResource: "danmu.plist", ofType: nil)
+        return NSArray(contentsOfFile: url ?? "") as! [String]
     }
 }
 

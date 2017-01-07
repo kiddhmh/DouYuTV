@@ -72,6 +72,7 @@ extension EntertainmentController {
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard dataArray.count != 0, dataArray.count > section else { return 0 }
         let model = dataArray[section]
         return model.room_list?.count == 4 ? 4 : 2
     }

@@ -183,8 +183,8 @@ extension ProfileLoginController {
         passTextField.text = ""
         
         // 进入登录成功界面
-        self.dismiss(animated: true) { 
-            NotificationCenter.default.post(name: Notification.Name.LoginSuccess, object: nil)
+        self.dismiss(animated: true) {
+            MHNotification.postNotification(notification: .loginSuccess)
         }
     }
     

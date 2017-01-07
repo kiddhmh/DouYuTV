@@ -69,7 +69,6 @@ class LivePrettyController: UIViewController {
         return imageView
     }()
     
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -89,12 +88,17 @@ class LivePrettyController: UIViewController {
         setupUI()
     }
     
-    
     fileprivate func configIJKPlayView() {
         
         // 本来找到了auth的破解算法，结果斗鱼更新了，算法被换了，无法获取auth，导致无法获取 hls-url 地址，导致无法播放，没办法，准备先用映客的数据进行播放吧
         
         let options: IJKFFOptions = IJKFFOptions.byDefault()
+        // 开启硬编码
+        options.setPlayerOptionValue("1", forKey: "videotoolbox")
+        // 帧速率(fps) （可以改，确认非标准桢率会导致音画不同步，所以只能设定为15或者29.97）
+        options.setPlayerOptionIntValue(Int64(29.97), forKey: "r")
+        // -vol——设置音量大小，256为标准音量。
+        options.setPlayerOptionIntValue(Int64(256), forKey: "vol")
         moviePlayer = IJKFFMoviePlayerController(contentURL: URL(string: liveURL ?? ""), with: options)
         moviePlayer?.view.frame = view.bounds
         moviePlayer?.scalingMode = .aspectFill
@@ -135,6 +139,7 @@ class LivePrettyController: UIViewController {
             make.center.equalTo(view)
         }
         loadingImage.startAnimating()
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -144,6 +149,13 @@ class LivePrettyController: UIViewController {
     // 关闭直播页面
     @objc private func dismissed() {
         self.dismiss(animated: true, completion: nil)
+        
+        if moviePlayer != nil {
+            moviePlayer?.shutdown()
+            MHNotification.removeAll(observer: self)
+        }
+        
+        UpLayerView.removeFromSuperview()
     }
     
     fileprivate func stopLoading() {
@@ -151,9 +163,8 @@ class LivePrettyController: UIViewController {
         loadingImage.isHidden = true
     }
     
-    
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        MHNotification.removeAll(observer: self)
     }
 }
 
@@ -171,12 +182,35 @@ extension LivePrettyController {
             self.liveURL = models[acrNum].stream_addr
             self.UpLayerView.shareURL = models[acrNum].share_addr
             
+            // 先判断当前网络环境并给出提示
+            guard !HttpReachability.isOnWWAN else { // 使用的是蜂窝数据
+                // 弹框提示
+                self.showAlert()
+                return
+            }
+            
             // 加载播放器
             self.configIJKPlayView()
         }, failed: { error in
             MBProgressHUD.showError(error.errorMessage ?? "加载失败")
         })
         
+    }
+    
+    
+    private func showAlert() {
+        
+        let alertVC = UIAlertController(title: "提示", message: "正在使用蜂窝数据观看，是否继续", preferredStyle: .alert)
+        let sureAction = UIAlertAction(title: "确定", style: .default, handler: { (action) in
+            self.configIJKPlayView()
+        })
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        alertVC.addAction(cancelAction)
+        alertVC.addAction(sureAction)
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 
@@ -244,6 +278,11 @@ extension LivePrettyController {
         guard let moviePlayer = moviePlayer else { return }
         
         if !moviePlayer.loadState.isEmpty && !IJKMPMovieLoadState.playthroughOK.isEmpty {
+            
+            if moviePlayer.isPlaying() {
+                placeholder.removeFromSuperview()
+                stopLoading()
+            }
             
             if !moviePlayer.isPlaying() {
                 moviePlayer.play()

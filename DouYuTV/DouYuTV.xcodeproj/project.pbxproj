@@ -50,9 +50,15 @@
 		A2AE30CC1DE6B738009BD9DE /* RecommentNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2AE30CB1DE6B738009BD9DE /* RecommentNormalCell.xib */; };
 		A2AE30CE1DE6E648009BD9DE /* RecommendPrettyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AE30CD1DE6E648009BD9DE /* RecommendPrettyCell.swift */; };
 		A2AE30D01DE6E667009BD9DE /* RecommendPrettyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2AE30CF1DE6E667009BD9DE /* RecommendPrettyCell.xib */; };
-		A2BAE0881E1CEA9100C97906 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAE0871E1CEA9100C97906 /* UIViewControllerExtension.swift */; };
 		A2BAE08F1E1CEBAE00C97906 /* StartVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAE08E1E1CEBAE00C97906 /* StartVideoController.swift */; };
 		A2BAE0911E1CED3800C97906 /* StartVideoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2BAE0901E1CED3800C97906 /* StartVideoController.storyboard */; };
+		A2BAE0951E1DEF0200C97906 /* MHNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAE0941E1DEF0200C97906 /* MHNotification.swift */; };
+		A2BAE09B1E1F3B9D00C97906 /* danmu.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2BAE09A1E1F3B9D00C97906 /* danmu.plist */; };
+		A2BAE09D1E1F69F100C97906 /* SearchHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAE09C1E1F69F100C97906 /* SearchHistoryModel.swift */; };
+		A2BAE0A21E1F725D00C97906 /* MHTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAE0A11E1F725D00C97906 /* MHTagView.swift */; };
+		A2BAE0A41E1F726900C97906 /* MHTagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAE0A31E1F726900C97906 /* MHTagListView.swift */; };
+		A2BAE0A61E1F727E00C97906 /* MHCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAE0A51E1F727E00C97906 /* MHCloseButton.swift */; };
+		A2BAE0A81E1F846900C97906 /* SearchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAE0A71E1F846900C97906 /* SearchHistoryView.swift */; };
 		A2BED41C1E08DB0A005B8C26 /* MHQRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BED41B1E08DB0A005B8C26 /* MHQRCodeController.swift */; };
 		A2BED41F1E090D34005B8C26 /* MHQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BED41E1E090D34005B8C26 /* MHQRCodeView.swift */; };
 		A2C853261DF7E764000F3322 /* AdvertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C853251DF7E764000F3322 /* AdvertController.swift */; };
@@ -191,9 +197,15 @@
 		A2AE30CB1DE6B738009BD9DE /* RecommentNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommentNormalCell.xib; sourceTree = "<group>"; };
 		A2AE30CD1DE6E648009BD9DE /* RecommendPrettyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendPrettyCell.swift; sourceTree = "<group>"; };
 		A2AE30CF1DE6E667009BD9DE /* RecommendPrettyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendPrettyCell.xib; sourceTree = "<group>"; };
-		A2BAE0871E1CEA9100C97906 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A2BAE08E1E1CEBAE00C97906 /* StartVideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartVideoController.swift; sourceTree = "<group>"; };
 		A2BAE0901E1CED3800C97906 /* StartVideoController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StartVideoController.storyboard; sourceTree = "<group>"; };
+		A2BAE0941E1DEF0200C97906 /* MHNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHNotification.swift; sourceTree = "<group>"; };
+		A2BAE09A1E1F3B9D00C97906 /* danmu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = danmu.plist; sourceTree = "<group>"; };
+		A2BAE09C1E1F69F100C97906 /* SearchHistoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryModel.swift; sourceTree = "<group>"; };
+		A2BAE0A11E1F725D00C97906 /* MHTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHTagView.swift; sourceTree = "<group>"; };
+		A2BAE0A31E1F726900C97906 /* MHTagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHTagListView.swift; sourceTree = "<group>"; };
+		A2BAE0A51E1F727E00C97906 /* MHCloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHCloseButton.swift; sourceTree = "<group>"; };
+		A2BAE0A71E1F846900C97906 /* SearchHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryView.swift; sourceTree = "<group>"; };
 		A2BED41B1E08DB0A005B8C26 /* MHQRCodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHQRCodeController.swift; sourceTree = "<group>"; };
 		A2BED41E1E090D34005B8C26 /* MHQRCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHQRCodeView.swift; sourceTree = "<group>"; };
 		A2C853251DF7E764000F3322 /* AdvertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertController.swift; sourceTree = "<group>"; };
@@ -430,6 +442,32 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A2BAE0961E1DF4C800C97906 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Filter;
+			path = StartVideo/Filter;
+			sourceTree = "<group>";
+		};
+		A2BAE0971E1DF4C800C97906 /* H264Encode */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = H264Encode;
+			path = StartVideo/H264Encode;
+			sourceTree = "<group>";
+		};
+		A2BAE0A01E1F723700C97906 /* MHTagView */ = {
+			isa = PBXGroup;
+			children = (
+				A2BAE0A11E1F725D00C97906 /* MHTagView.swift */,
+				A2BAE0A31E1F726900C97906 /* MHTagListView.swift */,
+				A2BAE0A51E1F727E00C97906 /* MHCloseButton.swift */,
+			);
+			path = MHTagView;
+			sourceTree = "<group>";
+		};
 		A2BED41D1E090D26005B8C26 /* MHQRCodeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,6 +552,7 @@
 				A2C9C66F1DED68CC00793FEF /* RecomFaceModel.swift */,
 				A2C9C69F1DF00C7800793FEF /* CycleModel.swift */,
 				A24EBCD91E0CF7D800B00E8D /* SearchHotModel.swift */,
+				A2BAE09C1E1F69F100C97906 /* SearchHistoryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -559,6 +598,7 @@
 				A21F60CF1E03D07000BAC589 /* MHNavTitleView */,
 				A2C9C6A51DF1475400793FEF /* MHRefreshView */,
 				A2C9C6941DF005D900793FEF /* MHCycleView */,
+				A2BAE0A01E1F723700C97906 /* MHTagView */,
 				A2C9C68E1DEEC21900793FEF /* BaseFailedView.swift */,
 				A2C9C6921DEEC58100793FEF /* BaseFailedView.xib */,
 				A2C9C6B91DF5055D00793FEF /* MyHeaderView.swift */,
@@ -728,6 +768,7 @@
 		A2F5460D1DE3E94500F62A81 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A2BAE09A1E1F3B9D00C97906 /* danmu.plist */,
 				A2F5460E1DE3E94500F62A81 /* dyla_shayuniang_progress.gif */,
 				A2F5460F1DE3E94500F62A81 /* dyla_横屏提示.gif */,
 			);
@@ -805,6 +846,7 @@
 				A2C9C6851DED7F9400793FEF /* HmhThirdLibExtension.swift */,
 				A23254341E08D3AB0054A7DC /* MHQRCodeTool.swift */,
 				A22817FB1E139A1900485A37 /* RealmTool.swift */,
+				A2BAE0941E1DEF0200C97906 /* MHNotification.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -877,7 +919,6 @@
 				A2F5463A1DE4266F00F62A81 /* BaseNavigationController.swift */,
 				A2AE30C51DE69431009BD9DE /* BaseViewController.swift */,
 				A2F4A5511DF8F48C0095995A /* BaseAnchorViewController.swift */,
-				A2BAE0871E1CEA9100C97906 /* UIViewControllerExtension.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -906,6 +947,7 @@
 				A24EBCDB1E0D081900B00E8D /* MHSearchView.swift */,
 				A24EBCDD1E0D1C4200B00E8D /* MHSearchTypeView.swift */,
 				A24EBCDF1E1005FB00B00E8D /* SearchHistoryCell.swift */,
+				A2BAE0A71E1F846900C97906 /* SearchHistoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -930,6 +972,8 @@
 		A2F5AC361E1B4F4B005603A6 /* StartLive */ = {
 			isa = PBXGroup;
 			children = (
+				A2BAE0961E1DF4C800C97906 /* Filter */,
+				A2BAE0971E1DF4C800C97906 /* H264Encode */,
 				A2BAE08A1E1CEB8400C97906 /* StartLive */,
 				A2BAE0891E1CEB7700C97906 /* StartVideo */,
 			);
@@ -1048,6 +1092,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2BAE09B1E1F3B9D00C97906 /* danmu.plist in Resources */,
 				A2F546111DE3E94500F62A81 /* dyla_横屏提示.gif in Resources */,
 				A2F546271DE4173300F62A81 /* Main.storyboard in Resources */,
 				A2AE30D01DE6E667009BD9DE /* RecommendPrettyCell.xib in Resources */,
@@ -1159,10 +1204,13 @@
 				A2C9C6861DED7F9400793FEF /* HmhThirdLibExtension.swift in Sources */,
 				A2C853261DF7E764000F3322 /* AdvertController.swift in Sources */,
 				A2BED41F1E090D34005B8C26 /* MHQRCodeView.swift in Sources */,
+				A2BAE0A81E1F846900C97906 /* SearchHistoryView.swift in Sources */,
 				A2BED41C1E08DB0A005B8C26 /* MHQRCodeController.swift in Sources */,
+				A2BAE0A61E1F727E00C97906 /* MHCloseButton.swift in Sources */,
 				A22818021E13B1BD00485A37 /* ProfileRegisterController.swift in Sources */,
 				A2C9C6C01DF518DE00793FEF /* MGameViewModel.swift in Sources */,
 				A2AD0DE61E07C96C0006BF13 /* MHCustomButton.swift in Sources */,
+				A2BAE0A21E1F725D00C97906 /* MHTagView.swift in Sources */,
 				A2AE30CA1DE6B718009BD9DE /* RecommentNormalCell.swift in Sources */,
 				A2F5AC381E1B53D3005603A6 /* StartLiveView.swift in Sources */,
 				A2BAE08F1E1CEBAE00C97906 /* StartVideoController.swift in Sources */,
@@ -1174,6 +1222,7 @@
 				A2F4A5521DF8F48C0095995A /* BaseAnchorViewController.swift in Sources */,
 				A2F546331DE4189000F62A81 /* FollowController.swift in Sources */,
 				A2F5AC351E1B3C91005603A6 /* YKTotalModel.swift in Sources */,
+				A2BAE0951E1DEF0200C97906 /* MHNotification.swift in Sources */,
 				A2209B2C1E077988002287C7 /* LiveNoDataView.swift in Sources */,
 				A2F5462D1DE4180600F62A81 /* HomeViewController.swift in Sources */,
 				A2209B371E07913E002287C7 /* FollowMovieController.swift in Sources */,
@@ -1207,11 +1256,13 @@
 				A2C853691DF80452000F3322 /* LivePageTitleView.swift in Sources */,
 				A2C9C67D1DED723200793FEF /* HttpApiSign.swift in Sources */,
 				A2AE30C81DE6B4AD009BD9DE /* RecommendSectionHeaderView.swift in Sources */,
+				A2BAE09D1E1F69F100C97906 /* SearchHistoryModel.swift in Sources */,
 				A2EAAD061E0A572300922F02 /* MHNoHighlighButton.swift in Sources */,
 				A253C4191E09314A0004950C /* MHQRResultContoller.swift in Sources */,
 				A2F4A5501DF8F0FF0095995A /* LiveNormalController.swift in Sources */,
 				A2C8536B1DF8092F000F3322 /* LiveTitleViewModel.swift in Sources */,
 				A2AE30CE1DE6E648009BD9DE /* RecommendPrettyCell.swift in Sources */,
+				A2BAE0A41E1F726900C97906 /* MHTagListView.swift in Sources */,
 				A2EAAD041E0A2CAF00922F02 /* ProfileInfoBottomView.swift in Sources */,
 				A2C9C6CA1DF7B47300793FEF /* FunViewModel.swift in Sources */,
 				A24EBCDA1E0CF7D800B00E8D /* SearchHotModel.swift in Sources */,
@@ -1227,7 +1278,6 @@
 				A2C9C6BA1DF5055D00793FEF /* MyHeaderView.swift in Sources */,
 				A2C9C68F1DEEC21900793FEF /* BaseFailedView.swift in Sources */,
 				A2C9C6C21DF68C0600793FEF /* AllGameViewController.swift in Sources */,
-				A2BAE0881E1CEA9100C97906 /* UIViewControllerExtension.swift in Sources */,
 				A22817F41E1206B500485A37 /* HttpReachability.swift in Sources */,
 				A2C9C6B41DF1490E00793FEF /* MHRefreshView.swift in Sources */,
 				A2F546371DE4195700F62A81 /* HmhTools.swift in Sources */,
@@ -1384,6 +1434,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QN48SCAS64;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1409,6 +1460,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QN48SCAS64;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

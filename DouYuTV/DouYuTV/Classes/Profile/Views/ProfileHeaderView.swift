@@ -108,7 +108,7 @@ class ProfileHeaderView: UIView {
         setupUI()
         setupButton()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess), name: NSNotification.Name.LoginSuccess, object: nil)
+        MHNotification.addObserver(observer: self, selector: #selector(loginSuccess), notification: .loginSuccess)
         
         // 判断是否已经登录
         let name = HmhFileManager.simpleRead("user") as? String
@@ -125,7 +125,7 @@ class ProfileHeaderView: UIView {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        MHNotification.removeAll(observer: self)
     }
     
     private func setupUI() {

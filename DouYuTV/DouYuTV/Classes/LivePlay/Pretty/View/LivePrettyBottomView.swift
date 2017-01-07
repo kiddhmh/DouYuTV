@@ -17,14 +17,15 @@ enum LayerBottomType {
 
 class LivePrettyBottomView: UIView {
     
-    var clickBtnClosure: ((_ type: LayerBottomType) -> ())?
+    var clickBtnClosure: ((_ type: LayerBottomType, _ button: UIButton) -> ())?
     
     // 信息
     fileprivate lazy var messageBtn: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named: "dyla_btn_message"), for: .normal)
         btn.setImage(UIImage(named: "dyla_btn_message_pressed"), for: .highlighted)
-        btn.addTarget(self, action: #selector(messageClick), for: .touchUpInside)
+        btn.setImage(UIImage(named: "dyla_btn_message"), for: .selected)
+        btn.addTarget(self, action: #selector(messageClick(_:)), for: .touchUpInside)
         return btn
     }()
     
@@ -33,7 +34,7 @@ class LivePrettyBottomView: UIView {
         let btn = UIButton()
         btn.setImage(UIImage(named: "btn_room_share"), for: .normal)
         btn.setImage(UIImage(named: "btn_room_shareHL"), for: .highlighted)
-        btn.addTarget(self, action: #selector(shareClick), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(shareClick(_:)), for: .touchUpInside)
         return btn
     }()
     
@@ -42,7 +43,7 @@ class LivePrettyBottomView: UIView {
         let btn = UIButton()
         btn.setImage(UIImage(named: "btn_show_giftview"), for: .normal)
         btn.setImage(UIImage(named: "btn_show_giftview_pressed"), for: .highlighted)
-        btn.addTarget(self, action: #selector(giftClick), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(giftClick(_:)), for: .touchUpInside)
         return btn
     }()
     
@@ -51,7 +52,7 @@ class LivePrettyBottomView: UIView {
         let btn = UIButton()
         btn.setImage(UIImage(named: "赞"), for: .normal)
         btn.setImage(UIImage(named: "赞_small"), for: .highlighted)
-        btn.addTarget(self, action: #selector(praiseClick), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(praiseClick(_:)), for: .touchUpInside)
         return btn
     }()
     
@@ -98,27 +99,27 @@ class LivePrettyBottomView: UIView {
         }
     }
     
-    @objc private func messageClick() {
+    @objc private func messageClick(_ sender: UIButton) {
         if clickBtnClosure != nil {
-            clickBtnClosure!(.message)
+            clickBtnClosure!(.message, sender)
         }
     }
     
-    @objc private func shareClick() {
+    @objc private func shareClick(_ sender: UIButton) {
         if clickBtnClosure != nil {
-            clickBtnClosure!(.share)
+            clickBtnClosure!(.share, sender)
         }
     }
     
-    @objc private func giftClick() {
+    @objc private func giftClick(_ sender: UIButton) {
         if clickBtnClosure != nil {
-            clickBtnClosure!(.gift)
+            clickBtnClosure!(.gift, sender)
         }
     }
     
-    @objc private func praiseClick() {
+    @objc private func praiseClick(_ sender: UIButton) {
         if clickBtnClosure != nil {
-            clickBtnClosure!(.praise)
+            clickBtnClosure!(.praise, sender)
         }
     }
 }

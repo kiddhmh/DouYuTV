@@ -37,7 +37,7 @@ class ProfileInforController: UIViewController {
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: { 
                 _ = self?.navigationController?.popViewController(animated: true)
-                NotificationCenter.default.post(name: Notification.Name.MHSHowLogin, object: nil)
+                MHNotification.postNotification(notification: .showLogin)
             })
         }
     }

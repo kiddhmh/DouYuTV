@@ -5,3 +5,5 @@
 #import <UMSocialCore/UMSocialCore.h>
 #import <UShareUI/UShareUI.h>
 #import <IJKMediaFramework/IJKMediaFramework.h>
+#import <LFLiveKit/LFLiveKit.h>
+#import <BarrageRenderer/BarrageRenderer.h>

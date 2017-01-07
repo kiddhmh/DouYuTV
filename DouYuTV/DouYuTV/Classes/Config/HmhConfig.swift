@@ -129,18 +129,18 @@ struct UMengShare {
 }
 
 
-extension Notification.Name {
-    
-    /// 切换控制器通知
-    public static let MHPushViewController: Notification.Name = Notification.Name(rawValue: "MHPushViewController")
-    
-    /// 切换TabbarController
-    public static let MHChangeSelectedController: Notification.Name = Notification.Name("MHChangeSelectedController")
-    
-    /// 我的页面显示登录注册
-    public static let MHSHowLogin: Notification.Name = Notification.Name("MHSHowLogin")
-    
-    /// 登录成功
-    public static let LoginSuccess: Notification.Name = Notification.Name("LoginSuccess")
-}
+//extension Notification.Name {
+//    
+//    /// 切换控制器通知
+//    public static let MHPushViewController: Notification.Name = Notification.Name(rawValue: "MHPushViewController")
+//    
+//    /// 切换TabbarController
+//    public static let MHChangeSelectedController: Notification.Name = Notification.Name("MHChangeSelectedController")
+//    
+//    /// 我的页面显示登录注册
+//    public static let MHSHowLogin: Notification.Name = Notification.Name("MHSHowLogin")
+//    
+//    /// 登录成功
+//    public static let LoginSuccess: Notification.Name = Notification.Name("LoginSuccess")
+//}
 

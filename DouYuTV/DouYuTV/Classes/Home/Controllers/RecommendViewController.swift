@@ -11,7 +11,7 @@ import MBProgressHUD
 
 private let kCycleViewH = ceil(HmhDevice.screenW * 3 / 8)
 
-class RecommentViewController: BaseAnchorViewController {
+class RecommentViewController: BaseAnchorViewController, StartLiveViewDelegate {
     
     fileprivate lazy var recomVM: RecomViewModel = RecomViewModel()
     
@@ -38,7 +38,7 @@ class RecommentViewController: BaseAnchorViewController {
         
         gameView.moreClosure = {
             // 切换直播页面
-            NotificationCenter.default.post(name: Notification.Name.MHChangeSelectedController, object: nil)
+            MHNotification.postNotification(notification: .changeSelectedVC)
         }
      
         /// 添加录制按钮

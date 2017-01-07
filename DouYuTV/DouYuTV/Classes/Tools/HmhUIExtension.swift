@@ -444,4 +444,18 @@ extension UIButton {
 }
 
 
+// 改变屏幕方向
+extension UIDevice {
+    
+    static func setOrientation(_ isFull: Bool) {
+        
+        if isFull == true {
+            
+            UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+        }else {
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        }
+    }
+    
+}
 
