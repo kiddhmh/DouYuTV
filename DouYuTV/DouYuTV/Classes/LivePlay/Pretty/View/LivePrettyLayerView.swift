@@ -223,6 +223,7 @@ extension LivePrettyLayerView {
         descriptor.params["speed"] = 100 * Int(random) / Int(RAND_MAX) + 60
         descriptor.params["direction"] = direction.rawValue
         descriptor.params["clickAction"] = {
+            
             let alertView = UIAlertView.init(title: "提示", message: "弹幕被点击", delegate: nil, cancelButtonTitle: "取消")
             alertView.show()
         }

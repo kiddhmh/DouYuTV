@@ -72,8 +72,11 @@ class LivePrettyController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        moviePlayer?.shutdown()
-        moviePlayer?.view.removeFromSuperview()
+        if moviePlayer != nil {
+            moviePlayer?.shutdown()
+            moviePlayer?.view.removeFromSuperview()
+        }
+        MHNotification.removeAll(observer: self)
         UpLayerView.removeFromSuperview()
     }
     
@@ -149,13 +152,6 @@ class LivePrettyController: UIViewController {
     // 关闭直播页面
     @objc private func dismissed() {
         self.dismiss(animated: true, completion: nil)
-        
-        if moviePlayer != nil {
-            moviePlayer?.shutdown()
-            MHNotification.removeAll(observer: self)
-        }
-        
-        UpLayerView.removeFromSuperview()
     }
     
     fileprivate func stopLoading() {

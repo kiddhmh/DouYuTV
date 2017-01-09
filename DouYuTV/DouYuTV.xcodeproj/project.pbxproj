@@ -39,6 +39,19 @@
 		A2703EBE1E0CBF6E008651DD /* MHSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2703EBD1E0CBF6E008651DD /* MHSearchViewController.swift */; };
 		A2703EC31E0CD7A4008651DD /* MHTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2703EC21E0CD7A4008651DD /* MHTransitionManager.swift */; };
 		A2703EC51E0CD7C1008651DD /* MHTransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2703EC41E0CD7C1008651DD /* MHTransitionZoom.swift */; };
+		A2AA95581E235F2E0078815C /* jcore-ios-1.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA95551E235F2E0078815C /* jcore-ios-1.0.0.a */; };
+		A2AA95591E235F2E0078815C /* jpush-ios-3.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA95561E235F2E0078815C /* jpush-ios-3.0.0.a */; };
+		A2AA955B1E235F6A0078815C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA955A1E235F6A0078815C /* CFNetwork.framework */; };
+		A2AA955D1E235F7A0078815C /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA955C1E235F7A0078815C /* CoreFoundation.framework */; };
+		A2AA955F1E235F850078815C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA955E1E235F850078815C /* CoreTelephony.framework */; };
+		A2AA95611E235F8F0078815C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA95601E235F8F0078815C /* SystemConfiguration.framework */; };
+		A2AA95631E235F9A0078815C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA95621E235F9A0078815C /* CoreGraphics.framework */; };
+		A2AA95651E235FAB0078815C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA95641E235FAB0078815C /* Foundation.framework */; };
+		A2AA95671E235FB40078815C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA95661E235FB40078815C /* UIKit.framework */; };
+		A2AA95691E235FBE0078815C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA95681E235FBE0078815C /* Security.framework */; };
+		A2AA956B1E235FCF0078815C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA956A1E235FCF0078815C /* libz.tbd */; };
+		A2AA956D1E235FE20078815C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA956C1E235FE20078815C /* UserNotifications.framework */; };
+		A2AA956F1E235FF90078815C /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AA956E1E235FF90078815C /* libresolv.tbd */; };
 		A2AD0DE01E07ABCF0006BF13 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD0DDF1E07ABCF0006BF13 /* ProfileHeaderView.swift */; };
 		A2AD0DE21E07AD510006BF13 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD0DE11E07AD510006BF13 /* ProfileTableViewCell.swift */; };
 		A2AD0DE41E07ADA60006BF13 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2AD0DE31E07ADA60006BF13 /* ProfileTableViewCell.xib */; };
@@ -186,6 +199,21 @@
 		A2703EBD1E0CBF6E008651DD /* MHSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHSearchViewController.swift; sourceTree = "<group>"; };
 		A2703EC21E0CD7A4008651DD /* MHTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHTransitionManager.swift; sourceTree = "<group>"; };
 		A2703EC41E0CD7C1008651DD /* MHTransitionZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHTransitionZoom.swift; sourceTree = "<group>"; };
+		A2AA95521E2353650078815C /* DouYuTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DouYuTV.entitlements; sourceTree = "<group>"; };
+		A2AA95551E235F2E0078815C /* jcore-ios-1.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.0.0.a"; sourceTree = "<group>"; };
+		A2AA95561E235F2E0078815C /* jpush-ios-3.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.0.0.a"; sourceTree = "<group>"; };
+		A2AA95571E235F2E0078815C /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		A2AA955A1E235F6A0078815C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A2AA955C1E235F7A0078815C /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		A2AA955E1E235F850078815C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A2AA95601E235F8F0078815C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A2AA95621E235F9A0078815C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A2AA95641E235FAB0078815C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A2AA95661E235FB40078815C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A2AA95681E235FBE0078815C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A2AA956A1E235FCF0078815C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A2AA956C1E235FE20078815C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		A2AA956E1E235FF90078815C /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		A2AD0DDF1E07ABCF0006BF13 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		A2AD0DE11E07AD510006BF13 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		A2AD0DE31E07ADA60006BF13 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
@@ -293,7 +321,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2AA956F1E235FF90078815C /* libresolv.tbd in Frameworks */,
+				A2AA956D1E235FE20078815C /* UserNotifications.framework in Frameworks */,
+				A2AA956B1E235FCF0078815C /* libz.tbd in Frameworks */,
+				A2AA95691E235FBE0078815C /* Security.framework in Frameworks */,
+				A2AA95671E235FB40078815C /* UIKit.framework in Frameworks */,
+				A2AA95651E235FAB0078815C /* Foundation.framework in Frameworks */,
+				A2AA95631E235F9A0078815C /* CoreGraphics.framework in Frameworks */,
+				A2AA95611E235F8F0078815C /* SystemConfiguration.framework in Frameworks */,
+				A2AA955F1E235F850078815C /* CoreTelephony.framework in Frameworks */,
+				A2AA955D1E235F7A0078815C /* CoreFoundation.framework in Frameworks */,
+				A2AA955B1E235F6A0078815C /* CFNetwork.framework in Frameworks */,
 				4D44614C0A26679A2F613C5B /* Pods_DouYuTV.framework in Frameworks */,
+				A2AA95581E235F2E0078815C /* jcore-ios-1.0.0.a in Frameworks */,
+				A2AA95591E235F2E0078815C /* jpush-ios-3.0.0.a in Frameworks */,
 				A2E855841E1947C70006891A /* IJKMediaFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +368,17 @@
 		49CD421535247287AECD338C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A2AA956E1E235FF90078815C /* libresolv.tbd */,
+				A2AA956C1E235FE20078815C /* UserNotifications.framework */,
+				A2AA956A1E235FCF0078815C /* libz.tbd */,
+				A2AA95681E235FBE0078815C /* Security.framework */,
+				A2AA95661E235FB40078815C /* UIKit.framework */,
+				A2AA95641E235FAB0078815C /* Foundation.framework */,
+				A2AA95621E235F9A0078815C /* CoreGraphics.framework */,
+				A2AA95601E235F8F0078815C /* SystemConfiguration.framework */,
+				A2AA955E1E235F850078815C /* CoreTelephony.framework */,
+				A2AA955C1E235F7A0078815C /* CoreFoundation.framework */,
+				A2AA955A1E235F6A0078815C /* CFNetwork.framework */,
 				A2E855831E1947C70006891A /* IJKMediaFramework.framework */,
 				73E5FF7AC502A7222EB471C6 /* Pods_DouYuTV.framework */,
 			);
@@ -348,6 +400,16 @@
 				A2703EC41E0CD7C1008651DD /* MHTransitionZoom.swift */,
 			);
 			path = MHTransition;
+			sourceTree = "<group>";
+		};
+		A2AA95541E235F1F0078815C /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA95551E235F2E0078815C /* jcore-ios-1.0.0.a */,
+				A2AA95561E235F2E0078815C /* jpush-ios-3.0.0.a */,
+				A2AA95571E235F2E0078815C /* JPUSHService.h */,
+			);
+			path = JPush;
 			sourceTree = "<group>";
 		};
 		A2AD0DD91E07AA3F0006BF13 /* Models */ = {
@@ -736,6 +798,7 @@
 		A2F545621DE29B0000F62A81 /* DouYuTV */ = {
 			isa = PBXGroup;
 			children = (
+				A2AA95521E2353650078815C /* DouYuTV.entitlements */,
 				A2F546141DE411DA00F62A81 /* Classes */,
 				A2F545631DE29B0000F62A81 /* AppDelegate.swift */,
 				A2F5456A1DE29B0000F62A81 /* Assets.xcassets */,
@@ -778,6 +841,7 @@
 		A2F546141DE411DA00F62A81 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A2AA95541E235F1F0078815C /* JPush */,
 				A2C853201DF7E5B8000F3322 /* Advert */,
 				A2F546231DE4171800F62A81 /* Main */,
 				A2E8556E1E17C1CA0006891A /* LivePlay */,
@@ -1054,14 +1118,33 @@
 						DevelopmentTeam = QN48SCAS64;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 0;
+							};
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.HomeKit = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					A2F545731DE29B0100F62A81 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = QN48SCAS64;
 						ProvisioningStyle = Automatic;
 						TestTargetID = A2F5455F1DE29B0000F62A81;
 					};
 					A2F5457E1DE29B0100F62A81 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = QN48SCAS64;
 						ProvisioningStyle = Automatic;
 						TestTargetID = A2F5455F1DE29B0000F62A81;
 					};
@@ -1432,6 +1515,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DouYuTV/DouYuTV.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QN48SCAS64;
 				ENABLE_BITCODE = NO;
@@ -1442,8 +1527,15 @@
 				INFOPLIST_FILE = DouYuTV/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CMCC.com.DouYuTV;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DouYuTV/Classes/JPush",
+				);
+				PRIVATE_HEADERS_FOLDER_PATH = dy.app/PrivateHeaders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bc.dy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DouYuTV-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1458,6 +1550,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DouYuTV/DouYuTV.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yanfeng Dou (VM6898Z4ZP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QN48SCAS64;
 				ENABLE_BITCODE = NO;
@@ -1468,7 +1562,12 @@
 				INFOPLIST_FILE = DouYuTV/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CMCC.com.DouYuTV;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DouYuTV/Classes/JPush",
+				);
+				PRIVATE_HEADERS_FOLDER_PATH = dy.app/PrivateHeaders;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bc.dy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DouYuTV-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1480,6 +1579,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = QN48SCAS64;
 				INFOPLIST_FILE = DouYuTVTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CMCC.com.DouYuTVTests;
@@ -1494,6 +1594,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = QN48SCAS64;
 				INFOPLIST_FILE = DouYuTVTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CMCC.com.DouYuTVTests;
@@ -1507,6 +1608,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = QN48SCAS64;
 				INFOPLIST_FILE = DouYuTVUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CMCC.com.DouYuTVUITests;
@@ -1520,6 +1622,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = QN48SCAS64;
 				INFOPLIST_FILE = DouYuTVUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CMCC.com.DouYuTVUITests;

@@ -128,6 +128,12 @@ struct UMengShare {
     static let QQAppKey = "k3qZrMKr8anTgPcE"
 }
 
+struct JPush {
+    
+    static let AppKey = "0484002110ef506719c9ca1e"
+    
+    static let MasterSecret = "cd90841d9eefc4b28eeb2cc4"
+}
 
 //extension Notification.Name {
 //    
