@@ -55,7 +55,7 @@ class ProfileController: UIViewController, StartLiveViewDelegate {
         return tableView
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -74,6 +74,11 @@ class ProfileController: UIViewController, StartLiveViewDelegate {
         
         headerView.showLoginViewClosure = { [unowned self] in
             self.showLoginView()
+        }
+        
+        headerView.gotoSetClosure = { [unowned self] in
+            let setVC = ProfileSetController()
+            self.navigationController?.pushViewController(setVC, animated: true)
         }
         
         tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0)
@@ -280,3 +285,30 @@ extension ProfileController {
         headerView.loginButtonHidden(false)
     }
 }
+
+
+
+/* Tips: 导航栏全透明效果
+class ViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+ 
+        // 1、设置视图背景颜色
+        self.view.backgroundColor = UIColor(white: 0.25, alpha: 1.0)
+ 
+        // 2、设置导航栏标题属性：设置标题颜色
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        // 3、设置导航栏前景色：设置item指示色
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+ 
+        // 4、设置导航栏半透明
+        self.navigationController?.navigationBar.translucent = true
+ 
+        // 5、设置导航栏背景图片
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics:  UIBarMetrics.Default)
+ 
+        // 6、设置导航栏阴影图片
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+ }
+ */

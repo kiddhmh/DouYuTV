@@ -136,7 +136,16 @@ extension LiveAllController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! RecommentNormalCell
-        cell.anchorModel = dataArray[indexPath.item]
+        
+        if needLoadArr.count > 0 {
+            
+            if needLoadArr.contains(indexPath) {
+                cell.anchorModel = dataArray[indexPath.item]
+            }
+            
+        }else {
+            cell.anchorModel = dataArray[indexPath.item]
+        }
         
         return cell
     }
@@ -205,3 +214,44 @@ extension LiveAllController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
+
+extension LiveAllController {
+    
+    // 按需加载
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let indexPath = collectionView.indexPathForItem(at: CGPoint(x: 10, y: targetContentOffset.pointee.y)) ?? IndexPath(item: 0, section: 0)
+        let firstVisibleIndexPath = collectionView.indexPathsForVisibleItems.first
+        
+        // 判断快速滑动超过20个item后不加载中间的cell
+        let skipCount = 6
+        if labs(firstVisibleIndexPath!.item - indexPath.item) > skipCount {
+            let firstIndexPath = collectionView.indexPathForItem(at: CGPoint(x: 10, y: targetContentOffset.pointee.y)) ?? IndexPath(item: 0, section: 0)
+            let lastIndexPath = collectionView.indexPathForItem(at: CGPoint(x: collectionView.width - 20.0, y:targetContentOffset.pointee.y + collectionView.height - 40.0)) ?? IndexPath(item: 0, section: 0)
+            
+            for i in firstIndexPath.item...lastIndexPath.item {
+                needLoadArr.append(IndexPath(item: i, section: 0))
+            }
+            
+            let loadSum = 3
+            if velocity.y < 0 { // scroll up
+                if lastIndexPath.item + loadSum < dataArray.count {
+                    for i in 1...loadSum {
+                        needLoadArr.append(IndexPath(item: lastIndexPath.item + i, section: 0))
+                    }
+                }
+            }else { // scroll down
+                if firstIndexPath.item > loadSum {
+                    for i in 1...loadSum {
+                        needLoadArr.append(IndexPath(item: firstIndexPath.item - i, section: 0))
+                    }
+                }
+            }
+        }
+        
+        targetOffset = targetContentOffset.pointee
+    }
+    
+}
+

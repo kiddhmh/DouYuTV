@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="pvR-4t-cC8" customClass="MHPushConfigView" customModule="DouYuTV" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="192"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzo-XD-gBE">
+                    <rect key="frame" x="60" y="15" width="180" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="180" id="3Uq-hy-FSj"/>
+                        <constraint firstAttribute="height" constant="44" id="raR-YG-er9"/>
+                    </constraints>
+                    <state key="normal" title="⏲ TimeInterval"/>
+                    <connections>
+                        <action selector="registerTimePush:" destination="pvR-4t-cC8" eventType="touchUpInside" id="BpR-kG-6Cq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9E6-1U-Jym">
+                    <rect key="frame" x="60" y="128" width="180" height="44"/>
+                    <state key="normal" title="🌏      Location"/>
+                    <connections>
+                        <action selector="registerLocationPush:" destination="pvR-4t-cC8" eventType="touchUpInside" id="WJd-vy-wzN"/>
+                    </connections>
+                </button>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prM-iX-OrB">
+                    <rect key="frame" x="60" y="74" width="180" height="44"/>
+                    <state key="normal" title="📅      Calendar"/>
+                    <connections>
+                        <action selector="registerCalendarPush:" destination="pvR-4t-cC8" eventType="touchUpInside" id="J3C-VF-ip0"/>
+                    </connections>
+                </button>
+            </subviews>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="prM-iX-OrB" firstAttribute="height" secondItem="Gzo-XD-gBE" secondAttribute="height" id="Iua-Vo-gF9"/>
+                <constraint firstItem="9E6-1U-Jym" firstAttribute="width" secondItem="prM-iX-OrB" secondAttribute="width" id="Kh6-eW-WNa"/>
+                <constraint firstItem="9E6-1U-Jym" firstAttribute="centerX" secondItem="prM-iX-OrB" secondAttribute="centerX" id="KhY-uI-025"/>
+                <constraint firstItem="9E6-1U-Jym" firstAttribute="top" secondItem="prM-iX-OrB" secondAttribute="bottom" constant="10" id="RxH-u1-ygg"/>
+                <constraint firstItem="Gzo-XD-gBE" firstAttribute="top" secondItem="pvR-4t-cC8" secondAttribute="top" constant="15" id="SVR-u7-VCV"/>
+                <constraint firstItem="9E6-1U-Jym" firstAttribute="height" secondItem="prM-iX-OrB" secondAttribute="height" id="c72-eO-tuc"/>
+                <constraint firstItem="prM-iX-OrB" firstAttribute="width" secondItem="Gzo-XD-gBE" secondAttribute="width" id="dgk-5o-jdP"/>
+                <constraint firstItem="prM-iX-OrB" firstAttribute="centerX" secondItem="Gzo-XD-gBE" secondAttribute="centerX" id="fcc-tp-LV4"/>
+                <constraint firstItem="Gzo-XD-gBE" firstAttribute="centerX" secondItem="pvR-4t-cC8" secondAttribute="centerX" id="r84-X8-At0"/>
+                <constraint firstItem="prM-iX-OrB" firstAttribute="top" secondItem="Gzo-XD-gBE" secondAttribute="bottom" constant="15" id="yAR-Zq-ySd"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideDown"/>
+                <userDefinedRuntimeAttribute type="string" keyPath="curve" value="easeIn"/>
+                <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                    <real key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="damping">
+                    <real key="value" value="0.69999999999999996"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="velocity">
+                    <real key="value" value="0.69999999999999996"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="force">
+                    <real key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                    <real key="value" value="0.0"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="repeatCount">
+                    <real key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="calendarButton" destination="prM-iX-OrB" id="U7H-ym-YED"/>
+                <outlet property="locationButton" destination="9E6-1U-Jym" id="gns-83-7Zm"/>
+                <outlet property="timeIntervalButton" destination="Gzo-XD-gBE" id="enN-mX-tqX"/>
+                <outletCollection property="gestureRecognizers" destination="lxg-Sd-yDH" appends="YES" id="nJC-K0-9uG"/>
+            </connections>
+            <point key="canvasLocation" x="-26" y="-279"/>
+        </view>
+        <tapGestureRecognizer id="lxg-Sd-yDH">
+            <connections>
+                <action selector="dismissFromSuperView:" destination="pvR-4t-cC8" id="qjY-ca-7CN"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

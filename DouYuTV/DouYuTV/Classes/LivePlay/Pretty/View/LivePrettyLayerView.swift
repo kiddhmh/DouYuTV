@@ -91,12 +91,14 @@ class LivePrettyLayerView: UIView {
     /// 弹幕View
     fileprivate var renderer: BarrageRenderer?
     
+    fileprivate var pan: UIPanGestureRecognizer?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         isUserInteractionEnabled = true
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(panGestureView(_:)))
-        addGestureRecognizer(pan)
+        pan = UIPanGestureRecognizer(target: self, action: #selector(panGestureView(_:)))
+        addGestureRecognizer(pan!)
         
         setupUI()
         
@@ -160,6 +162,7 @@ class LivePrettyLayerView: UIView {
         renderer = nil
         timer?.invalidate()
         timer = nil
+        self.removeGestureRecognizer(pan!)
     }
 }
 

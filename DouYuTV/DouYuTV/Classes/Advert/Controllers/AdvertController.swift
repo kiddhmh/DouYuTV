@@ -22,10 +22,67 @@ class AdvertController: UIViewController {
     }()
     
     fileprivate lazy var launchView: UIImageView = {
+        
+        // 获取LaunchImage
+        let viewSize = HmhDevice.screenRect.size
+        let viewOrientation = "Portrait"    // 横屏请设置成 @"Landscape"
+        var launchImage = ""
+        
+        let imagesDict = Bundle.main.infoDictionary?["UILaunchImages"] as! Array<[String: String]>
+        for dict in imagesDict {
+            let imageSize = CGSizeFromString(dict["UILaunchImageSize"]!)
+            if __CGSizeEqualToSize(imageSize, viewSize) == true && viewOrientation == dict["UILaunchImageOrientation"]! {
+                launchImage = dict["UILaunchImageName"]!
+            }
+        }
+        
         let imageView = UIImageView(frame: HmhDevice.screenRect)
         imageView.image = UIImage(named: "LaunchImage-800-667h@2x")
+//        imageView.image = UIImage(named: "launchImage")
+        
         return imageView
     }()
+    
+    
+    /*
+     
+     CGSize viewSize = self.window.bounds.size;
+     NSString *viewOrientation = @"Portrait";    //横屏请设置成 @"Landscape"
+     NSString *launchImage = nil;
+     
+     NSArray* imagesDict = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
+     for (NSDictionary* dict in imagesDict)
+     {
+     CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
+     
+     if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]])
+     {
+     launchImage = dict[@"UILaunchImageName"];
+     }
+     }
+     
+     UIImageView *launchView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:launchImage]];
+     launchView.frame = self.window.bounds;
+     launchView.contentMode = UIViewContentModeScaleAspectFill;
+     [self.window addSubview:launchView];
+     
+     [UIView animateWithDuration:2.0f
+     delay:0.0f
+     options:UIViewAnimationOptionBeginFromCurrentState
+     animations:^{
+     
+     launchView.alpha = 0.0f;
+     launchView.layer.transform = CATransform3DScale(CATransform3DIdentity, 1.2, 1.2, 1);
+     
+     }
+     completion:^(BOOL finished) {
+     
+     [launchView removeFromSuperview];
+     
+     }];
+     
+     */
+    
     
     fileprivate var advertModel: AdvertModel?
     
@@ -38,7 +95,7 @@ class AdvertController: UIViewController {
     
     fileprivate lazy var jumpButton: UIButton = { [weak self] in
         let btn = UIButton()
-        guard let sself = self else { return btn}
+        guard let sself = self else { return btn }
         btn.setTitleColor(.white, for: .normal)
         btn.alpha = 0.6
         btn.backgroundColor = .darkGray

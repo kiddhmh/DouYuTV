@@ -52,16 +52,16 @@ open class AnimatedImageView: UIImageView {
     
     // MARK: - Public property
     /// Whether automatically play the animation when the view become visible. Default is true.
-    public var autoPlayAnimatedImage = true
+    @objc public var autoPlayAnimatedImage = true
     
     /// The size of the frame cache.
-    public var framePreloadCount = 10
+    @objc public var framePreloadCount = 10
     
     /// Specifies whether the GIF frames should be pre-scaled to save memory. Default is true.
-    public var needsPrescaling = true
+    @objc public var needsPrescaling = true
     
     /// The animation timer's run loop mode. Default is `NSRunLoopCommonModes`. Set this property to `NSDefaultRunLoopMode` will make the animation pause during UIScrollView scrolling.
-    public var runLoopMode = RunLoopMode.commonModes {
+    @objc public var runLoopMode = RunLoopMode.commonModes {
         willSet {
             if runLoopMode == newValue {
                 return

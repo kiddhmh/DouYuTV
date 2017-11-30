@@ -29,15 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 配置推送
         setupPushServers(launchOptions)
         
-        // 判断用户是否点击通知进入
-        let enterPlayVC: moreBtnClosure = { [unowned self] in
-            
-            let remoteNotification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any]
-            
-            if remoteNotification != nil { // 一般是根据服务端返回的json判断应该去哪个页面，这里统一进入直播页面
-                self.gotoPlayerVC()
-            }
-        }
+        // 配置短信验证
+        setupSmsServer()
+        
+        // 开启FPS
+        setupFPS()
         
         let window = UIWindow(frame: HmhDevice.screenRect)
         self.window = window
@@ -47,7 +43,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let advertVC = AdvertController()
         advertVC.jumpClosure = { [unowned self] in    // 广告到时间，切换控制器
             self.window?.rootViewController = baseVC
-            enterPlayVC()
+            
+            // 判断用户是否点击通知进入(在JPushDelegate中设置，防止重复调用)
+/*
+            let remoteNotification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any]
+            
+            if remoteNotification != nil { // 一般是根据服务端返回的json判断应该去哪个页面
+                let vcName = remoteNotification?["gotoVC"] as? String
+                self.gotoPlayerVC(vcName)
+            }
+ */
         }
         
         self.window?.rootViewController = advertVC
@@ -57,11 +62,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    fileprivate func gotoPlayerVC() {
-        let livePlayVC = LivePrettyController()
-        self.window?.rootViewController?.present(livePlayVC, animated: true, completion: nil)
+    // 进入指定控制器
+    fileprivate func gotoPlayerVC(_ className: String?) {
+        guard let aclassName = className else { return }
+        
+        let livePlayVC = swiftClassFromString(aclassName)
+        guard let llivePlayVC = livePlayVC else { return }
+        self.window?.rootViewController?.present(llivePlayVC, animated: true, completion: nil)
     }
 
+    // 启动FPS
+    private func setupFPS() {
+        
+        #if DEBUG
+        GDPerformanceMonitor.sharedInstance.startMonitoring()
+        GDPerformanceMonitor.sharedInstance.configure(configuration: { label in
+            label?.backgroundColor = .black
+            label?.textColor = .white
+            label?.layer.borderColor = UIColor.black.cgColor
+        })
+        
+        #endif
+    }
+    
     // 设置友盟
     private func setupUmengShare() {
         
@@ -83,6 +106,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    // 配置短信验证码
+    private func setupSmsServer() {
+        JSMSSDK.register(withAppKey: JPush.AppKey)
+        JSMSSDK.setMinimumTimeInterval(60)
+    }
+    
     // 配置推送
     private func setupPushServers(_ launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
 
@@ -102,10 +131,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let entity = JPUSHRegisterEntity()
         entity.types = Int(JPAuthorizationOptions.alert.rawValue | JPAuthorizationOptions.badge.rawValue | JPAuthorizationOptions.sound.rawValue)
         
-        
         let version = (UIDevice.current.systemVersion as NSString).floatValue
         if version >= 8.0 {
-            //可以添加自定义categories
+            //可以添加自定义categories (添加进入房间，稍后再看，清除)
+            if #available(iOS 10, *) {
+                let roomAction = UNNotificationAction(identifier: "roomAction", title: "进入房间", options: .foreground)
+                let sendAction = UNTextInputNotificationAction.init(identifier: "sendAction", title: "发送弹幕", options: [])
+                let clearAction = UNNotificationAction(identifier: "clearAction", title: "稍后查看", options: .destructive)
+                
+                let category = UNNotificationCategory(identifier: "CustomCategory", actions: [roomAction, sendAction, clearAction], intentIdentifiers: ["roomAction", "sendAction", "clearAction"], options: .customDismissAction)
+                var categorySet = Set<UNNotificationCategory>()
+                categorySet.insert(category)
+                
+                entity.categories = categorySet
+            }
+            
             // NSSet<UNNotificationCategory *> *categories for iOS10 or later
             // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
         }
@@ -123,6 +163,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          注：此字段的值要与Build Settings的Code Signing配置的证书环境一致。
         */
         JPUSHService.setup(withOption: launchOptions, appKey: JPush.AppKey, channel: "App Store", apsForProduction: false)
+
+        // 开启崩溃收集
+        JPUSHService.crashLogON()
         
         //监听注册成功
         NotificationCenter.default.addObserver(self, selector: #selector(setupTagsAndAlias), name: NSNotification.Name.jpfNetworkDidLogin, object: nil)
@@ -203,7 +246,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         JPUSHService.handleRemoteNotification(userInfo)
     }
     
-    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -251,11 +293,13 @@ extension AppDelegate: JPUSHRegisterDelegate {
         let subtitle = content.subtitle    // 推送消息的副标题
         let title = content.title          // 推送消息的标题
         
+        let extens = userInfo["gotoVC"]    // 附加字段
         
         if request.trigger?.isKind(of: UNPushNotificationTrigger.self) == true { // 远程通知
             
             JPUSHService.handleRemoteNotification(userInfo)
             print("收到了远程通知 ==>> badge = \(badge) \n body = \(body) \n sound = \(sound) \n subtitle = \(subtitle) \n title = \(title)")
+            print("附加字段 ===>>> \(extens)")
             
         }else { // 本地通知
             print("收到了本地通知 ==>> badge = \(badge) \n body = \(body) \n sound = \(sound) \n subtitle = \(subtitle) \n title = \(title)")
@@ -280,22 +324,45 @@ extension AppDelegate: JPUSHRegisterDelegate {
         let subtitle = content.subtitle    // 推送消息的副标题
         let title = content.title          // 推送消息的标题
         
+        let extens = userInfo["gotoVC"] as? String   // 附加字段
+        
+        // iOS10 action
+        let category = content.categoryIdentifier  // 扩展
+        let action   = response.actionIdentifier   // 按钮相应
+        
         if request.trigger?.isKind(of: UNPushNotificationTrigger.self) == true {// 远程通知
             JPUSHService.handleRemoteNotification(userInfo)
-            print("收到了远程通知 ==>> badge = \(badge) \n body = \(body) \n sound = \(sound) \n subtitle = \(subtitle) \n title = \(title)")
+            print("收到了远程通知 ==>> badge = \(badge) \n body = \(body) \n sound = \(sound) \n subtitle = \(subtitle) \n title = \(title) \n category = \(category) \n action = \(action)")
             
         }else { // 本地通知
             
-            print("收到了本地通知 ==>> badge = \(badge) \n body = \(body) \n sound = \(sound) \n subtitle = \(subtitle) \n title = \(title)")
+            print("收到了本地通知 ==>> badge = \(badge) \n body = \(body) \n sound = \(sound) \n subtitle = \(subtitle) \n title = \(title) \n category = \(category) \n action = \(action)")
         }
     
+        // 点击action的操作
+        if category == "CustomCategory" {
+            if action == "roomAction" { // 进入房间
+                gotoPlayerVC("LivePrettyController")
+            }else if action == "sendAction" { // 发送弹幕
+                // 获取弹幕信息
+                let textResponse = response as! UNTextInputNotificationResponse
+                let text = textResponse.userText
+                MBProgressHUD.showSuccess("\(text)弹幕发送成功")
+            }else if action == "clearAction" {  // 取消
+                // 注销当前通知
+                let identifier = request.identifier
+                let notiIdentifi = JPushNotificationIdentifier()
+                notiIdentifi.identifiers = [identifier]
+                JPUSHService.removeNotification(notiIdentifi)
+            }
+        }
         
         // 收到通知，跳转到对应界面
-        if UIApplication.shared.applicationState == .active { // 在前台
-            
+        switch UIApplication.shared.applicationState {
+        case .active: // 在前台
             let alertVC = UIAlertController(title: "提示", message: "白富美主播已上线,是否前往观看", preferredStyle: .alert)
             let sureAction = UIAlertAction(title: "火速前往", style: .default, handler: { (action) in
-                self.gotoPlayerVC()
+                self.gotoPlayerVC(extens)
             })
             let cancelAction = UIAlertAction(title: "我还是个孩子", style: .cancel) { (action) in
                 alertVC.dismiss(animated: true, completion: nil)
@@ -304,8 +371,9 @@ extension AppDelegate: JPUSHRegisterDelegate {
             alertVC.addAction(cancelAction)
             alertVC.addAction(sureAction)
             UIApplication.shared.keyWindow?.rootViewController?.present(alertVC, animated: true, completion: nil)
-        }else { // 后台
-            gotoPlayerVC()
+            
+        case .background, .inactive: // 后台
+            gotoPlayerVC(extens)
         }
         
         completionHandler()  // 系统要求执行这个方法

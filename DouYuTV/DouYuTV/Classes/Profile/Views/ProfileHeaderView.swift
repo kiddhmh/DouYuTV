@@ -22,6 +22,9 @@ class ProfileHeaderView: UIView {
     /// 显示登录界面
     var showLoginViewClosure: moreBtnClosure?
     
+    /// 进入设置界面
+    var gotoSetClosure: moreBtnClosure?
+    
     fileprivate var isAddCorner: Bool = false
     
     /// 背景图片
@@ -35,6 +38,7 @@ class ProfileHeaderView: UIView {
         let button = UIButton()
         button.setImage(UIImage(named: "Image_headerView_settings"), for: .normal)
         button.contentMode = .center
+        button.addTarget(self, action: #selector(setButtonClick), for: .touchUpInside)
         return button
     }()
     
@@ -138,7 +142,7 @@ class ProfileHeaderView: UIView {
         addSubview(setButton)
         setButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(22)
-            make.top.equalTo(self.snp.top).offset(20)
+            make.top.equalTo(self.snp.top).offset(25)
             make.right.equalTo(self.snp.right).offset(-20)
         }
         
@@ -237,6 +241,12 @@ extension ProfileHeaderView {
         
         guard let showLoginViewClosure = showLoginViewClosure else { return }
         showLoginViewClosure()
+    }
+    
+    // 点击进入设置页面
+    @objc fileprivate func setButtonClick() {
+        guard let gotoSetClosure = gotoSetClosure else { return }
+        gotoSetClosure()
     }
 }
 

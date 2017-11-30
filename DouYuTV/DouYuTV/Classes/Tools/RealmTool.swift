@@ -44,6 +44,7 @@ class RealmTool: NSObject {
         var config = Realm.Configuration()
         config.fileURL = URL(string: filePath)
         Realm.Configuration.defaultConfiguration = config
+        
         return try! Realm(configuration: config)
     }
     

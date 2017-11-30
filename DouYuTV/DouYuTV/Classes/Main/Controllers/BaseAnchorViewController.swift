@@ -24,6 +24,9 @@ class BaseAnchorViewController: BaseViewController {
     
     var anchorLiveModel: AnchorModel?
     
+    var needLoadArr: [IndexPath] = []
+    var targetOffset: CGPoint = CGPoint.zero
+    
     public var startOffsetY: CGFloat = 0
     
     // MARK: - lazy
@@ -138,6 +141,7 @@ extension BaseAnchorViewController: UICollectionViewDelegate {
         
         startOffsetY = scrollView.contentOffset.y
         
+        needLoadArr.removeAll()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -160,8 +164,16 @@ extension BaseAnchorViewController: UICollectionViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         startOffsetY = scrollView.contentOffset.y
+        
+        if __CGPointEqualToPoint(targetOffset, CGPoint.zero) && fabs(targetOffset.y - scrollView.contentOffset.y) > 10.0 && scrollView.contentOffset.y > scrollView.frame.size.height && scrollView.contentOffset.y < (scrollView.contentSize.height - scrollView.frame.size.height) {
+            needLoadArr.removeAll()
+            targetOffset = CGPoint.zero
+            collectionView.reloadData()
+        }else {
+            needLoadArr.removeAll()
+        }
     }
-    
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -175,4 +187,11 @@ extension BaseAnchorViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
         
     }
+    
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+    }
+    
 }
+

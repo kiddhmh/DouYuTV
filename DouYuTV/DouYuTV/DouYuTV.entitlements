@@ -8,5 +8,9 @@
 	<array>
 		<string>group.com.dy.app</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)com.bc.dy</string>
+	</array>
 </dict>
 </plist>

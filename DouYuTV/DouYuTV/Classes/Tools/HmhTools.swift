@@ -80,7 +80,7 @@ struct HmhTools {
     // 通过xib创建视图
     static func createView(_ nibName: String) -> UIView? {
         
-        return Bundle.main.loadNibNamed(nibName, owner: nil, options: nil)?.last as? UIView
+        return Bundle.main.loadNibNamed(nibName, owner: nil, options: nil)?.first as? UIView
     }
     
     
@@ -95,6 +95,16 @@ struct HmhTools {
             let new = Double(number / 1000) / 10.0
             return "\(new)万"
         }
+    }
+    
+    static let resources: [String] = HmhTools.notiResources()
+    
+    // 获取本地通知附件文件夹下所有文件
+    static func notiResources() -> [String] {
+        let resourcePath = Bundle.main.resourcePath! + "/NotificationResource.bundle"
+        let filemanager = FileManager.default
+        let arr = try? filemanager.contentsOfDirectory(atPath: resourcePath)
+        return arr ?? [""]
     }
 }
 

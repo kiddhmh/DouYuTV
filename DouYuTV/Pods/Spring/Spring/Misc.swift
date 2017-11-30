@@ -34,7 +34,7 @@ public func htmlToAttributedString(text: String) -> NSAttributedString! {
     let htmlData = text.data(using: String.Encoding.utf8, allowLossyConversion: false)
     let htmlString: NSAttributedString?
     do {
-        htmlString = try NSAttributedString(data: htmlData!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+        htmlString = try NSAttributedString(data: htmlData!, options: [NSAttributedString.DocumentAttributeKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
     } catch _ {
         htmlString = nil
     }
@@ -57,7 +57,7 @@ public func imageFromURL(_ Url: String) -> UIImage {
 }
 
 public extension UIColor {
-    convenience init(hex: String) {
+    @objc convenience init(hex: String) {
         var red:   CGFloat = 0.0
         var green: CGFloat = 0.0
         var blue:  CGFloat = 0.0
@@ -234,7 +234,7 @@ public func timeAgoSinceDate(date: Date, numericDates: Bool) -> String {
 }
 
 extension UIImageView {
-    func setImage(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit, placeholderImage: UIImage?) {
+    @objc func setImage(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit, placeholderImage: UIImage?) {
         contentMode = mode
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard
@@ -252,7 +252,7 @@ extension UIImageView {
             }
             }.resume()
     }
-    func setImage(urlString: String, contentMode mode: UIViewContentMode = .scaleAspectFit, placeholderImage: UIImage?) {
+    @objc func setImage(urlString: String, contentMode mode: UIViewContentMode = .scaleAspectFit, placeholderImage: UIImage?) {
         guard let url = URL(string: urlString) else {
             image = placeholderImage
             return

@@ -30,7 +30,7 @@
 
 public class LayoutConstraint : NSLayoutConstraint {
     
-    public var label: String? {
+    @objc public var label: String? {
         get {
             return self.identifier
         }

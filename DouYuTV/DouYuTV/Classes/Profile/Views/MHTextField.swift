@@ -10,6 +10,18 @@ import UIKit
 
 class MHTextField: UITextField {
     
+//    // 修改文本展示区域
+//    override func textRect(forBounds bounds: CGRect) -> CGRect {
+//        let insert = CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.size.width - 25, height: bounds.size.height)
+//        return insert
+//    }
+//    
+//    // 修改编辑区域，光标位置
+//    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+//        let insert = CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.size.width - 25, height: bounds.size.height)
+//        return insert
+//    }
+    
     init(placeholder: String?, leftImage: UIImage, leftViewSize: CGSize, frame: CGRect) {
         
         super.init(frame: frame)

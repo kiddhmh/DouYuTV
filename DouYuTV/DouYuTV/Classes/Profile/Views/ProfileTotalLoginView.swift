@@ -59,10 +59,10 @@ class ProfileTotalLoginView: SpringView {
     /// 设置圆角
     private func addCornerRadius() {
         
-        loginButton.addCorner(radius: 5, borderWidth: 1, backgroundColor: C.mainColor, borderColor: C.mainColor)
-        wxButton.addCorner(radius: 5, borderWidth: 1, backgroundColor: .white, borderColor: .green)
-        qqButton.addCorner(radius: 5, borderWidth: 1, backgroundColor: .white, borderColor: .blue)
-        wbButton.addCorner(radius: 5, borderWidth: 1, backgroundColor: .white, borderColor: .red)
+        loginButton.addCorner(radius: 6, borderWidth: 1, backgroundColor: C.mainColor, borderColor: C.mainColor)
+        wxButton.addCorner(radius: 6, borderWidth: 1, backgroundColor: .white, borderColor: .green)
+        qqButton.addCorner(radius: 6, borderWidth: 1, backgroundColor: .white, borderColor: .blue)
+        wbButton.addCorner(radius: 6, borderWidth: 1, backgroundColor: .white, borderColor: .red)
         
         self.addCorner(radius: 5, borderWidth: 1, backgroundColor: .white, borderColor: .black)
     }

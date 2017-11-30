@@ -78,6 +78,7 @@ class LivePrettyController: UIViewController {
         }
         MHNotification.removeAll(observer: self)
         UpLayerView.removeFromSuperview()
+        panGesture?.removeTarget(self, action: #selector(panGestureView(_:)))
     }
     
     
@@ -115,11 +116,13 @@ class LivePrettyController: UIViewController {
         initPlayerObserver()
     }
     
+    var panGesture: UIPanGestureRecognizer?
+    
     private func setupUI() {
         
         //添加手势
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureView(_:)))
-        view.addGestureRecognizer(panGesture)
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureView(_:)))
+        view.addGestureRecognizer(panGesture!)
         
         view.addSubview(placeholder)
         

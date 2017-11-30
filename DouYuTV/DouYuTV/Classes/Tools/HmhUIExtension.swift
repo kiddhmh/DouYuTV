@@ -32,11 +32,38 @@ func ValidateText(validatedType type: ValidatedType, _ validateString: String) -
 // MARK: - String
 extension String {
     
+    // 判断是否正确
     var isRightLogin: Bool {
         return ValidateText(validatedType: .userName, self)
     }
     
 }
+
+
+// MARK: - NSObject
+extension NSObject {
+    
+    // 通过类名创建类（swift中需要命名空间加上类名）
+    func swiftClassFromString(_ className: String) -> UIViewController? {
+        
+        // 1.获取命名空间
+        guard let clsName = Bundle.main.object(forInfoDictionaryKey: "CFBundleExecutable") as? String, !className.isEmpty else {
+            print("命名空间不存在")
+            return nil
+        }
+        
+        let cls: AnyClass? = NSClassFromString(clsName + "." + className)
+        guard  let type = cls as? UIViewController.Type else {
+            print("类名错误")
+            return nil
+        }
+        
+        let vc = type.init()
+        return vc
+    }
+    
+}
+
 
 // MARK: - UIImage
 extension UIImage {
@@ -424,7 +451,6 @@ extension UIView {
 
 
 private var key: Void?
-private var key1: Void?
 
 // MARK: - UIButton
 extension UIButton {
@@ -441,6 +467,22 @@ extension UIButton {
         }
     }
     
+}
+
+
+private var keyText: Void?
+// MARK: - UITextField 增加indexPath属性
+extension UITextField {
+    
+    public var indexPath: IndexPath? {
+        
+        get {
+            return objc_getAssociatedObject(self, &keyText) as? IndexPath
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &keyText, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+        }
+    }
 }
 
 
